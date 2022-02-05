@@ -1,13 +1,15 @@
-import { Quiz } from '../../models/Quiz.js'
-import { AppError } from '../../utils/AppError.js'
-import { catchAsync } from '../../utils/catchAsync.js'
+import { Quiz } from '../../models/Quiz.js';
+import { AppError } from '../../utils/AppError.js';
+import { catchAsync } from '../../utils/catchAsync.js';
 
 export const getAllQuizes = catchAsync(async (req, res) => {
-    const quizes = await Quiz.find({})
+    const {userId} = req.query;
+    const filters={}
+    if(userId) {
+       filters.author = userId
+    }
+    const quizes = await Quiz.find({...filters})
 
-    // console.log(req.session)
-    // const user = await Clerk.users.getUser(req.session.userId);
-    // console.log(user)
     return res.status(200).json({
         status: 'success',
         quizes,
@@ -15,7 +17,9 @@ export const getAllQuizes = catchAsync(async (req, res) => {
 })
 
 export const createQuiz = catchAsync(async (req, res, next) => {
-    const { title, description, tags, author, status } = req.body;
+    const { title, description, tags, status } = req.body;
+
+    const author = req.user.id;
 
     if (!title || !description || !tags || !author) {
         return next(new AppError('Please send Quiz title, description, tags and author.', 400))

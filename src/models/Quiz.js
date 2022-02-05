@@ -23,9 +23,7 @@ const quizSchema = mongoose.Schema(
     },
     author: {
       type: String,
-      // type: mongoose.Schema.Types.ObjectId,
-      // ref: 'User',
-      // required: [true, 'A quiz needs an author.']
+      required: [true, 'A quiz needs an author.']
     },
   },
   {
