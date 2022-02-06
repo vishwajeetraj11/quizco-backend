@@ -19,6 +19,10 @@ const questionSchema = mongoose.Schema(
         type: [{ value: String }],
         validate: [arrayLimit, '{PATH} length should only be 4']
     },
+    author: {
+      type: String,
+      required: [true, 'A quiz needs an author.']
+    },
   },
   {
     toJSON: { virtuals: true },

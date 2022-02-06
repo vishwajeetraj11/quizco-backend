@@ -19,7 +19,7 @@ const quizSchema = mongoose.Schema(
     status: {
       type: String,
       default: 'draft',
-      enum: ['draft', 'unpublished', 'active', 'inactive'],
+      enum: ['draft', 'active', 'inactive'],
     },
     author: {
       type: String,
@@ -37,6 +37,14 @@ quizSchema.virtual('questions', {
     ref: 'Question',
     foreignField: 'quiz',
     localField: '_id',
+  });
+  
+// https://github.com/Automattic/mongoose/issues/7573#issuecomment-516440616
+quizSchema.virtual('questionsCount', {
+    ref: 'Question',
+    foreignField: 'quiz',
+    localField: '_id',
+    count: true,
   });
 
 export const Quiz =  mongoose.models.Quiz || mongoose.model('Quiz', quizSchema);

@@ -18,6 +18,7 @@ export const createQuestion = catchAsync(async (req, res, next) => {
 
     const question = await Question.create({
         quiz: quizId,
+        author: req.user.id,
         title,
         correct,
         options,
@@ -31,18 +32,30 @@ export const createQuestion = catchAsync(async (req, res, next) => {
 
 export const getAllQuestion = catchAsync(async (req, res,) => {
     const { quizId } = req.params;
-    const questions = await Question.find({ quiz: quizId });
+    const questions = await Question.find({ quiz: quizId }).select('-correct');
 
     return res.status(200).json({
         status: 'success',
         questions,
+        author: questions[0].author
+    })
+})
+
+export const getAllQuestionsWithCorrectAns = catchAsync(async (req,res) => {
+    const { quizId } = req.params;
+    const questions = await Question.find({ quiz: quizId }).select();
+
+    return res.status(200).json({
+        status: 'success',
+        questions,
+        author: questions[0].author
     })
 })
 
 export const getQuestion = catchAsync(async (req, res,) => {
-    const { quizId, id } = req.params;
+    const { quizId, questionId } = req.params;
 
-    const question = await Question.findOne({ _id: id, quiz: quizId });
+    const question = await Question.findOne({ _id: questionId, quiz: quizId });
 
 
     if (!question) {
@@ -55,9 +68,9 @@ export const getQuestion = catchAsync(async (req, res,) => {
 })
 
 export const updateQuestion = catchAsync(async (req, res, next) => {
-    const { quizId, id } = req.params;
+    const { quizId, questionId } = req.params;
     const { title, correct, options } = req.body;
-
+    
 
     const toUpdateData = {};
 
@@ -79,7 +92,7 @@ export const updateQuestion = catchAsync(async (req, res, next) => {
         toUpdateData.option = options;
     }
 
-    const updatedQuestion = await Question.findOneAndUpdate({ _id: id, quiz: quizId }, toUpdateData, { new: true, runValidators: true });
+    const updatedQuestion = await Question.findOneAndUpdate({ _id: questionId, quiz: quizId }, toUpdateData, { new: true, runValidators: true });
 
     if (!updatedQuestion) {
         return next(new AppError("Question you are trying to update doesn't exist.", 404))
@@ -93,9 +106,9 @@ export const updateQuestion = catchAsync(async (req, res, next) => {
 })
 
 export const deleteQuestion = catchAsync(async (req, res,) => {
-    const { quizId, id } = req.params;
+    const { quizId, questionId } = req.params;
 
-    const question = await Question.findOneAndDelete({ _id: id, quiz: quizId });
+    const question = await Question.findOneAndDelete({ _id: questionId, quiz: quizId });
 
     if (!question) {
         throw new AppError("Question you are trying to delete doesn't exist.", 404)

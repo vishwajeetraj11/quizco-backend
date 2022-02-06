@@ -3,12 +3,15 @@ import { AppError } from '../../utils/AppError.js';
 import { catchAsync } from '../../utils/catchAsync.js';
 
 export const getAllQuizes = catchAsync(async (req, res) => {
-    const {userId} = req.query;
-    const filters={}
-    if(userId) {
-       filters.author = userId
+    const {loggedIn} = req.query;
+    const filters={};
+    if(loggedIn) {
+       filters.author = req.user.id;
+    } else {
+        filters.status = 'active'
     }
-    const quizes = await Quiz.find({...filters})
+   
+    const quizes = await Quiz.find({ ...filters }).populate('questionsCount');
 
     return res.status(200).json({
         status: 'success',
@@ -42,8 +45,9 @@ export const createQuiz = catchAsync(async (req, res, next) => {
 })
 
 export const getQuiz = catchAsync(async (req, res, next) => {
-    const { params } = req
-    const quiz = await Quiz.findById(params.id).populate('questions');
+    const { quizId } = req.params;
+
+    const quiz = await Quiz.findById(quizId).populate('questionsCount');
 
     if (!quiz) {
         return next(new AppError('Quiz not found', 404))
@@ -57,7 +61,7 @@ export const getQuiz = catchAsync(async (req, res, next) => {
 
 export const updateQuiz = catchAsync(async (req, res, next) => {
     const { title, description, tags, status } = req.body;
-    const { id } = req.params;
+    const { quizId } = req.params;
     const toUpdateData = {};
 
     if (title) {
@@ -77,7 +81,7 @@ export const updateQuiz = catchAsync(async (req, res, next) => {
         toUpdateData.status = status;
     }
 
-    const updatedQuiz = await Quiz.findOneAndUpdate({ _id: id }, toUpdateData, { new: true, runValidators: true });
+    const updatedQuiz = await Quiz.findOneAndUpdate({ _id: quizId }, toUpdateData, { new: true, runValidators: true });
 
     return res.status(200).json({
         status: 'success',
@@ -87,9 +91,9 @@ export const updateQuiz = catchAsync(async (req, res, next) => {
 
 
 export const deleteQuiz = catchAsync(async (req, res,) => {
-    const { id } = req.params;
+    const { quizId } = req.params;
 
-    const quiz = await Quiz.findOneAndDelete({ _id: id });
+    const quiz = await Quiz.findOneAndDelete({ _id: quizId });
 
     if (!quiz) {
         throw new AppError("Quiz you are trying to delete doesn't exist.", 404)

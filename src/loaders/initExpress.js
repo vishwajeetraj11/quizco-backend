@@ -16,11 +16,11 @@ export const initExpress = ({ app }) => {
   // The magic package that prevents frontend developers going nuts
   // Alternate description:
   // Enable Cross Origin Resource Sharing to all origins by default
-//   if (process.env.NODE_ENV === 'production') {
-//     app.use(cors({ origin: '<frontend_url>' }));
-//   } else {
+  if (process.env.NODE_ENV === 'production') {
+    app.use(cors({ origin: 'https://quizco-app.netlify.app' }));
+  } else {
     app.use(cors());
-//   }
+  }
 
   // Development Logging
   if (process.env.NODE_ENV === 'development') {
