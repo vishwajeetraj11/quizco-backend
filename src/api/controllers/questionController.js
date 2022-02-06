@@ -1,4 +1,5 @@
 import { Question } from "../../models/Question.js";
+import { Quiz } from "../../models/Quiz.js";
 import { AppError } from "../../utils/AppError.js";
 import { catchAsync } from "../../utils/catchAsync.js";
 
@@ -32,12 +33,12 @@ export const createQuestion = catchAsync(async (req, res, next) => {
 
 export const getAllQuestion = catchAsync(async (req, res,) => {
     const { quizId } = req.params;
+    const quiz = await Quiz.findById(quizId);
     const questions = await Question.find({ quiz: quizId }).select('-correct');
-
     return res.status(200).json({
         status: 'success',
         questions,
-        author: questions[0].author
+        author: quiz.author
     })
 })
 
