@@ -31,9 +31,9 @@ export const initExpress = ({ app }) => {
   app.use(express.json());
   app.use(express.urlencoded({extended: true}));
 
+  app.get('/', (req, res) => res.send('API is running'));
   app.use(ClerkExpressRequireSession());
   // Load API routes
-  app.get('/', (req, res) => res.send('API is running'));
   app.use(`${config.api.prefix}/quizes`, quizRouter);
 
   

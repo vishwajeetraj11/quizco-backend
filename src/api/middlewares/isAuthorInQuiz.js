@@ -5,7 +5,6 @@ import { catchAsync } from "../../utils/catchAsync.js";
 export const isAuthorInQuiz = catchAsync(async (req, res, next) => {
 
     const userId = req.user.id;
-    console.log({userId, quizId: req.params})
     const quiz = await Quiz.findById(req.params.quizId);
 
     if(!(quiz.author === userId)) {
