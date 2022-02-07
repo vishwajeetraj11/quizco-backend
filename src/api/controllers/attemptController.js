@@ -21,7 +21,7 @@ export const createAttempt = catchAsync(async (req, res, next) => {
 
 export const getAttemptsByUser = catchAsync(async (req, res) => {
     const userId = req.user.id
-    const attempts = await Attempt.find({ userId }).populate('quiz')
+    const attempts = await Attempt.find({ userId }).populate({path: 'quiz', select: '+deleted'});
 
     return res.status(200).json({
         status: 'success',

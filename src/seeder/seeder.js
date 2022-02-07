@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import { connectDB } from '../loaders/initDB.js';
+import { Attempt } from '../models/Attempted.js';
 import { Question } from '../models/Question.js';
 import { Quiz } from '../models/Quiz.js';
 
@@ -15,7 +16,7 @@ const importData = async () => {
   try {
     
     for(let i=0; i<data.data.length;i++) {
-      const quiz = await Quiz.create(data.data[i].quiz);
+      const quiz = await Quiz.create({...data.data[i].quiz, deleted: false});
       const questionsWithQuizId = data.data[i].questions.map(q => {q.quiz=quiz.id; q.author=quiz.author; return q});
       await Question.insertMany(questionsWithQuizId);
     }
@@ -31,6 +32,7 @@ const deleteData = async () => {
   try {
     await Quiz.deleteMany();
     await Question.deleteMany();
+    await Attempt.deleteMany();
     console.log('Data Deleted Successfully');
   } catch (err) {
     console.log(err);
