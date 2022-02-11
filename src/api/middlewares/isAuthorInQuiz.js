@@ -7,7 +7,7 @@ export const isAuthorInQuiz = catchAsync(async (req, res, next) => {
     const userId = req.user.id;
     const quiz = await Quiz.findById(req.params.quizId);
     if(!(quiz.author === userId)) {
-        return next(new AppError('You are not the author of this quiz.', 403))
+        return next(new AppError('You do not have enough permission to access this resource.', 403))
     }
 
     next();
