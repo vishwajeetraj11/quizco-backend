@@ -21,7 +21,7 @@ export const createQuestion = catchAsync(async (req, res, next) => {
         quiz: quizId,
         author: req.user.id,
         title,
-        correct,
+        correct,    
         options,
     })
 
@@ -31,10 +31,18 @@ export const createQuestion = catchAsync(async (req, res, next) => {
     })
 })
 
-export const getAllQuestion = catchAsync(async (req, res,) => {
+export const getAllQuestion = catchAsync(async (req, res,next) => {
     const { quizId } = req.params;
     const quiz = await Quiz.findById(quizId);
     const questions = await Question.find({ quiz: quizId }).select('-correct');
+    
+    if(quiz.status !== 'active') {
+        const isLoggedInUserAuthor = req.user.id === quiz.author;
+        if(!isLoggedInUserAuthor) {
+            return next(new AppError('You do not have permission to access this quiz.', 403));
+        }
+    }
+
     return res.status(200).json({
         status: 'success',
         questions,
