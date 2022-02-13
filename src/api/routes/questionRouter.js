@@ -5,7 +5,7 @@ import {
 	getAllQuestion,
 	getAllQuestionsWithCorrectAns,
 	getQuestion,
-	updateQuestion,
+	updateQuestion
 } from '../controllers/questionController.js';
 import { isAuthorInQuiz } from '../middlewares/isAuthorInQuiz.js';
 

@@ -33,6 +33,6 @@ export const config = {
 	 * API configs
 	 */
 	api: {
-		prefix: '/api/v1',
-	},
+		prefix: '/api/v1'
+	}
 };

@@ -31,7 +31,7 @@ const sendErrorDev = (err, req, res) => {
 			status: err.status,
 			error: err,
 			message: err.message,
-			stack: err.stack,
+			stack: err.stack
 		});
 	}
 };
@@ -42,7 +42,7 @@ const sendErrorProd = (err, req, res) => {
 		if (err.isOperational) {
 			return res.status(err.statusCode).json({
 				status: err.status,
-				message: err.message,
+				message: err.message
 			});
 		}
 		// 1. Log Error
@@ -51,7 +51,7 @@ const sendErrorProd = (err, req, res) => {
 		// 2. Send generic message
 		return res.status(500).json({
 			status: 'error',
-			message: 'Something went very wrong',
+			message: 'Something went very wrong'
 		});
 	}
 };

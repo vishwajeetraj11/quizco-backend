@@ -6,7 +6,7 @@ import { catchAsync } from '../../utils/catchAsync.js';
 export const getAllQuizes = catchAsync(async (req, res) => {
 	const { loggedIn } = req.query;
 	const filters = {
-		deleted: { $ne: true },
+		deleted: { $ne: true }
 	};
 	if (loggedIn) {
 		filters.author = req.user.id;
@@ -18,7 +18,7 @@ export const getAllQuizes = catchAsync(async (req, res) => {
 
 	return res.status(200).json({
 		status: 'success',
-		quizes,
+		quizes
 	});
 });
 
@@ -44,12 +44,12 @@ export const createQuiz = catchAsync(async (req, res, next) => {
 		description,
 		tags,
 		author,
-		status: status,
+		status: status
 	});
 
 	return res.status(200).json({
 		status: 'success',
-		quiz: quiz,
+		quiz: quiz
 	});
 });
 
@@ -64,7 +64,7 @@ export const getQuiz = catchAsync(async (req, res, next) => {
 
 	return res.status(200).json({
 		status: 'success',
-		quiz: quiz,
+		quiz: quiz
 	});
 });
 
@@ -92,12 +92,12 @@ export const updateQuiz = catchAsync(async (req, res, next) => {
 
 	const updatedQuiz = await Quiz.findOneAndUpdate({ _id: quizId }, toUpdateData, {
 		new: true,
-		runValidators: true,
+		runValidators: true
 	});
 
 	return res.status(200).json({
 		status: 'success',
-		quiz: updatedQuiz,
+		quiz: updatedQuiz
 	});
 });
 
@@ -109,7 +109,7 @@ export const deleteQuiz = catchAsync(async (req, res) => {
 	if (!attempts) {
 		await Quiz.findOneAndDelete({ _id: quizId });
 		return res.status(204).json({
-			status: 'success',
+			status: 'success'
 		});
 	}
 	const quiz = await Quiz.findOneAndUpdate({ _id: quizId }, { deleted: true });
@@ -119,6 +119,6 @@ export const deleteQuiz = catchAsync(async (req, res) => {
 	}
 
 	return res.status(204).json({
-		status: 'success',
+		status: 'success'
 	});
 });

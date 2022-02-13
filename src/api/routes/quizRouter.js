@@ -1,15 +1,15 @@
 import { Router } from 'express';
 import {
-    createAttempt,
-    getAttemptById,
-    getAttemptsByUser
+	createAttempt,
+	getAttemptById,
+	getAttemptsByUser
 } from '../controllers/attemptController.js';
 import {
-    createQuiz,
-    deleteQuiz,
-    getAllQuizes,
-    getQuiz,
-    updateQuiz
+	createQuiz,
+	deleteQuiz,
+	getAllQuizes,
+	getQuiz,
+	updateQuiz
 } from '../controllers/quizController.js';
 import { getStatsByQuiz } from '../controllers/statisticsController.js';
 import { authorizeMiddleware } from '../middlewares/authMiddleware.js';

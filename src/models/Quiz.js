@@ -4,44 +4,44 @@ const quizSchema = mongoose.Schema(
 	{
 		title: {
 			type: String,
-			required: [true, 'Quiz title required'],
+			required: [true, 'Quiz title required']
 		},
 		description: {
 			type: String,
-			default: 'No Description',
+			default: 'No Description'
 		},
 		tags: [
 			{
 				type: String,
-				required: [true, 'Tags are required'],
-			},
+				required: [true, 'Tags are required']
+			}
 		],
 		status: {
 			type: String,
 			default: 'draft',
-			enum: ['draft', 'active', 'inactive'],
+			enum: ['draft', 'active', 'inactive']
 		},
 		deleted: {
 			type: Boolean,
 			default: false,
-			select: false,
+			select: false
 		},
 		author: {
 			type: String,
-			required: [true, 'A quiz needs an author.'],
-		},
+			required: [true, 'A quiz needs an author.']
+		}
 	},
 	{
 		toJSON: { virtuals: true },
 		toObject: { virtuals: true },
-		timestamps: true,
+		timestamps: true
 	}
 );
 
 quizSchema.virtual('questions', {
 	ref: 'Question',
 	foreignField: 'quiz',
-	localField: '_id',
+	localField: '_id'
 });
 
 // https://github.com/Automattic/mongoose/issues/7573#issuecomment-516440616
@@ -49,7 +49,7 @@ quizSchema.virtual('questionsCount', {
 	ref: 'Question',
 	foreignField: 'quiz',
 	localField: '_id',
-	count: true,
+	count: true
 });
 
 // quizSchema.pre(/^find/, function (next) {

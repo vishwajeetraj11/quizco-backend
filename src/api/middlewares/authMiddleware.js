@@ -9,7 +9,7 @@ export const authorizeMiddleware = catchAsync(async (req, res, next) => {
 		profileImageUrl: userDetails.profileImageUrl,
 		firstName: userDetails.firstName,
 		lastName: userDetails.lastName,
-		email: emails[0],
+		email: emails[0]
 	};
 
 	req.user = user;

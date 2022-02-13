@@ -10,9 +10,13 @@
 		"sourceType": "module"
 	},
 	"rules": {
-		"prettier/prettier": ["warn", {}, {
-            "usePrettierrc": true
-          }],
+		"prettier/prettier": [
+			"warn",
+			{},
+			{
+				"usePrettierrc": true
+			}
+		],
 		"class-methods-use-this": "off",
 		"no-param-reassign": "off",
 		"camelcase": "off",

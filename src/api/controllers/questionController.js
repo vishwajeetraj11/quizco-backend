@@ -22,12 +22,12 @@ export const createQuestion = catchAsync(async (req, res, next) => {
 		author: req.user.id,
 		title,
 		correct,
-		options,
+		options
 	});
 
 	return res.status(200).json({
 		status: 'success',
-		question,
+		question
 	});
 });
 
@@ -46,7 +46,7 @@ export const getAllQuestion = catchAsync(async (req, res, next) => {
 	return res.status(200).json({
 		status: 'success',
 		questions,
-		author: quiz.author,
+		author: quiz.author
 	});
 });
 
@@ -57,7 +57,7 @@ export const getAllQuestionsWithCorrectAns = catchAsync(async (req, res) => {
 	return res.status(200).json({
 		status: 'success',
 		questions,
-		author: questions[0].author,
+		author: questions[0].author
 	});
 });
 
@@ -71,7 +71,7 @@ export const getQuestion = catchAsync(async (req, res) => {
 	}
 	return res.status(200).json({
 		status: 'success',
-		question,
+		question
 	});
 });
 
@@ -111,7 +111,7 @@ export const updateQuestion = catchAsync(async (req, res, next) => {
 
 	return res.status(200).json({
 		status: 'success',
-		question: updatedQuestion,
+		question: updatedQuestion
 	});
 });
 
@@ -125,6 +125,6 @@ export const deleteQuestion = catchAsync(async (req, res) => {
 	}
 
 	return res.status(204).json({
-		status: 'success',
+		status: 'success'
 	});
 });
