@@ -1,1090 +1,1081 @@
 {
-    "data": [
-        {
-            "quiz": {
-                "author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-                "title": "Typescript Quiz",
-                "status": "active",
-                "description": "Test your TS Skills.",
-                "tags": [
-                    "js",
-                    "ts"
-                ]
-            },
-            "questions": [
-                {
-                    "title": "TypeScript is an ____________ framework.",
-                    "options": [
-                        {
-                            "value": "Licensed"
-                        },
-                        {
-                            "value": "Open-sourced"
-                        },
-                        {
-                            "value": "Commercial"
-                        },
-                        {
-                            "value": "Both, A and B"
-                        }
-                    ],
-                    "correct": "Open-sourced"
-                },
-                {
-                    "title": "TypeScript is a typed superset of __________.",
-                    "options": [
-                        {
-                            "value": "C#"
-                        },
-                        {
-                            "value": "Java"
-                        },
-                        {
-                            "value": "JavaScript"
-                        },
-                        {
-                            "value": "ReactJS"
-                        }
-                    ],
-                    "correct": "JavaScript"
-                },
-                {
-                    "title": "TypeScript file compiled into ________.",
-                    "options": [
-                        {
-                            "value": "JavaScript"
-                        },
-                        {
-                            "value": "VBScript"
-                        },
-                        {
-                            "value": "TypeScript"
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "JavaScript"
-                },
-                {
-                    "title": "_______ command is used to generate a JavaScript file from a TypeScript file.",
-                    "options": [
-                        {
-                            "value": "npm filename.ts"
-                        },
-                        {
-                            "value": "tsc fileName.ts"
-                        },
-                        {
-                            "value": "tsc -js fileName.ts"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "tsc fileName.ts"
-                },
-                {
-                    "title": "Which of the following statement declares a variable in TypeScript?",
-                    "options": [
-                        {
-                            "value": "var myVar = 123;"
-                        },
-                        {
-                            "value": "var myVar:number = 123;"
-                        },
-                        {
-                            "value": "let myVar:number = 123;"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "All of the above"
-                },
-                {
-                    "title": "Which of the followings are primitive types supported in TypeScript?",
-                    "options": [
-                        {
-                            "value": "number"
-                        },
-                        {
-                            "value": "string"
-                        },
-                        {
-                            "value": "boolean"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "All of the above"
-                },
-                {
-                    "title": "Which of the following is a valid union type variable?",
-                    "options": [
-                        {
-                            "value": "var emp:[number, string] = [1, \"Steve\"];"
-                        },
-                        {
-                            "value": "var emp:(number|string) = 123;"
-                        },
-                        {
-                            "value": "var emp:string[] = [\"Bill\"]"
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "var emp:(number|string) = 123;"
-                },
-                {
-                    "title": "Which of the following is a valid tuple?",
-                    "options": [
-                        {
-                            "value": "var employee:[number, string] = [1, \"Bill\"]"
-                        },
-                        {
-                            "value": "var employee:(number|string) = 123;"
-                        },
-                        {
-                            "value": "var employee = [1, \"Bill\"];"
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "var employee:[number, string] = [1, \"Bill\"]"
-                },
-                {
-                    "title": "Type assertion in TypeScript is achieved using which of the following syntax?",
-                    "options": [
-                        {
-                            "value": "Using <type> syntax"
-                        },
-                        {
-                            "value": "Using as syntax"
-                        },
-                        {
-                            "value": "Both A and B"
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "Both A and B"
-                },
-                {
-                    "title": "Which of the following is a valid arrow function?",
-                    "options": [
-                        {
-                            "value": "let sum = (x: number, y: number) => x + y;"
-                        },
-                        {
-                            "value": "let sum(): (x: number, y: number):number => x + y;"
-                        },
-                        {
-                            "value": "let sum = (x: number, y: number) => return x + y;"
-                        },
-                        {
-                            "value": "let sum:(x: number, y: number) => x + y;"
-                        }
-                    ],
-                    "correct": "let sum = (x: number, y: number) => x + y;"
-                },
-                {
-                    "title": "The rest parameters in a function is used when _______.",
-                    "options": [
-                        {
-                            "value": "The types of parameters is not known"
-                        },
-                        {
-                            "value": "The number of parameters is not known"
-                        },
-                        {
-                            "value": "The function needs to be executed asynchronously"
-                        },
-                        {
-                            "value": "The function is called recursively"
-                        }
-                    ],
-                    "correct": "The number of parameters is not known"
-                },
-                {
-                    "title": "Which of the following statement is TRUE?",
-                    "options": [
-                        {
-                            "value": "An interface can extend another interface in TypeScript."
-                        },
-                        {
-                            "value": "An interface can extend a class in TypeScript."
-                        },
-                        {
-                            "value": "TypeScript interface does not generate any JavaScript code."
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "All of the above"
-                },
-                {
-                    "title": "Which of the following are valid data modifiers in TypeScript?",
-                    "options": [
-                        {
-                            "value": "public"
-                        },
-                        {
-                            "value": "private"
-                        },
-                        {
-                            "value": "protected"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "All of the above"
-                },
-                {
-                    "title": "Which of the following keyword is used to declare a module?",
-                    "options": [
-                        {
-                            "value": "export"
-                        },
-                        {
-                            "value": "namespace"
-                        },
-                        {
-                            "value": "type"
-                        },
-                        {
-                            "value": "declare"
-                        }
-                    ],
-                    "correct": "export"
-                },
-                {
-                    "title": "Which of the followings is declared a namespace?",
-                    "options": [
-                        {
-                            "value": "namespace test{ }"
-                        },
-                        {
-                            "value": "ns test { }"
-                        },
-                        {
-                            "value": "A & B both"
-                        },
-                        {
-                            "value": "export test(){ }"
-                        }
-                    ],
-                    "correct": "namespace test{ }"
-                },
-                {
-                    "title": "Which of the following command is used to compile a module?",
-                    "options": [
-                        {
-                            "value": "tsc --module amd mymodule.ts"
-                        },
-                        {
-                            "value": "tsc -m amd mymodule.ts"
-                        },
-                        {
-                            "value": "Both, A and B"
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "Both, A and B"
-                },
-                {
-                    "title": "Which configuration file is required to compile the whole TypeScript project?",
-                    "options": [
-                        {
-                            "value": "tsconfig.js"
-                        },
-                        {
-                            "value": "tsconfig.json"
-                        },
-                        {
-                            "value": "web.config"
-                        },
-                        {
-                            "value": "app.json"
-                        }
-                    ],
-                    "correct": "tsconfig.json"
-                },
-                {
-                    "title": "Which of the following statement is TRUE?",
-                    "options": [
-                        {
-                            "value": "TypeScript supports generics."
-                        },
-                        {
-                            "value": "TypeScript supports readonly and static members."
-                        },
-                        {
-                            "value": "TypeScript supports abstract class."
-                        },
-                        {
-                            "value": "All of the above."
-                        }
-                    ],
-                    "correct": "All of the above."
-                }
-            ]
-        },
-        {
-            "quiz": {
-                "author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-                "title": "MongoDB Quiz",
-                "status": "active",
-                "description": "Test your MongoDB Knowledge.",
-                "tags": [
-                    "db",
-                    "mongodb"
-                ]
-            },
-            "questions": [
-                {
-                    "title": "MongoDB is a _________.",
-                    "options": [
-                        {
-                            "value": "Relational Database"
-                        },
-                        {
-                            "value": "Caching Database"
-                        },
-                        {
-                            "value": "NoSQL Database"
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "NoSQL Database"
-                },
-                {
-                    "title": "Which of the following commands starts the MongoDB server?",
-                    "options": [
-                        {
-                            "value": "mongo"
-                        },
-                        {
-                            "value": "mongosh"
-                        },
-                        {
-                            "value": "mongoserver"
-                        },
-                        {
-                            "value": "mongod"
-                        }
-                    ],
-                    "correct": "mongod"
-                },
-                {
-                    "title": "_________ is the command-line client of MongoDB Database?",
-                    "options": [
-                        {
-                            "value": "Mongo Shell"
-                        },
-                        {
-                            "value": "Web Application"
-                        },
-                        {
-                            "value": "Windows Service"
-                        },
-                        {
-                            "value": "Windows Application"
-                        }
-                    ],
-                    "correct": "Mongo Shell"
-                },
-                {
-                    "title": "Which of the following commands starts Mongo Shell?",
-                    "options": [
-                        {
-                            "value": "mongo"
-                        },
-                        {
-                            "value": "mongosh"
-                        },
-                        {
-                            "value": "mongod"
-                        },
-                        {
-                            "value": "shell"
-                        }
-                    ],
-                    "correct": "mongosh"
-                },
-                {
-                    "title": "which of the following commands creates a new database?",
-                    "options": [
-                        {
-                            "value": "create"
-                        },
-                        {
-                            "value": "switch"
-                        },
-                        {
-                            "value": "use"
-                        },
-                        {
-                            "value": "new"
-                        }
-                    ],
-                    "correct": "use"
-                },
-                {
-                    "title": "MongoDB collections are similar to _______ in RDBMS.",
-                    "options": [
-                        {
-                            "value": "Views"
-                        },
-                        {
-                            "value": "Tables"
-                        },
-                        {
-                            "value": "Rows"
-                        },
-                        {
-                            "value": "Columns"
-                        }
-                    ],
-                    "correct": "Tables"
-                },
-                {
-                    "title": "Which of the following method creates a new collection?",
-                    "options": [
-                        {
-                            "value": "db.useCollection('collection-name')"
-                        },
-                        {
-                            "value": "db.collection('collection-name')"
-                        },
-                        {
-                            "value": "db.createCollection('collection-name')"
-                        },
-                        {
-                            "value": "new db.createCollection('collection-name')"
-                        }
-                    ],
-                    "correct": "db.createCollection('collection-name')"
-                },
-                {
-                    "title": "MongoDB documents are similar to _______ in RDBMS.",
-                    "options": [
-                        {
-                            "value": "Column"
-                        },
-                        {
-                            "value": "Database"
-                        },
-                        {
-                            "value": "Records"
-                        },
-                        {
-                            "value": "Tables"
-                        }
-                    ],
-                    "correct": "Records"
-                },
-                {
-                    "title": "MongoDB stores data as ______ document.",
-                    "options": [
-                        {
-                            "value": "JSON"
-                        },
-                        {
-                            "value": "BSON"
-                        },
-                        {
-                            "value": "XML"
-                        },
-                        {
-                            "value": "YML"
-                        }
-                    ],
-                    "correct": "BSON"
-                },
-                {
-                    "title": "Which of the following methods are used to insert documents in a collection?",
-                    "options": [
-                        {
-                            "value": "insertOne()"
-                        },
-                        {
-                            "value": "insertMany()"
-                        },
-                        {
-                            "value": "insert()"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "All of the above"
-                },
-                {
-                    "title": "Which of the following command is used to import data into collection?",
-                    "options": [
-                        {
-                            "value": "mongoimport"
-                        },
-                        {
-                            "value": "import"
-                        },
-                        {
-                            "value": "insertMany"
-                        },
-                        {
-                            "value": "mongo-import"
-                        }
-                    ],
-                    "correct": "mongoimport"
-                },
-                {
-                    "title": "which of the following method is used to retrieve data from a collection?",
-                    "options": [
-                        {
-                            "value": "find()"
-                        },
-                        {
-                            "value": "findOne()"
-                        },
-                        {
-                            "value": "aggregate()"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "All of the above"
-                },
-                {
-                    "title": "The find() method returns a _____ object.",
-                    "options": [
-                        {
-                            "value": "List"
-                        },
-                        {
-                            "value": "Cursor"
-                        },
-                        {
-                            "value": "Collection"
-                        },
-                        {
-                            "value": "Record"
-                        }
-                    ],
-                    "correct": "Cursor"
-                },
-                {
-                    "title": "Which of the following methods is used to sort the data?",
-                    "options": [
-                        {
-                            "value": "db.collection.sort()"
-                        },
-                        {
-                            "value": "db.sort()"
-                        },
-                        {
-                            "value": "db.collection.find().sort()"
-                        },
-                        {
-                            "value": "db.find().sort()"
-                        }
-                    ],
-                    "correct": "db.collection.find().sort()"
-                },
-                {
-                    "title": "which of the following methods update multiple documents in a collection?",
-                    "options": [
-                        {
-                            "value": "db.collection.update()"
-                        },
-                        {
-                            "value": "db.collection.updateMany()"
-                        },
-                        {
-                            "value": "db.collection.updateOne()"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "db.collection.updateMany()"
-                },
-                {
-                    "title": "Which of the following methods deletes a single document in a collection?",
-                    "options": [
-                        {
-                            "value": "db.collection.delete()"
-                        },
-                        {
-                            "value": "db.collection.deleteOne()"
-                        },
-                        {
-                            "value": "db.collection.deleteMany()"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "db.collection.deleteOne()"
-                },
-                {
-                    "title": "Which of the following deletes all the documents in a collection?",
-                    "options": [
-                        {
-                            "value": "db.collection.deleteMany({ })"
-                        },
-                        {
-                            "value": "db.collection.clear()"
-                        },
-                        {
-                            "value": "db.collection.deleteAll({ })"
-                        },
-                        {
-                            "value": "db.collection.delete()"
-                        }
-                    ],
-                    "correct": "db.collection.deleteMany({ })"
-                },
-                {
-                    "title": "The aggregation pipeline is an array of one or more _____ passed in the db.aggregate() method.",
-                    "options": [
-                        {
-                            "value": "Collections"
-                        },
-                        {
-                            "value": "Stages  "
-                        },
-                        {
-                            "value": "Documents"
-                        },
-                        {
-                            "value": "Methods"
-                        }
-                    ],
-                    "correct": "Stages  "
-                },
-                {
-                    "title": "Which of the following stages is equivalent to the find() method?",
-                    "options": [
-                        {
-                            "value": "$group"
-                        },
-                        {
-                            "value": "$match"
-                        },
-                        {
-                            "value": "$sort"
-                        },
-                        {
-                            "value": "$select"
-                        }
-                    ],
-                    "correct": "$match"
-                },
-                {
-                    "title": "______is a method for distributing data across multiple machines. ",
-                    "options": [
-                        {
-                            "value": "Replication"
-                        },
-                        {
-                            "value": "Sharding"
-                        },
-                        {
-                            "value": "Load balancing"
-                        },
-                        {
-                            "value": "Transaction"
-                        }
-                    ],
-                    "correct": "Sharding"
-                }
-            ]
-        },
-        {
-            "quiz": {
-                "author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-                "title": "Node.js Quiz",
-                "tags": [
-                    "js",
-                    "node.js"
-                ],
-                "description": "Test your Node.js Knowledge.",
-                "status": "active"
-            },
-            "questions": [
-                {
-                    "title": "Node.js runs on __________",
-                    "options": [
-                        {
-                            "value": "Client"
-                        },
-                        {
-                            "value": "Server"
-                        },
-                        {
-                            "value": "Both, server and client"
-                        },
-                        {
-                            "value": "Browser"
-                        }
-                    ],
-                    "correct": "Server"
-                },
-                {
-                    "title": "Node.js is ________ by default.",
-                    "options": [
-                        {
-                            "value": "Synchronous"
-                        },
-                        {
-                            "value": "Multi-threaded"
-                        },
-                        {
-                            "value": "Asynchronous"
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "Asynchronous"
-                },
-                {
-                    "title": "Node.js supports which of the following platform?",
-                    "options": [
-                        {
-                            "value": "Windows"
-                        },
-                        {
-                            "value": "Macintosh"
-                        },
-                        {
-                            "value": "Unix/Linux"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "All of the above"
-                },
-                {
-                    "title": "Node.js terminal (REPL) is used for _________.",
-                    "options": [
-                        {
-                            "value": "testing node.js/JavaScript expressions"
-                        },
-                        {
-                            "value": "executing browser’s JavaScript expressions."
-                        },
-                        {
-                            "value": "the preview of node.js application."
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "testing node.js/JavaScript expressions"
-                },
-                {
-                    "title": "What is the default scope in Node.js application.",
-                    "options": [
-                        {
-                            "value": "Global"
-                        },
-                        {
-                            "value": "Local"
-                        },
-                        {
-                            "value": "Global Function"
-                        },
-                        {
-                            "value": "Local to object"
-                        }
-                    ],
-                    "correct": "Local"
-                },
-                {
-                    "title": "Node.js application runs on __________.",
-                    "options": [
-                        {
-                            "value": "Multiple threads"
-                        },
-                        {
-                            "value": "Single thread"
-                        },
-                        {
-                            "value": "Multiple Processes"
-                        },
-                        {
-                            "value": "Single Process"
-                        }
-                    ],
-                    "correct": "Single thread"
-                },
-                {
-                    "title": "Simple or complex functionality organized in a single or multiple JavaScript files which can be reused throughout your Node.js application is called ________.",
-                    "options": [
-                        {
-                            "value": "Module"
-                        },
-                        {
-                            "value": "Library"
-                        },
-                        {
-                            "value": "Package"
-                        },
-                        {
-                            "value": "Function"
-                        }
-                    ],
-                    "correct": "Module"
-                },
-                {
-                    "title": "The Node.js modules can be exposed using _________.",
-                    "options": [
-                        {
-                            "value": "module.expose"
-                        },
-                        {
-                            "value": "module"
-                        },
-                        {
-                            "value": "module.exports"
-                        },
-                        {
-                            "value": "all of the above"
-                        }
-                    ],
-                    "correct": "module.exports"
-                },
-                {
-                    "title": "Third-party packages can be install/update/delete using ________.",
-                    "options": [
-                        {
-                            "value": "Node Package Manager"
-                        },
-                        {
-                            "value": "Node.exe"
-                        },
-                        {
-                            "value": "Module.exports"
-                        },
-                        {
-                            "value": "REPL"
-                        }
-                    ],
-                    "correct": "Node Package Manager"
-                },
-                {
-                    "title": "Which of the following core module is used to create a web server in Node.js?",
-                    "options": [
-                        {
-                            "value": "fs"
-                        },
-                        {
-                            "value": "url"
-                        },
-                        {
-                            "value": "connect"
-                        },
-                        {
-                            "value": "http"
-                        }
-                    ],
-                    "correct": "http"
-                },
-                {
-                    "title": "How to import module in Node.js?",
-                    "options": [
-                        {
-                            "value": "Using the require() function."
-                        },
-                        {
-                            "value": "Using module.import"
-                        },
-                        {
-                            "value": "Using the include() function"
-                        },
-                        {
-                            "value": "Using the app.use() function"
-                        }
-                    ],
-                    "correct": "Using the require() function."
-                },
-                {
-                    "title": "Which of the following is a GUI-based debugging tool for Node.js?",
-                    "options": [
-                        {
-                            "value": "Core node debugger"
-                        },
-                        {
-                            "value": "Console"
-                        },
-                        {
-                            "value": "REPL"
-                        },
-                        {
-                            "value": "Node Inspector"
-                        }
-                    ],
-                    "correct": "Node Inspector"
-                },
-                {
-                    "title": "Which of the following class is used to create and consume custom events in Node.js?",
-                    "options": [
-                        {
-                            "value": "EventEmitter"
-                        },
-                        {
-                            "value": "Events"
-                        },
-                        {
-                            "value": "NodeEvent"
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "EventEmitter"
-                },
-                {
-                    "title": "Which of the followings are web application frameworks for Node.js?",
-                    "options": [
-                        {
-                            "value": "Express.js"
-                        },
-                        {
-                            "value": "Geddy"
-                        },
-                        {
-                            "value": "Locomotive"
-                        },
-                        {
-                            "value": "All of the above."
-                        }
-                    ],
-                    "correct": "All of the above."
-                },
-                {
-                    "title": "Which of the following types of application can be built using Node.js?",
-                    "options": [
-                        {
-                            "value": "Web Application"
-                        },
-                        {
-                            "value": "Chat Application"
-                        },
-                        {
-                            "value": "RESTful Service"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "All of the above"
-                },
-                {
-                    "title": "Which module is used to serve static resources in Node.js?",
-                    "options": [
-                        {
-                            "value": "node-static"
-                        },
-                        {
-                            "value": "http"
-                        },
-                        {
-                            "value": "node-resource"
-                        },
-                        {
-                            "value": "static"
-                        }
-                    ],
-                    "correct": "node-static"
-                },
-                {
-                    "title": "Which of the following template engines can be used with Node.js?",
-                    "options": [
-                        {
-                            "value": "Jade"
-                        },
-                        {
-                            "value": "Vash"
-                        },
-                        {
-                            "value": "Handlebars"
-                        },
-                        {
-                            "value": "All of the above"
-                        }
-                    ],
-                    "correct": "All of the above"
-                },
-                {
-                    "title": "Which of the following tool automates various tasks of Node.js application?",
-                    "options": [
-                        {
-                            "value": "Express.js"
-                        },
-                        {
-                            "value": "GruntJS"
-                        },
-                        {
-                            "value": "NPM"
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "GruntJS"
-                },
-                {
-                    "title": "Which of the followings are valid languages for Node.js?",
-                    "options": [
-                        {
-                            "value": "JavaScript"
-                        },
-                        {
-                            "value": "Java"
-                        },
-                        {
-                            "value": "C++"
-                        },
-                        {
-                            "value": "C#"
-                        }
-                    ],
-                    "correct": "JavaScript"
-                },
-                {
-                    "title": "Node.js application can access which of the following databases?",
-                    "options": [
-                        {
-                            "value": "NoSQL databases"
-                        },
-                        {
-                            "value": "Relational databases"
-                        },
-                        {
-                            "value": "All of the above"
-                        },
-                        {
-                            "value": "None of the above"
-                        }
-                    ],
-                    "correct": "All of the above"
-                }
-            ]
-        }
-    ]
+	"data": [
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"title": "Typescript",
+				"status": "active",
+				"description": "Test your TS Skills.",
+				"tags": ["js", "ts"]
+			},
+			"questions": [
+				{
+					"title": "TypeScript is an ____________ framework.",
+					"options": [
+						{
+							"value": "Licensed"
+						},
+						{
+							"value": "Open-sourced"
+						},
+						{
+							"value": "Commercial"
+						},
+						{
+							"value": "Both, A and B"
+						}
+					],
+					"correct": "Open-sourced"
+				},
+				{
+					"title": "TypeScript is a typed superset of __________.",
+					"options": [
+						{
+							"value": "C#"
+						},
+						{
+							"value": "Java"
+						},
+						{
+							"value": "JavaScript"
+						},
+						{
+							"value": "ReactJS"
+						}
+					],
+					"correct": "JavaScript"
+				},
+				{
+					"title": "TypeScript file compiled into ________.",
+					"options": [
+						{
+							"value": "JavaScript"
+						},
+						{
+							"value": "VBScript"
+						},
+						{
+							"value": "TypeScript"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "JavaScript"
+				},
+				{
+					"title": "_______ command is used to generate a JavaScript file from a TypeScript file.",
+					"options": [
+						{
+							"value": "npm filename.ts"
+						},
+						{
+							"value": "tsc fileName.ts"
+						},
+						{
+							"value": "tsc -js fileName.ts"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "tsc fileName.ts"
+				},
+				{
+					"title": "Which of the following statement declares a variable in TypeScript?",
+					"options": [
+						{
+							"value": "var myVar = 123;"
+						},
+						{
+							"value": "var myVar:number = 123;"
+						},
+						{
+							"value": "let myVar:number = 123;"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Which of the followings are primitive types supported in TypeScript?",
+					"options": [
+						{
+							"value": "number"
+						},
+						{
+							"value": "string"
+						},
+						{
+							"value": "boolean"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Which of the following is a valid union type variable?",
+					"options": [
+						{
+							"value": "var emp:[number, string] = [1, \"Steve\"];"
+						},
+						{
+							"value": "var emp:(number|string) = 123;"
+						},
+						{
+							"value": "var emp:string[] = [\"Bill\"]"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "var emp:(number|string) = 123;"
+				},
+				{
+					"title": "Which of the following is a valid tuple?",
+					"options": [
+						{
+							"value": "var employee:[number, string] = [1, \"Bill\"]"
+						},
+						{
+							"value": "var employee:(number|string) = 123;"
+						},
+						{
+							"value": "var employee = [1, \"Bill\"];"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "var employee:[number, string] = [1, \"Bill\"]"
+				},
+				{
+					"title": "Type assertion in TypeScript is achieved using which of the following syntax?",
+					"options": [
+						{
+							"value": "Using <type> syntax"
+						},
+						{
+							"value": "Using as syntax"
+						},
+						{
+							"value": "Both A and B"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "Both A and B"
+				},
+				{
+					"title": "Which of the following is a valid arrow function?",
+					"options": [
+						{
+							"value": "let sum = (x: number, y: number) => x + y;"
+						},
+						{
+							"value": "let sum(): (x: number, y: number):number => x + y;"
+						},
+						{
+							"value": "let sum = (x: number, y: number) => return x + y;"
+						},
+						{
+							"value": "let sum:(x: number, y: number) => x + y;"
+						}
+					],
+					"correct": "let sum = (x: number, y: number) => x + y;"
+				},
+				{
+					"title": "The rest parameters in a function is used when _______.",
+					"options": [
+						{
+							"value": "The types of parameters is not known"
+						},
+						{
+							"value": "The number of parameters is not known"
+						},
+						{
+							"value": "The function needs to be executed asynchronously"
+						},
+						{
+							"value": "The function is called recursively"
+						}
+					],
+					"correct": "The number of parameters is not known"
+				},
+				{
+					"title": "Which of the following statement is TRUE?",
+					"options": [
+						{
+							"value": "An interface can extend another interface in TypeScript."
+						},
+						{
+							"value": "An interface can extend a class in TypeScript."
+						},
+						{
+							"value": "TypeScript interface does not generate any JavaScript code."
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Which of the following are valid data modifiers in TypeScript?",
+					"options": [
+						{
+							"value": "public"
+						},
+						{
+							"value": "private"
+						},
+						{
+							"value": "protected"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Which of the following keyword is used to declare a module?",
+					"options": [
+						{
+							"value": "export"
+						},
+						{
+							"value": "namespace"
+						},
+						{
+							"value": "type"
+						},
+						{
+							"value": "declare"
+						}
+					],
+					"correct": "export"
+				},
+				{
+					"title": "Which of the followings is declared a namespace?",
+					"options": [
+						{
+							"value": "namespace test{ }"
+						},
+						{
+							"value": "ns test { }"
+						},
+						{
+							"value": "A & B both"
+						},
+						{
+							"value": "export test(){ }"
+						}
+					],
+					"correct": "namespace test{ }"
+				},
+				{
+					"title": "Which of the following command is used to compile a module?",
+					"options": [
+						{
+							"value": "tsc --module amd mymodule.ts"
+						},
+						{
+							"value": "tsc -m amd mymodule.ts"
+						},
+						{
+							"value": "Both, A and B"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "Both, A and B"
+				},
+				{
+					"title": "Which configuration file is required to compile the whole TypeScript project?",
+					"options": [
+						{
+							"value": "tsconfig.js"
+						},
+						{
+							"value": "tsconfig.json"
+						},
+						{
+							"value": "web.config"
+						},
+						{
+							"value": "app.json"
+						}
+					],
+					"correct": "tsconfig.json"
+				},
+				{
+					"title": "Which of the following statement is TRUE?",
+					"options": [
+						{
+							"value": "TypeScript supports generics."
+						},
+						{
+							"value": "TypeScript supports readonly and static members."
+						},
+						{
+							"value": "TypeScript supports abstract class."
+						},
+						{
+							"value": "All of the above."
+						}
+					],
+					"correct": "All of the above."
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"title": "MongoDB",
+				"status": "active",
+				"description": "Test your MongoDB Knowledge.",
+				"tags": ["db", "mongodb"]
+			},
+			"questions": [
+				{
+					"title": "MongoDB is a _________.",
+					"options": [
+						{
+							"value": "Relational Database"
+						},
+						{
+							"value": "Caching Database"
+						},
+						{
+							"value": "NoSQL Database"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "NoSQL Database"
+				},
+				{
+					"title": "Which of the following commands starts the MongoDB server?",
+					"options": [
+						{
+							"value": "mongo"
+						},
+						{
+							"value": "mongosh"
+						},
+						{
+							"value": "mongoserver"
+						},
+						{
+							"value": "mongod"
+						}
+					],
+					"correct": "mongod"
+				},
+				{
+					"title": "_________ is the command-line client of MongoDB Database?",
+					"options": [
+						{
+							"value": "Mongo Shell"
+						},
+						{
+							"value": "Web Application"
+						},
+						{
+							"value": "Windows Service"
+						},
+						{
+							"value": "Windows Application"
+						}
+					],
+					"correct": "Mongo Shell"
+				},
+				{
+					"title": "Which of the following commands starts Mongo Shell?",
+					"options": [
+						{
+							"value": "mongo"
+						},
+						{
+							"value": "mongosh"
+						},
+						{
+							"value": "mongod"
+						},
+						{
+							"value": "shell"
+						}
+					],
+					"correct": "mongosh"
+				},
+				{
+					"title": "which of the following commands creates a new database?",
+					"options": [
+						{
+							"value": "create"
+						},
+						{
+							"value": "switch"
+						},
+						{
+							"value": "use"
+						},
+						{
+							"value": "new"
+						}
+					],
+					"correct": "use"
+				},
+				{
+					"title": "MongoDB collections are similar to _______ in RDBMS.",
+					"options": [
+						{
+							"value": "Views"
+						},
+						{
+							"value": "Tables"
+						},
+						{
+							"value": "Rows"
+						},
+						{
+							"value": "Columns"
+						}
+					],
+					"correct": "Tables"
+				},
+				{
+					"title": "Which of the following method creates a new collection?",
+					"options": [
+						{
+							"value": "db.useCollection('collection-name')"
+						},
+						{
+							"value": "db.collection('collection-name')"
+						},
+						{
+							"value": "db.createCollection('collection-name')"
+						},
+						{
+							"value": "new db.createCollection('collection-name')"
+						}
+					],
+					"correct": "db.createCollection('collection-name')"
+				},
+				{
+					"title": "MongoDB documents are similar to _______ in RDBMS.",
+					"options": [
+						{
+							"value": "Column"
+						},
+						{
+							"value": "Database"
+						},
+						{
+							"value": "Records"
+						},
+						{
+							"value": "Tables"
+						}
+					],
+					"correct": "Records"
+				},
+				{
+					"title": "MongoDB stores data as ______ document.",
+					"options": [
+						{
+							"value": "JSON"
+						},
+						{
+							"value": "BSON"
+						},
+						{
+							"value": "XML"
+						},
+						{
+							"value": "YML"
+						}
+					],
+					"correct": "BSON"
+				},
+				{
+					"title": "Which of the following methods are used to insert documents in a collection?",
+					"options": [
+						{
+							"value": "insertOne()"
+						},
+						{
+							"value": "insertMany()"
+						},
+						{
+							"value": "insert()"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Which of the following command is used to import data into collection?",
+					"options": [
+						{
+							"value": "mongoimport"
+						},
+						{
+							"value": "import"
+						},
+						{
+							"value": "insertMany"
+						},
+						{
+							"value": "mongo-import"
+						}
+					],
+					"correct": "mongoimport"
+				},
+				{
+					"title": "which of the following method is used to retrieve data from a collection?",
+					"options": [
+						{
+							"value": "find()"
+						},
+						{
+							"value": "findOne()"
+						},
+						{
+							"value": "aggregate()"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "The find() method returns a _____ object.",
+					"options": [
+						{
+							"value": "List"
+						},
+						{
+							"value": "Cursor"
+						},
+						{
+							"value": "Collection"
+						},
+						{
+							"value": "Record"
+						}
+					],
+					"correct": "Cursor"
+				},
+				{
+					"title": "Which of the following methods is used to sort the data?",
+					"options": [
+						{
+							"value": "db.collection.sort()"
+						},
+						{
+							"value": "db.sort()"
+						},
+						{
+							"value": "db.collection.find().sort()"
+						},
+						{
+							"value": "db.find().sort()"
+						}
+					],
+					"correct": "db.collection.find().sort()"
+				},
+				{
+					"title": "which of the following methods update multiple documents in a collection?",
+					"options": [
+						{
+							"value": "db.collection.update()"
+						},
+						{
+							"value": "db.collection.updateMany()"
+						},
+						{
+							"value": "db.collection.updateOne()"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "db.collection.updateMany()"
+				},
+				{
+					"title": "Which of the following methods deletes a single document in a collection?",
+					"options": [
+						{
+							"value": "db.collection.delete()"
+						},
+						{
+							"value": "db.collection.deleteOne()"
+						},
+						{
+							"value": "db.collection.deleteMany()"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "db.collection.deleteOne()"
+				},
+				{
+					"title": "Which of the following deletes all the documents in a collection?",
+					"options": [
+						{
+							"value": "db.collection.deleteMany({ })"
+						},
+						{
+							"value": "db.collection.clear()"
+						},
+						{
+							"value": "db.collection.deleteAll({ })"
+						},
+						{
+							"value": "db.collection.delete()"
+						}
+					],
+					"correct": "db.collection.deleteMany({ })"
+				},
+				{
+					"title": "The aggregation pipeline is an array of one or more _____ passed in the db.aggregate() method.",
+					"options": [
+						{
+							"value": "Collections"
+						},
+						{
+							"value": "Stages  "
+						},
+						{
+							"value": "Documents"
+						},
+						{
+							"value": "Methods"
+						}
+					],
+					"correct": "Stages  "
+				},
+				{
+					"title": "Which of the following stages is equivalent to the find() method?",
+					"options": [
+						{
+							"value": "$group"
+						},
+						{
+							"value": "$match"
+						},
+						{
+							"value": "$sort"
+						},
+						{
+							"value": "$select"
+						}
+					],
+					"correct": "$match"
+				},
+				{
+					"title": "______is a method for distributing data across multiple machines. ",
+					"options": [
+						{
+							"value": "Replication"
+						},
+						{
+							"value": "Sharding"
+						},
+						{
+							"value": "Load balancing"
+						},
+						{
+							"value": "Transaction"
+						}
+					],
+					"correct": "Sharding"
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"title": "Node.js",
+				"tags": ["js", "node.js"],
+				"description": "Test your Node.js Knowledge.",
+				"status": "active"
+			},
+			"questions": [
+				{
+					"title": "Node.js runs on __________",
+					"options": [
+						{
+							"value": "Client"
+						},
+						{
+							"value": "Server"
+						},
+						{
+							"value": "Both, server and client"
+						},
+						{
+							"value": "Browser"
+						}
+					],
+					"correct": "Server"
+				},
+				{
+					"title": "Node.js is ________ by default.",
+					"options": [
+						{
+							"value": "Synchronous"
+						},
+						{
+							"value": "Multi-threaded"
+						},
+						{
+							"value": "Asynchronous"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "Asynchronous"
+				},
+				{
+					"title": "Node.js supports which of the following platform?",
+					"options": [
+						{
+							"value": "Windows"
+						},
+						{
+							"value": "Macintosh"
+						},
+						{
+							"value": "Unix/Linux"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Node.js terminal (REPL) is used for _________.",
+					"options": [
+						{
+							"value": "testing node.js/JavaScript expressions"
+						},
+						{
+							"value": "executing browser’s JavaScript expressions."
+						},
+						{
+							"value": "the preview of node.js application."
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "testing node.js/JavaScript expressions"
+				},
+				{
+					"title": "What is the default scope in Node.js application.",
+					"options": [
+						{
+							"value": "Global"
+						},
+						{
+							"value": "Local"
+						},
+						{
+							"value": "Global Function"
+						},
+						{
+							"value": "Local to object"
+						}
+					],
+					"correct": "Local"
+				},
+				{
+					"title": "Node.js application runs on __________.",
+					"options": [
+						{
+							"value": "Multiple threads"
+						},
+						{
+							"value": "Single thread"
+						},
+						{
+							"value": "Multiple Processes"
+						},
+						{
+							"value": "Single Process"
+						}
+					],
+					"correct": "Single thread"
+				},
+				{
+					"title": "Simple or complex functionality organized in a single or multiple JavaScript files which can be reused throughout your Node.js application is called ________.",
+					"options": [
+						{
+							"value": "Module"
+						},
+						{
+							"value": "Library"
+						},
+						{
+							"value": "Package"
+						},
+						{
+							"value": "Function"
+						}
+					],
+					"correct": "Module"
+				},
+				{
+					"title": "The Node.js modules can be exposed using _________.",
+					"options": [
+						{
+							"value": "module.expose"
+						},
+						{
+							"value": "module"
+						},
+						{
+							"value": "module.exports"
+						},
+						{
+							"value": "all of the above"
+						}
+					],
+					"correct": "module.exports"
+				},
+				{
+					"title": "Third-party packages can be install/update/delete using ________.",
+					"options": [
+						{
+							"value": "Node Package Manager"
+						},
+						{
+							"value": "Node.exe"
+						},
+						{
+							"value": "Module.exports"
+						},
+						{
+							"value": "REPL"
+						}
+					],
+					"correct": "Node Package Manager"
+				},
+				{
+					"title": "Which of the following core module is used to create a web server in Node.js?",
+					"options": [
+						{
+							"value": "fs"
+						},
+						{
+							"value": "url"
+						},
+						{
+							"value": "connect"
+						},
+						{
+							"value": "http"
+						}
+					],
+					"correct": "http"
+				},
+				{
+					"title": "How to import module in Node.js?",
+					"options": [
+						{
+							"value": "Using the require() function."
+						},
+						{
+							"value": "Using module.import"
+						},
+						{
+							"value": "Using the include() function"
+						},
+						{
+							"value": "Using the app.use() function"
+						}
+					],
+					"correct": "Using the require() function."
+				},
+				{
+					"title": "Which of the following is a GUI-based debugging tool for Node.js?",
+					"options": [
+						{
+							"value": "Core node debugger"
+						},
+						{
+							"value": "Console"
+						},
+						{
+							"value": "REPL"
+						},
+						{
+							"value": "Node Inspector"
+						}
+					],
+					"correct": "Node Inspector"
+				},
+				{
+					"title": "Which of the following class is used to create and consume custom events in Node.js?",
+					"options": [
+						{
+							"value": "EventEmitter"
+						},
+						{
+							"value": "Events"
+						},
+						{
+							"value": "NodeEvent"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "EventEmitter"
+				},
+				{
+					"title": "Which of the followings are web application frameworks for Node.js?",
+					"options": [
+						{
+							"value": "Express.js"
+						},
+						{
+							"value": "Geddy"
+						},
+						{
+							"value": "Locomotive"
+						},
+						{
+							"value": "All of the above."
+						}
+					],
+					"correct": "All of the above."
+				},
+				{
+					"title": "Which of the following types of application can be built using Node.js?",
+					"options": [
+						{
+							"value": "Web Application"
+						},
+						{
+							"value": "Chat Application"
+						},
+						{
+							"value": "RESTful Service"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Which module is used to serve static resources in Node.js?",
+					"options": [
+						{
+							"value": "node-static"
+						},
+						{
+							"value": "http"
+						},
+						{
+							"value": "node-resource"
+						},
+						{
+							"value": "static"
+						}
+					],
+					"correct": "node-static"
+				},
+				{
+					"title": "Which of the following template engines can be used with Node.js?",
+					"options": [
+						{
+							"value": "Jade"
+						},
+						{
+							"value": "Vash"
+						},
+						{
+							"value": "Handlebars"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Which of the following tool automates various tasks of Node.js application?",
+					"options": [
+						{
+							"value": "Express.js"
+						},
+						{
+							"value": "GruntJS"
+						},
+						{
+							"value": "NPM"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "GruntJS"
+				},
+				{
+					"title": "Which of the followings are valid languages for Node.js?",
+					"options": [
+						{
+							"value": "JavaScript"
+						},
+						{
+							"value": "Java"
+						},
+						{
+							"value": "C++"
+						},
+						{
+							"value": "C#"
+						}
+					],
+					"correct": "JavaScript"
+				},
+				{
+					"title": "Node.js application can access which of the following databases?",
+					"options": [
+						{
+							"value": "NoSQL databases"
+						},
+						{
+							"value": "Relational databases"
+						},
+						{
+							"value": "All of the above"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "All of the above"
+				}
+			]
+		}
+	]
 }

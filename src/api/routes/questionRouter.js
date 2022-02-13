@@ -1,6 +1,12 @@
-
 import { Router } from 'express';
-import { createQuestion, deleteQuestion, getAllQuestion, getAllQuestionsWithCorrectAns, getQuestion, updateQuestion } from '../controllers/questionController.js';
+import {
+	createQuestion,
+	deleteQuestion,
+	getAllQuestion,
+	getAllQuestionsWithCorrectAns,
+	getQuestion,
+	updateQuestion,
+} from '../controllers/questionController.js';
 import { isAuthorInQuiz } from '../middlewares/isAuthorInQuiz.js';
 
 export const questionRouter = Router({ mergeParams: true });
