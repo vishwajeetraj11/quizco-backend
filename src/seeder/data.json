@@ -6,7 +6,10 @@
 				"title": "Typescript",
 				"status": "active",
 				"description": "Test your TS Skills.",
-				"tags": ["js", "ts"]
+				"tags": [
+					"js",
+					"ts"
+				]
 			},
 			"questions": [
 				{
@@ -341,7 +344,10 @@
 				"title": "MongoDB",
 				"status": "active",
 				"description": "Test your MongoDB Knowledge.",
-				"tags": ["db", "mongodb"]
+				"tags": [
+					"db",
+					"mongodb"
+				]
 			},
 			"questions": [
 				{
@@ -710,7 +716,10 @@
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
 				"title": "Node.js",
-				"tags": ["js", "node.js"],
+				"tags": [
+					"js",
+					"node.js"
+				],
 				"description": "Test your Node.js Knowledge.",
 				"status": "active"
 			},
@@ -1074,6 +1083,194 @@
 						}
 					],
 					"correct": "All of the above"
+				}
+			]
+		},
+		{
+			"questions": [
+				{
+					"title": "Question 1",
+					"options": [
+						{
+							"value": "A"
+						},
+						{
+							"value": "B"
+						},
+						{
+							"value": "C"
+						},
+						{
+							"value": "D"
+						}
+					],
+					"correct": "D"
+				},
+				{
+					"title": "Question 2",
+					"options": [
+						{
+							"value": "A"
+						},
+						{
+							"value": "B"
+						},
+						{
+							"value": "C"
+						},
+						{
+							"value": "D"
+						}
+					],
+					"correct": "C"
+				},
+				{
+					"title": "Question 3",
+					"options": [
+						{
+							"value": "A"
+						},
+						{
+							"value": "B"
+						},
+						{
+							"value": "C"
+						},
+						{
+							"value": "D"
+						}
+					],
+					"correct": "D"
+				},
+				{
+					"title": "Question 4",
+					"options": [
+						{
+							"value": "A"
+						},
+						{
+							"value": "B"
+						},
+						{
+							"value": "C"
+						},
+						{
+							"value": "D"
+						}
+					],
+					"correct": "A"
+				}
+			],
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"description": "Test your Demo Knowledge.",
+				"status": "active",
+				"tags": [
+					"demo"
+				],
+				"title": "Demo Quiz"
+			}
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"title": "Harry Potter",
+				"tags": [
+					"wizard"
+				],
+				"description": "Check out how much you still remember of Harry Potter.",
+				"status": "active"
+			},
+			"questions": [
+				{
+					"title": "What spell did Harry use to kill Lord Voldemort?",
+					"options": [
+						{
+							"value": "Expelliarmus"
+						},
+						{
+							"value": "Expecto Patronum"
+						},
+						{
+							"value": "Avada Kedavra"
+						},
+						{
+							"value": "Accio"
+						}
+					],
+					"correct": "Expelliarmus"
+				},
+				{
+					"title": "At the first meeting of the Duelling Club, Draco Malfoy summoned what animal with the spell 'Serpensortia'?",
+					"options": [
+						{
+							"value": "Frog"
+						},
+						{
+							"value": "Snake"
+						},
+						{
+							"value": "Dragon"
+						},
+						{
+							"value": "Bear"
+						}
+					],
+					"correct": "Snake"
+				},
+				{
+					"title": "Which one of them is not an 'Unforgivable Curses'",
+					"options": [
+						{
+							"value": "Imperius"
+						},
+						{
+							"value": "Confundo"
+						},
+						{
+							"value": "Cruciatus"
+						},
+						{
+							"value": "Avada Kedavra"
+						}
+					],
+					"correct": "Confundo"
+				},
+				{
+					"title": "The 'Felifors' spell turns a cat into a what?",
+					"options": [
+						{
+							"value": "Hat"
+						},
+						{
+							"value": "Bat"
+						},
+						{
+							"value": "Matchbox"
+						},
+						{
+							"value": "Cauldron"
+						}
+					],
+					"correct": "Cauldron"
+				},
+				{
+					"title": "Gilderoy Lockhart tried to use 'Brackium Emendo' to fix Harry's broken bones. What did it actually do to him?",
+					"options": [
+						{
+							"value": "Turned his leg wooden"
+						},
+						{
+							"value": "Removed his bones entirely"
+						},
+						{
+							"value": "Forced him to speak Parseltongue"
+						},
+						{
+							"value": "Gave him an exquisite singing voice"
+						}
+					],
+					"correct": "Removed his bones entirely"
 				}
 			]
 		}

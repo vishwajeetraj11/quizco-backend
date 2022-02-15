@@ -36,6 +36,10 @@ export const getAllQuestion = catchAsync(async (req, res, next) => {
 	const quiz = await Quiz.findById(quizId);
 	const questions = await Question.find({ quiz: quizId }).select('-correct');
 
+	if (!quiz) {
+		return next(new AppError('Quiz not found.', 404));
+	}
+
 	if (quiz.status !== 'active') {
 		const isLoggedInUserAuthor = req.user.id === quiz.author;
 		if (!isLoggedInUserAuthor) {

@@ -16,6 +16,11 @@ const responseSchema = mongoose.Schema(
 			ref: 'Attempt',
 			required: [true, 'A response has to be associated with an attempt.']
 		},
+		questionId: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Question',
+			required: [true, 'A response has to be associated with a question.']
+		},
 		question: {
 			title: {
 				type: String,
@@ -40,6 +45,8 @@ const responseSchema = mongoose.Schema(
 		timestamps: true
 	}
 );
+
+//
 
 export const Response = mongoose.model('Response', responseSchema);
 function arrayLimit(val) {

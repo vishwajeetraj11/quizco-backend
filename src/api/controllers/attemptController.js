@@ -19,28 +19,40 @@ export const createAttempt = catchAsync(async (req, res, next) => {
 		return next(new AppError('Please do not send empty response.', 400));
 	}
 
-	const attempt = await Attempt.create({ userId, quiz: quizId, score });
-	const createdResponses = await Promise.all(
-		responses.map((response) => {
-			return Response.create({
-				userId,
-				quiz: quizId,
-				attempt: attempt._id,
-				question: {
-					title: response.title,
-					options: response.options,
-					response: response.response,
-					correct: response.correct
-				}
-			});
-		})
-	);
+	const attemptExists = await Attempt.exists({ userId, quiz: quizId });
 
-	return res.status(200).json({
-		status: 'success',
-		attempt,
-		responses: createdResponses
-	});
+	const attempt = await Attempt.create({ userId, quiz: quizId, score });
+
+	if (!attemptExists) {
+		console.log('Not Exists.');
+		const createdResponses = await Promise.all(
+			responses.map((response) => {
+				return Response.create({
+					userId,
+					quiz: quizId,
+					attempt: attempt._id,
+					questionId: response._id,
+					question: {
+						title: response.title,
+						options: response.options,
+						response: response.response,
+						correct: response.correct
+					}
+				});
+			})
+		);
+
+		return res.status(200).json({
+			status: 'success',
+			attempt,
+			responses: createdResponses
+		});
+	} else {
+		return res.status(200).json({
+			status: 'success',
+			attempt
+		});
+	}
 });
 
 export const getAttemptsByUser = catchAsync(async (req, res) => {
@@ -58,11 +70,9 @@ export const getAttemptsByUser = catchAsync(async (req, res) => {
 
 export const getAttemptById = catchAsync(async (req, res, next) => {
 	const { attemptId } = req.params;
-	const userId = req.user.id;
-
-	console.log({ attemptId });
 
 	const attempt = await Attempt.findById(attemptId);
+	const userId = attempt.userId;
 
 	if (!attempt) {
 		return next(new AppError('Attempt not found', 404));

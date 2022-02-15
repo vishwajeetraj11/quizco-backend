@@ -1,5 +1,8 @@
 import { users } from '@clerk/clerk-sdk-node';
+import mongoose from 'mongoose';
 import { Attempt } from '../../models/Attempted.js';
+import { Question } from '../../models/Question.js';
+import { Response } from '../../models/Response.js';
 import { catchAsync } from '../../utils/catchAsync.js';
 
 export const getStatsByQuiz = catchAsync(async (req, res, next) => {
@@ -26,8 +29,8 @@ export const getStatsByQuiz = catchAsync(async (req, res, next) => {
 	});
 
 	const firstAttempts = await Promise.all(
-		uniqueUsers.map((userId) =>
-			Attempt.findOne({ userId, quiz: quizId }).sort({ createdAt: 1 })
+		uniqueUsers.map(
+			(userId) => Attempt.findOne({ userId, quiz: quizId }).sort({ createdAt: 1 }) //.populate('responses')
 		)
 	);
 
@@ -106,5 +109,64 @@ export const getStatsByQuiz = catchAsync(async (req, res, next) => {
 	return res.status(200).json({
 		status: 'success',
 		users: formattedUsersWithFirstAttempt
+	});
+});
+
+export const getStatsByQuizQuestionId = catchAsync(async (req, res, next) => {
+	const { quizId, questionId } = req.params;
+
+	const questionExists = await Question.exists({ quiz: quizId, _id: questionId });
+
+	if (!questionExists) {
+		return next('Question not found.', 404);
+	}
+
+	const totalResponses = await Response.countDocuments({ quiz: quizId, questionId });
+	const totalEmptyResponses = await Response.countDocuments({
+		quiz: quizId,
+		questionId,
+		'question.response': ''
+	});
+	const totalCorrectResponses = await Response.countDocuments({
+		quiz: quizId,
+		questionId,
+		$expr: { $eq: ['$question.response', '$question.correct'] }
+	});
+
+	const aggregations = await Response.aggregate([
+		{
+			$match: {
+				quiz: mongoose.Types.ObjectId(quizId),
+				questionId: mongoose.Types.ObjectId(questionId)
+			}
+		},
+		{
+			$group: {
+				_id: { $toLower: '$question.response' },
+				count: { $sum: 1 }
+			}
+		},
+		{
+			$group: {
+				_id: null,
+				counts: {
+					$push: { k: '$_id', v: '$count' }
+				}
+			}
+		},
+		{
+			$replaceRoot: {
+				newRoot: { $arrayToObject: '$counts' }
+			}
+		}
+	]);
+
+	return res.status(200).json({
+		status: 'success',
+		totalResponses,
+		totalEmptyResponses,
+		totalCorrectResponses,
+		totalIncorrectResponses: totalResponses - totalCorrectResponses,
+		aggregations
 	});
 });

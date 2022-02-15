@@ -11,7 +11,7 @@ import {
 	getQuiz,
 	updateQuiz
 } from '../controllers/quizController.js';
-import { getStatsByQuiz } from '../controllers/statisticsController.js';
+import { getStatsByQuiz, getStatsByQuizQuestionId } from '../controllers/statisticsController.js';
 import { authorizeMiddleware } from '../middlewares/authMiddleware.js';
 import { isAuthorInQuiz } from '../middlewares/isAuthorInQuiz.js';
 import { questionRouter } from './questionRouter.js';
@@ -23,6 +23,7 @@ quizRouter.route('/attempts/').get(getAttemptsByUser);
 quizRouter.route('/attempts/:attemptId').get(getAttemptById);
 
 quizRouter.route('/statistics/:quizId').get(getStatsByQuiz);
+quizRouter.route('/statistics/:quizId/questions/:questionId').get(getStatsByQuizQuestionId);
 
 quizRouter.use('/:quizId/questions', questionRouter);
 

@@ -23,4 +23,10 @@ const attemptSchema = mongoose.Schema(
 	}
 );
 
+attemptSchema.virtual('responses', {
+	ref: 'Response',
+	foreignField: 'attempt',
+	localField: '_id'
+});
+
 export const Attempt = mongoose.model('Attempt', attemptSchema);
