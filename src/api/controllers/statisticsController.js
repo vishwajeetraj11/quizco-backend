@@ -115,9 +115,9 @@ export const getStatsByQuiz = catchAsync(async (req, res, next) => {
 export const getStatsByQuizQuestionId = catchAsync(async (req, res, next) => {
 	const { quizId, questionId } = req.params;
 
-	const questionExists = await Question.exists({ quiz: quizId, _id: questionId });
+	const question = await Question.findOne({ quiz: quizId, _id: questionId });
 
-	if (!questionExists) {
+	if (!question) {
 		return next('Question not found.', 404);
 	}
 
@@ -161,12 +161,37 @@ export const getStatsByQuizQuestionId = catchAsync(async (req, res, next) => {
 		}
 	]);
 
+	const optionsWithFrequency = aggregations[0];
+	const optionsWithFrequencyKey = Object.keys(optionsWithFrequency);
+
+	const updatedQuestion = {
+		_id: question._id,
+		title: question.title,
+		correct: question.correct,
+		options: question.options
+	};
+
+	const updatedOptions = updatedQuestion.options.map((option) => {
+		const updatedOption = { ...option.toObject() };
+		const optionValue = updatedOption.value.toLowerCase();
+
+		if (optionsWithFrequencyKey.includes(optionValue)) {
+			updatedOption.frequency = optionsWithFrequency[optionValue];
+		} else {
+			updatedOption.frequency = 0;
+		}
+
+		return updatedOption;
+	});
+
+	updatedQuestion.options = updatedOptions;
+
 	return res.status(200).json({
 		status: 'success',
+		question: updatedQuestion,
 		totalResponses,
 		totalEmptyResponses,
 		totalCorrectResponses,
-		totalIncorrectResponses: totalResponses - totalCorrectResponses,
-		aggregations
+		totalIncorrectResponses: totalResponses - totalCorrectResponses
 	});
 });
