@@ -13,6 +13,7 @@ export const connectDB = async () => {
 			// useCreateIndex: true,
 		});
 		console.log(`MongoDB Connected: ${connection.connection.host}`);
+		mongoose.Schema.Types.String.set('trim', true);
 	} catch (error) {
 		console.log(`Error: ${error.message}`);
 		// process.exit(1) -> going to exit with failure
