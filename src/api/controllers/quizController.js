@@ -4,12 +4,20 @@ import { AppError } from '../../utils/AppError.js';
 import { catchAsync } from '../../utils/catchAsync.js';
 
 export const getAllQuizes = catchAsync(async (req, res) => {
-	const { loggedIn } = req.query;
+	const { loggedIn, search, tag } = req.query;
+	console.log({ search, tag });
 	const filters = {
 		deleted: { $ne: true }
 	};
 	if (loggedIn) {
 		filters.author = req.user.id;
+	} else if (search) {
+		filters.title = {
+			$regex: search,
+			$options: 'i'
+		};
+	} else if (tag) {
+		filters.tags = { $in: [tag] };
 	} else {
 		filters.status = 'active';
 	}

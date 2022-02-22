@@ -1,5 +1,6 @@
 import { Question } from '../../models/Question.js';
 import { Quiz } from '../../models/Quiz.js';
+import { emptyResponseMessages } from '../../shared/constants.js';
 import { AppError } from '../../utils/AppError.js';
 import { catchAsync } from '../../utils/catchAsync.js';
 
@@ -54,9 +55,16 @@ export const getAllQuestion = catchAsync(async (req, res, next) => {
 	});
 });
 
-export const getAllQuestionsWithCorrectAns = catchAsync(async (req, res) => {
+export const getAllQuestionsWithCorrectAns = catchAsync(async (req, res, next) => {
 	const { quizId } = req.params;
 	const questions = await Question.find({ quiz: quizId }).select();
+
+	if (questions.length === 0) {
+		return res.status(200).json({
+			status: 'success',
+			message: 'No Question in this Quiz yet.'
+		});
+	}
 
 	return res.status(200).json({
 		status: 'success',
@@ -71,7 +79,7 @@ export const getQuestion = catchAsync(async (req, res) => {
 	const question = await Question.findOne({ _id: questionId, quiz: quizId });
 
 	if (!question) {
-		throw new AppError('Question not found', 404);
+		throw new AppError(emptyResponseMessages.NO_QUESTIONS_IN_QUIZ, 404);
 	}
 	return res.status(200).json({
 		status: 'success',
@@ -100,7 +108,7 @@ export const updateQuestion = catchAsync(async (req, res, next) => {
 				return next(new AppError('Please send all option with a value key in it.'));
 			}
 		});
-		toUpdateData.option = options;
+		toUpdateData.options = options;
 	}
 
 	const updatedQuestion = await Question.findOneAndUpdate(
