@@ -2,11 +2,21 @@ import { users } from '@clerk/clerk-sdk-node';
 import mongoose from 'mongoose';
 import { Attempt } from '../../models/Attempted.js';
 import { Question } from '../../models/Question.js';
+import { Quiz } from '../../models/Quiz.js';
 import { Response } from '../../models/Response.js';
+import { errorMessages } from '../../shared/constants.js';
+import { AppError } from '../../utils/AppError.js';
 import { catchAsync } from '../../utils/catchAsync.js';
 
 export const getStatsByQuiz = catchAsync(async (req, res, next) => {
 	const { quizId } = req.params;
+	const userLoggedInId = req.user.id;
+
+	const isAuthorInQuiz = await Quiz.exists({ author: userLoggedInId });
+
+	if (!isAuthorInQuiz) {
+		return next(new AppError(errorMessages.ACCESS_DENIED, 403));
+	}
 
 	const usersAttempted = await Attempt.find({ quiz: quizId }).select('userId');
 	// [{"_id":"PLACEHOLDER_VALUES","userId":"PLACEHOLDER_VALUES","id":"PLACEHOLDER_VALUES"}]
@@ -114,6 +124,13 @@ export const getStatsByQuiz = catchAsync(async (req, res, next) => {
 
 export const getStatsByQuizQuestionId = catchAsync(async (req, res, next) => {
 	const { quizId, questionId } = req.params;
+	const userLoggedInId = req.user.id;
+
+	const isAuthorInQuiz = await Quiz.exists({ author: userLoggedInId });
+
+	if (!isAuthorInQuiz) {
+		return next(new AppError(errorMessages.ACCESS_DENIED, 403));
+	}
 
 	const question = await Question.findOne({ quiz: quizId, _id: questionId });
 

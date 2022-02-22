@@ -1,5 +1,6 @@
 import { Attempt } from '../../models/Attempted.js';
 import { Response } from '../../models/Response.js';
+import { errorMessages } from '../../shared/constants.js';
 import { AppError } from '../../utils/AppError.js';
 import { catchAsync } from '../../utils/catchAsync.js';
 
@@ -70,16 +71,22 @@ export const getAttemptsByUser = catchAsync(async (req, res) => {
 
 export const getAttemptById = catchAsync(async (req, res, next) => {
 	const { attemptId } = req.params;
+	const userLoggedInId = req.user.id;
 
-	const attempt = await Attempt.findById(attemptId);
-	const userId = attempt.userId;
+	const attempt = await Attempt.findOne({ _id: attemptId }).populate('quiz');
 
 	if (!attempt) {
 		return next(new AppError('Attempt not found', 404));
 	}
+	// console.log({ userLoggedInId, attemptUserId: attempt.userId, quizAuthor: attempt.quiz.author });
+	if (attempt.quiz.author !== userLoggedInId && attempt.userId !== userLoggedInId) {
+		return next(new AppError(errorMessages.ACCESS_DENIED, 403));
+	}
+
+	const userId = attempt.userId;
 
 	const responses = await Response.find({
-		quiz: attempt.quiz,
+		quiz: attempt.quiz._id,
 		attempt: attempt._id,
 		userId
 	}).sort({

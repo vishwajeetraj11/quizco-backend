@@ -5,7 +5,6 @@ import { catchAsync } from '../../utils/catchAsync.js';
 
 export const getAllQuizes = catchAsync(async (req, res) => {
 	const { loggedIn, search, tag } = req.query;
-	console.log({ search, tag });
 	const filters = {
 		deleted: { $ne: true }
 	};
