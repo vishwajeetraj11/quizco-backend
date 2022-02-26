@@ -178,6 +178,10 @@ export const getStatsByQuizQuestionId = catchAsync(async (req, res, next) => {
 		}
 	]);
 
+	if (aggregations.length === 0) {
+		return next(new AppError(errorMessages.NO_RESPONSE_EXISTS, 404));
+	}
+
 	const optionsWithFrequency = aggregations[0];
 	const optionsWithFrequencyKey = Object.keys(optionsWithFrequency);
 

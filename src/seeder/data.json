@@ -3,7 +3,7 @@
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"title": "Typescript",
+				"title": "Typescript Part I",
 				"status": "active",
 				"description": "Test your TS Skills.",
 				"tags": [
@@ -191,7 +191,20 @@
 						}
 					],
 					"correct": "let sum = (x: number, y: number) => x + y;"
-				},
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"title": "Typescript Part II",
+				"status": "active",
+				"description": "Test your TS Skills.",
+				"tags": [
+					"ts"
+				]
+			},
+			"questions": [
 				{
 					"title": "The rest parameters in a function is used when _______.",
 					"options": [
@@ -341,7 +354,7 @@
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"title": "MongoDB",
+				"title": "MongoDB I",
 				"status": "active",
 				"description": "Test your MongoDB Knowledge.",
 				"tags": [
@@ -529,7 +542,21 @@
 						}
 					],
 					"correct": "All of the above"
-				},
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"title": "MongoDB II",
+				"status": "active",
+				"description": "Test your MongoDB Knowledge.",
+				"tags": [
+					"db",
+					"mongodb"
+				]
+			},
+			"questions": [
 				{
 					"title": "Which of the following command is used to import data into collection?",
 					"options": [
@@ -1271,6 +1298,782 @@
 						}
 					],
 					"correct": "Removed his bones entirely"
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"description": "These MS SQL Server tests/quizes will help you to check how much you know, or don't know, about MS SQL Server to prepare for the interviews.",
+				"status": "active",
+				"tags": [
+					"db",
+					"sql"
+				],
+				"title": "MS SQL Server I"
+			},
+			"questions": [
+				{
+					"title": "What is normalization?",
+					"options": [
+						{
+							"value": "It is a set of database design rules to minimize redundancy."
+						},
+						{
+							"value": "It is a set of rules to normalize database transactions."
+						},
+						{
+							"value": "It is a set of rules to improve database performance."
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "It is a set of database design rules to minimize redundancy."
+				},
+				{
+					"title": "ACID stands for _______.",
+					"options": [
+						{
+							"value": "Atomic, Cryptic, Independent, Durable"
+						},
+						{
+							"value": "Atomicity, Consistency, Isolation, Durability"
+						},
+						{
+							"value": "Automatic, Concurrent, Isolation, Durability"
+						},
+						{
+							"value": "Atomicity, Consistency, Isolation, Decoupled"
+						}
+					],
+					"correct": "Atomicity, Consistency, Isolation, Durability"
+				},
+				{
+					"title": "What is Primary Key?",
+					"options": [
+						{
+							"value": "Primary keys are unique names of a table."
+						},
+						{
+							"value": "Primary keys are integer ids in a table rows."
+						},
+						{
+							"value": "Primary keys are unique identifiers for each row in a table."
+						},
+						{
+							"value": "None of the above."
+						}
+					],
+					"correct": "Primary keys are unique identifiers for each row in a table."
+				},
+				{
+					"title": "A table can have more than one combination of columns that uniquely identify the row in a table; each combination is called_________.",
+					"options": [
+						{
+							"value": "Foreign Key"
+						},
+						{
+							"value": "Primary key"
+						},
+						{
+							"value": "Composite Key"
+						},
+						{
+							"value": "Candidate Key"
+						}
+					],
+					"correct": "Candidate Key"
+				},
+				{
+					"title": "A column that automatically generates numeric values is called __________.",
+					"options": [
+						{
+							"value": "Unique column"
+						},
+						{
+							"value": "Integer column"
+						},
+						{
+							"value": "Identity column"
+						},
+						{
+							"value": "Candidate column"
+						}
+					],
+					"correct": "Identity column"
+				},
+				{
+					"title": "What is the correct order of query operators in a SQL query?",
+					"options": [
+						{
+							"value": "SELECT -> FROM -> OUTER -> WHERE"
+						},
+						{
+							"value": "FROM -> OUTER -> WHERE -> ON"
+						},
+						{
+							"value": "SELECT -> FROM -> WHERE -> OUTER"
+						},
+						{
+							"value": "FROM -> OUTER -> GROUP BY -> WHERE"
+						}
+					],
+					"correct": "SELECT -> FROM -> OUTER -> WHERE"
+				},
+				{
+					"title": "What are indexes?",
+					"options": [
+						{
+							"value": "Index speed up the data retrieval"
+						},
+						{
+							"value": "Index stores large number of integer values"
+						},
+						{
+							"value": "Index minimize the data redundancy"
+						},
+						{
+							"value": "None of the above."
+						}
+					],
+					"correct": "Index speed up the data retrieval"
+				},
+				{
+					"title": "How many types of indexes in SQL server?",
+					"options": [
+						{
+							"value": "Integer and string"
+						},
+						{
+							"value": "Unique and non-unique"
+						},
+						{
+							"value": "Clustered and Nonclustered"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "Clustered and Nonclustered"
+				},
+				{
+					"title": "RAID stands for ________.",
+					"options": [
+						{
+							"value": "Reduce Array of Independent Disks"
+						},
+						{
+							"value": "Redundant Array of Independent Disks"
+						},
+						{
+							"value": "Redundant Automatic Individual Durable"
+						},
+						{
+							"value": "Redundancy Accelerator Independent Disks"
+						}
+					],
+					"correct": "Redundant Array of Independent Disks"
+				},
+				{
+					"title": "What is the difference between Primary key and Unique key?",
+					"options": [
+						{
+							"value": "Primary key doesn’t allow null value whereas unique key allows multiple null values"
+						},
+						{
+							"value": "Primary key allows one null value whereas unique key doesn’t allow null value."
+						},
+						{
+							"value": "Primary key doesn’t allow null value whereas unique key allows one null value."
+						},
+						{
+							"value": "Primary key allows one null value whereas unique key allows multiple null values."
+						}
+					],
+					"correct": "Primary key doesn’t allow null value whereas unique key allows one null value."
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"description": "These MS SQL Server tests/quizes will help you to check how much you know, or don't know, about MS SQL Server to prepare for the interviews.",
+				"status": "active",
+				"tags": [
+					"db",
+					"sql"
+				],
+				"title": "MS SQL Server II"
+			},
+			"questions": [
+				{
+					"title": "OLTP stands for _________.",
+					"options": [
+						{
+							"value": "Online Transaction Processing"
+						},
+						{
+							"value": "Offline Transaction Processing"
+						},
+						{
+							"value": "Ontime Transaction Program"
+						},
+						{
+							"value": "Online Timebound Processing"
+						}
+					],
+					"correct": "Online Transaction Processing"
+				},
+				{
+					"title": "Which of the followings are the types of locks in SQL Server?",
+					"options": [
+						{
+							"value": "Shared locks"
+						},
+						{
+							"value": "Exclusive locks"
+						},
+						{
+							"value": "Schema locks"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "What are the authentication modes in SQL Server?",
+					"options": [
+						{
+							"value": "Windows mode"
+						},
+						{
+							"value": "Mixed mode"
+						},
+						{
+							"value": "All of the above"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "What is a trigger?",
+					"options": [
+						{
+							"value": "A trigger is a SQL procedure that initiates an action when an event (INSERT, DELETE or UPDATE) occurs."
+						},
+						{
+							"value": "A trigger is an event that can be raised from Stored Procedures."
+						},
+						{
+							"value": "A trigger is a SQL procedure that performs some tasks on accessing db tables."
+						},
+						{
+							"value": "A trigger is a procedure which executes when an error occurred."
+						}
+					],
+					"correct": "A trigger is a SQL procedure that initiates an action when an event (INSERT, DELETE or UPDATE) occurs."
+				},
+				{
+					"title": "What are the different types of trigger",
+					"options": [
+						{
+							"value": "DDL and DCL"
+						},
+						{
+							"value": "DDL and DUL"
+						},
+						{
+							"value": "DML and DTL"
+						},
+						{
+							"value": "DML and DDL"
+						}
+					],
+					"correct": "DML and DDL"
+				},
+				{
+					"title": "What are the different types of temporary tables in SQL server?",
+					"options": [
+						{
+							"value": "Indexed and non-index temporary tables"
+						},
+						{
+							"value": "Global and local temporary tables"
+						},
+						{
+							"value": "Unique and shared temporary tables"
+						},
+						{
+							"value": "Small and large temporary tables"
+						}
+					],
+					"correct": "Global and local temporary tables"
+				},
+				{
+					"title": "Which of the following is not a valid data type in SQL server",
+					"options": [
+						{
+							"value": "xml"
+						},
+						{
+							"value": "nvarchar"
+						},
+						{
+							"value": "money"
+						},
+						{
+							"value": "blob"
+						}
+					],
+					"correct": "blob"
+				},
+				{
+					"title": "Which of the followings are valid Transaction levels in SQL Server?",
+					"options": [
+						{
+							"value": "READ COMMITTED"
+						},
+						{
+							"value": "READ UNCOMMITTED"
+						},
+						{
+							"value": "REPEATABLE READ"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Which of the following keyword is used to raise an error in stored procedure?",
+					"options": [
+						{
+							"value": "THROW"
+						},
+						{
+							"value": "THROWERROR"
+						},
+						{
+							"value": "RAISERROR"
+						},
+						{
+							"value": "ERROR"
+						}
+					],
+					"correct": "RAISERROR"
+				},
+				{
+					"title": "What are the different types of replication available in SQL server?",
+					"options": [
+						{
+							"value": "Snapshot Replication"
+						},
+						{
+							"value": "Transactional Replication"
+						},
+						{
+							"value": "Merge Replication"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"description": "Checkout you how much you know about jQuery.",
+				"status": "active",
+				"tags": [
+					"js",
+					"jquery"
+				],
+				"title": "jQuery I"
+			},
+			"questions": [
+				{
+					"title": "jQuery is a _______ side library.",
+					"options": [
+						{
+							"value": "Client"
+						},
+						{
+							"value": "Server"
+						},
+						{
+							"value": "CDN"
+						},
+						{
+							"value": "web"
+						}
+					],
+					"correct": "Client"
+				},
+				{
+					"title": "jQuery is a ________ library.",
+					"options": [
+						{
+							"value": "Java"
+						},
+						{
+							"value": "JavaScript"
+						},
+						{
+							"value": "Script"
+						},
+						{
+							"value": "VBScript"
+						}
+					],
+					"correct": "JavaScript"
+				},
+				{
+					"title": "jQuery library add which global function?",
+					"options": [
+						{
+							"value": "Window"
+						},
+						{
+							"value": "jQuery"
+						},
+						{
+							"value": "document"
+						},
+						{
+							"value": "ready"
+						}
+					],
+					"correct": "jQuery"
+				},
+				{
+					"title": "Which of the following is shorthand for jQuery function?",
+					"options": [
+						{
+							"value": "&"
+						},
+						{
+							"value": "jq"
+						},
+						{
+							"value": "$"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "$"
+				},
+				{
+					"title": "jQuery library version 1.x is for ________ browser",
+					"options": [
+						{
+							"value": "IE 9+"
+						},
+						{
+							"value": "All modern browser"
+						},
+						{
+							"value": "IE 6.0 to 8.0"
+						},
+						{
+							"value": "All older browser"
+						}
+					],
+					"correct": "IE 6.0 to 8.0"
+				},
+				{
+					"title": "Which of the following statement determines document is loaded?",
+					"options": [
+						{
+							"value": "$(document).ready(function(){ });"
+						},
+						{
+							"value": "$(document).loaded(function(){ });"
+						},
+						{
+							"value": "jQuery.ready(function(){ });"
+						},
+						{
+							"value": "jQuery.isLoaded(document);"
+						}
+					],
+					"correct": "$(document).ready(function(){ });"
+				},
+				{
+					"title": "______ selects DOM element by id.",
+					"options": [
+						{
+							"value": "$(['id'])"
+						},
+						{
+							"value": "$('id')"
+						},
+						{
+							"value": "$('#id')"
+						},
+						{
+							"value": "$('*id')"
+						}
+					],
+					"correct": "$('#id')"
+				},
+				{
+					"title": "$(\"div[class *='myCls']\") selects which element(s)?",
+					"options": [
+						{
+							"value": "All div elements whose class attribute value is equal to myCls"
+						},
+						{
+							"value": "All div elements whose class attribute value starts with myCls"
+						},
+						{
+							"value": "All div elements whose class attribute value ends with myCls"
+						},
+						{
+							"value": "All div elements whose class attribute value contains myCls"
+						}
+					],
+					"correct": "All div elements whose class attribute value contains myCls"
+				},
+				{
+					"title": "$(this) selects_________.",
+					"options": [
+						{
+							"value": "Window object"
+						},
+						{
+							"value": "Current html element"
+						},
+						{
+							"value": "Current calling object"
+						},
+						{
+							"value": "DOM"
+						}
+					],
+					"correct": "Current html element"
+				},
+				{
+					"title": "Which of the following jQuery method add/remove CSS classes from the selected elements?",
+					"options": [
+						{
+							"value": "addClass()"
+						},
+						{
+							"value": "removeClass()"
+						},
+						{
+							"value": "toggleClass()"
+						},
+						{
+							"value": "css()"
+						}
+					],
+					"correct": "toggleClass()"
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"description": "Checkout you how much you know about jQuery.",
+				"status": "active",
+				"tags": [
+					"js",
+					"jquery"
+				],
+				"title": "jQuery II"
+			},
+			"questions": [
+				{
+					"title": "Which of the following function automatically attaches new DOM elements to an event handler?",
+					"options": [
+						{
+							"value": "live"
+						},
+						{
+							"value": "delegate"
+						},
+						{
+							"value": "on"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Which jQuery method is used to deal with name conflicts?",
+					"options": [
+						{
+							"value": "Conflict()"
+						},
+						{
+							"value": "noConflict()"
+						},
+						{
+							"value": "nameConflict()"
+						},
+						{
+							"value": "None of the above"
+						}
+					],
+					"correct": "noConflict()"
+				},
+				{
+					"title": "$(\"div p.myCls\") selector selects _______.",
+					"options": [
+						{
+							"value": "All div and p elements with class=myCls"
+						},
+						{
+							"value": "All the p elements with class=myCls inside div elements."
+						},
+						{
+							"value": "All div elements which is parent of p elements with class=myCls"
+						},
+						{
+							"value": "All div and p elements with class=myCls"
+						}
+					],
+					"correct": "All the p elements with class=myCls inside div elements."
+				},
+				{
+					"title": "Which of the following method is used to request data from server?",
+					"options": [
+						{
+							"value": "$.get()"
+						},
+						{
+							"value": "$.post()"
+						},
+						{
+							"value": "$.load()"
+						},
+						{
+							"value": "All of the above"
+						}
+					],
+					"correct": "All of the above"
+				},
+				{
+					"title": "Which of the following method is used to hide the element?",
+					"options": [
+						{
+							"value": "hide()"
+						},
+						{
+							"value": "display('none')"
+						},
+						{
+							"value": "noShow()"
+						},
+						{
+							"value": "hidden()"
+						}
+					],
+					"correct": "hide()"
+				},
+				{
+					"title": "Which method returns all sibling elements of the selected element.",
+					"options": [
+						{
+							"value": "next()"
+						},
+						{
+							"value": "siblings()"
+						},
+						{
+							"value": "prev()"
+						},
+						{
+							"value": "prevUntil()"
+						}
+					],
+					"correct": "siblings()"
+				},
+				{
+					"title": "$(\"div p\").first(); returns ______.",
+					"options": [
+						{
+							"value": "Returns first <p> elements inside the first <div> elements"
+						},
+						{
+							"value": "Returns first <p> elements from all <div> elements"
+						},
+						{
+							"value": "Returns first <div> elements which has <p> element"
+						},
+						{
+							"value": "Returns all <div> and <p> elements appears first in the html."
+						}
+					],
+					"correct": "Returns first <p> elements inside the first <div> elements"
+				},
+				{
+					"title": "Which method allows you to filter elements based on specified criteria?",
+					"options": [
+						{
+							"value": "search()"
+						},
+						{
+							"value": "find()"
+						},
+						{
+							"value": "filter()"
+						},
+						{
+							"value": "get()"
+						}
+					],
+					"correct": "filter()"
+				},
+				{
+					"title": "Which of the following statement is TRUE?",
+					"options": [
+						{
+							"value": "jQuery library handles cross-browser issues automatically."
+						},
+						{
+							"value": "jQuery library handles provides methods to handle cross-browser issues."
+						},
+						{
+							"value": "jQuery does not handle cross-browser issues."
+						},
+						{
+							"value": "jQuery is supported only in modern browser."
+						}
+					],
+					"correct": "jQuery library handles cross-browser issues automatically."
+				},
+				{
+					"title": "jQuery guarantees to pass _______ in all event handler.",
+					"options": [
+						{
+							"value": "Context object"
+						},
+						{
+							"value": "event object"
+						},
+						{
+							"value": "this"
+						},
+						{
+							"value": "exception"
+						}
+					],
+					"correct": "event object"
 				}
 			]
 		}

@@ -5,6 +5,7 @@ import { connectDB } from '../loaders/initDB.js';
 import { Attempt } from '../models/Attempted.js';
 import { Question } from '../models/Question.js';
 import { Quiz } from '../models/Quiz.js';
+import { Response } from '../models/Response.js';
 
 const __dirname = path.resolve();
 connectDB();
@@ -36,6 +37,7 @@ const deleteData = async () => {
 		await Quiz.deleteMany();
 		await Question.deleteMany();
 		await Attempt.deleteMany();
+		await Response.deleteMany();
 		console.log('Data Deleted Successfully');
 	} catch (err) {
 		console.log(err);

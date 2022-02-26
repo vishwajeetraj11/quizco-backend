@@ -4,7 +4,10 @@ import { AppError } from '../../utils/AppError.js';
 import { catchAsync } from '../../utils/catchAsync.js';
 
 export const getAllQuizes = catchAsync(async (req, res) => {
-	const { loggedIn, search, tag } = req.query;
+	const paginationSize = 6;
+
+	const { loggedIn, search, tag, page } = req.query;
+
 	const filters = {
 		deleted: { $ne: true }
 	};
@@ -20,12 +23,17 @@ export const getAllQuizes = catchAsync(async (req, res) => {
 	} else {
 		filters.status = 'active';
 	}
-
-	const quizes = await Quiz.find({ ...filters }).populate('questionsCount');
-
+	const quizes = await Quiz.find({ ...filters })
+		.populate('questionsCount')
+		.limit(paginationSize)
+		.skip(paginationSize * (page - 1))
+		.sort('-createdAt');
+	const count = await Quiz.countDocuments({ ...filters });
+	// console.log({ count, pageNo, skip: paginationSize * (page - 1) });
 	return res.status(200).json({
 		status: 'success',
-		quizes
+		quizes,
+		count
 	});
 });
 
@@ -33,6 +41,8 @@ export const createQuiz = catchAsync(async (req, res, next) => {
 	const { title, description, tags, status } = req.body;
 
 	const author = req.user.id;
+
+	console.log({ title, description });
 
 	if (!title || !description || !tags || !author) {
 		return next(new AppError('Please send Quiz title, description, tags and author.', 400));

@@ -1,6 +1,7 @@
 import { Question } from '../../models/Question.js';
 import { Quiz } from '../../models/Quiz.js';
-import { emptyResponseMessages } from '../../shared/constants.js';
+import { Response } from '../../models/Response.js';
+import { emptyResponseMessages, errorMessages } from '../../shared/constants.js';
 import { AppError } from '../../utils/AppError.js';
 import { catchAsync } from '../../utils/catchAsync.js';
 
@@ -17,6 +18,16 @@ export const createQuestion = catchAsync(async (req, res, next) => {
 			return next(new AppError('Please send all option with a value key in it.'));
 		}
 	});
+
+	const quiz = await Quiz.findById(quizId).populate('questionsCount');
+
+	if (!quiz) {
+		return next(new AppError("Cannot add questions to a quiz that doesn't exist", 404));
+	}
+
+	if (quiz.questionsCount > 9) {
+		return next(new AppError('A Quiz cannot have more that 10 questions.', 409));
+	}
 
 	const question = await Question.create({
 		quiz: quizId,
@@ -91,39 +102,48 @@ export const updateQuestion = catchAsync(async (req, res, next) => {
 	const { quizId, questionId } = req.params;
 	const { title, correct, options } = req.body;
 
-	const toUpdateData = {};
+	const questiontoUpdate = await Question.findOne({ _id: questionId, quiz: quizId });
+
+	if (!questiontoUpdate) {
+		return next(new AppError(errorMessages.RESOURCE_DOES_NOT_EXIST('Question'), 404));
+	}
+
+	let shouldClearEarlierResponses = false;
 
 	if (title) {
-		toUpdateData.title = title;
+		questiontoUpdate.title = title;
 	}
 
 	if (correct) {
-		toUpdateData.correct = correct;
+		if (questiontoUpdate.correct !== correct) {
+			shouldClearEarlierResponses = true;
+		}
+		questiontoUpdate.correct = correct;
 	}
 
 	if (options) {
 		if (!(options.length === 4)) return next(new AppError('Please send only 4 options'), 400);
-		options.forEach((option) => {
+		options.forEach((option, index) => {
 			if (!option.value) {
 				return next(new AppError('Please send all option with a value key in it.'));
 			}
+			if (options[index] !== questiontoUpdate.options[index]) {
+				shouldClearEarlierResponses = true;
+			}
 		});
-		toUpdateData.options = options;
+		questiontoUpdate.options = options;
 	}
 
-	const updatedQuestion = await Question.findOneAndUpdate(
-		{ _id: questionId, quiz: quizId },
-		toUpdateData,
-		{ new: true, runValidators: true }
-	);
-
-	if (!updatedQuestion) {
-		return next(new AppError("Question you are trying to update doesn't exist.", 404));
+	if (shouldClearEarlierResponses) {
+		console.log('delete responses');
+		await Response.deleteMany({ questionId: questiontoUpdate._id });
 	}
+
+	questiontoUpdate.save();
 
 	return res.status(200).json({
 		status: 'success',
-		question: updatedQuestion
+		question: questiontoUpdate
 	});
 });
 
