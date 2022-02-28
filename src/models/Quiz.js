@@ -52,6 +52,13 @@ quizSchema.virtual('questionsCount', {
 	count: true
 });
 
+quizSchema.virtual('attemptsCount', {
+	ref: 'Attempt',
+	foreignField: 'quiz',
+	localField: '_id',
+	count: true
+});
+
 // quizSchema.pre(/^find/, function (next) {
 //     this.find({ deleted: { $ne: true } })
 //     next()

@@ -57,14 +57,22 @@ export const createAttempt = catchAsync(async (req, res, next) => {
 });
 
 export const getAttemptsByUser = catchAsync(async (req, res) => {
+	const paginationSize = 6;
+	const { page } = req.query;
 	const userId = req.user.id;
-	const attempts = await Attempt.find({ userId }).populate({
-		path: 'quiz',
-		select: '+deleted'
-	});
+	const attempts = await Attempt.find({ userId })
+		.populate({
+			path: 'quiz',
+			select: '+deleted'
+		})
+		.limit(paginationSize)
+		.skip(paginationSize * ((page || 1) - 1))
+		.sort('-createdAt');
+	const count = await Attempt.countDocuments({ userId });
 
 	return res.status(200).json({
 		status: 'success',
+		count,
 		attempts
 	});
 });
@@ -73,7 +81,10 @@ export const getAttemptById = catchAsync(async (req, res, next) => {
 	const { attemptId } = req.params;
 	const userLoggedInId = req.user.id;
 
-	const attempt = await Attempt.findOne({ _id: attemptId }).populate('quiz');
+	const attempt = await Attempt.findOne({ _id: attemptId }).populate({
+		path: 'quiz',
+		select: '+deleted'
+	});
 
 	if (!attempt) {
 		return next(new AppError('Attempt not found', 404));

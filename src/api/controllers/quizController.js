@@ -24,9 +24,9 @@ export const getAllQuizes = catchAsync(async (req, res) => {
 		filters.status = 'active';
 	}
 	const quizes = await Quiz.find({ ...filters })
-		.populate('questionsCount')
+		.populate('questionsCount attemptsCount')
 		.limit(paginationSize)
-		.skip(paginationSize * (page - 1))
+		.skip(paginationSize * ((page || 1) - 1))
 		.sort('-createdAt');
 	const count = await Quiz.countDocuments({ ...filters });
 	// console.log({ count, pageNo, skip: paginationSize * (page - 1) });
