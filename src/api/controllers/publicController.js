@@ -6,7 +6,7 @@ import { catchAsync } from '../../utils/catchAsync.js';
 export const getStat = catchAsync(async (req, res, next) => {
 	const quizesCount = await Quiz.count({});
 	const attemptsCount = await Attempt.count({});
-	const noOfUsers = await users.getUserList();
+	const noOfUsers = await users.getUserList({ limit: 100 });
 
 	const result = {
 		users: '',
