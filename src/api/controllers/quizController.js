@@ -1,12 +1,8 @@
-import OpenAI from 'openai';
 import { Attempt } from '../../models/Attempted.js';
 import { Quiz } from '../../models/Quiz.js';
 import { AppError } from '../../utils/AppError.js';
 import { catchAsync } from '../../utils/catchAsync.js';
-
-const openai = new OpenAI({
-	apiKey: process.env.OPENAI_API_KEY
-});
+import { getQuestions } from '../../utils/openai.js';
 
 export const getAllQuizes = catchAsync(async (req, res) => {
 	const paginationSize = 6;
@@ -60,6 +56,12 @@ export const createQuiz = catchAsync(async (req, res, next) => {
 	if (!(tags.length >= 1)) {
 		return next(new AppError('Please send at least 1 tag in array.', 400));
 	}
+	// let quizUsingAI;
+	// if (generateUsingAI) {
+	// 	const { quiz } = await getQuestions(title, 1);
+	// 	quizUsingAI = quiz;
+	// 	console.log(quiz);
+	// }
 
 	const quiz = await Quiz.create({
 		title,
@@ -71,7 +73,7 @@ export const createQuiz = catchAsync(async (req, res, next) => {
 
 	return res.status(200).json({
 		status: 'success',
-		quiz: quiz
+		quiz
 	});
 });
 
@@ -153,30 +155,7 @@ export const getAIQuiz = catchAsync(async (req, res, next) => {
 	if (!title) {
 		return next(new AppError('Maximum of 10 questions is allowed at once', 400));
 	}
-	const data = await openai.chat.completions.create({
-		model: 'gpt-3.5-turbo',
-		max_tokens: 2048,
-		temperature: 1,
-		messages: [
-			{
-				role: 'system',
-				content:
-					'You are a helpful AI assistant that can generate questions based on a given title.'
-			},
-			{
-				role: 'user',
-				content: `Generate ${
-					questionCount || 10
-				} questions in JSON format related to the title: ${title} which has the JSON structure: [{ text: 'text',  answer: {correctOptions : {option[4]}}, options: {option:[{id:1,content:'content'},{id:2,content:'content'},{id:3,content:'content'},{id:4,content:'content'}]}},...,... n questions]`
-			}
-		]
-	});
-	let quiz = data.choices[0].message.content;
-	try {
-		quiz = JSON.parse(quiz);
-	} catch (e) {
-		quiz = data.choices[0].message.content;
-	}
+	const { quiz } = await getQuestions(title, questionCount);
 
 	return res.status(200).json({
 		status: 'success',
