@@ -30,7 +30,7 @@ export const getAllQuizes = catchAsync(async (req, res) => {
 		.skip(paginationSize * ((page || 1) - 1))
 		.sort('-createdAt');
 	const count = await Quiz.countDocuments({ ...filters });
-	// console.log({ count, pageNo, skip: paginationSize * (page - 1) });
+
 	return res.status(200).json({
 		status: 'success',
 		quizes,
