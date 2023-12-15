@@ -29,6 +29,5 @@ export const getQuestions = async (title, questionCount) => {
 	} catch (e) {
 		quiz = data.choices[0].message.content;
 	}
-	console.log(quiz);
 	return { quiz };
 };
