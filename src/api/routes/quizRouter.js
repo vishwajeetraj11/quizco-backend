@@ -7,6 +7,7 @@ import {
 import {
 	createQuiz,
 	deleteQuiz,
+	getAIQuiz,
 	getAllQuizes,
 	getQuiz,
 	updateQuiz
@@ -28,6 +29,7 @@ quizRouter.route('/statistics/:quizId/questions/:questionId').get(getStatsByQuiz
 quizRouter.use('/:quizId/questions', questionRouter);
 
 quizRouter.route('/').get(getAllQuizes).post(createQuiz);
+quizRouter.route('/ai').post(getAIQuiz);
 quizRouter.route('/:quizId').get(getQuiz);
 quizRouter.route('/:quizId/attempts/save-score').post(createAttempt);
 
