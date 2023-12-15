@@ -51,10 +51,12 @@ export const createAIQuestions = catchAsync(async (req, res, next) => {
 	if (questionCount > 10) {
 		return next(new AppError('Maximum of 10 questions is allowed at once', 400));
 	}
-	const quizFromDB = await Quiz.findById(quizId);
+	const quizFromDB = await Quiz.findById(quizId).populate('questionsCount');
 
-	const { quiz } = await getQuestions(quizFromDB.title, questionCount);
-
+	if (quizFromDB.questionsCount > 9) {
+		return next(new AppError('Maximum of 10 questions is allowed.', 400));
+	}
+	const { quiz } = await getQuestions(quizFromDB.title, 10 - quizFromDB.questionsCount);
 	const updatedQuestions = quiz.map((question) => quizTransform(question, req.user.id, quizId));
 
 	const questions = await Question.insertMany(updatedQuestions);
