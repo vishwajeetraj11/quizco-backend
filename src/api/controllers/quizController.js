@@ -43,8 +43,6 @@ export const createQuiz = catchAsync(async (req, res, next) => {
 
 	const author = req.user.id;
 
-	console.log({ title, description });
-
 	if (!title || !description || !tags || !author) {
 		return next(new AppError('Please send Quiz title, description, tags and author.', 400));
 	}
@@ -60,7 +58,6 @@ export const createQuiz = catchAsync(async (req, res, next) => {
 	// if (generateUsingAI) {
 	// 	const { quiz } = await getQuestions(title, 1);
 	// 	quizUsingAI = quiz;
-	// 	console.log(quiz);
 	// }
 
 	const quiz = await Quiz.create({
