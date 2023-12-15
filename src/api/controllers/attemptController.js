@@ -25,7 +25,6 @@ export const createAttempt = catchAsync(async (req, res, next) => {
 	const attempt = await Attempt.create({ userId, quiz: quizId, score });
 
 	if (!attemptExists) {
-		console.log('Not Exists.');
 		const createdResponses = await Promise.all(
 			responses.map((response) => {
 				return Response.create({
@@ -89,7 +88,6 @@ export const getAttemptById = catchAsync(async (req, res, next) => {
 	if (!attempt) {
 		return next(new AppError('Attempt not found', 404));
 	}
-	// console.log({ userLoggedInId, attemptUserId: attempt.userId, quizAuthor: attempt.quiz.author });
 	if (attempt.quiz.author !== userLoggedInId && attempt.userId !== userLoggedInId) {
 		return next(new AppError(errorMessages.ACCESS_DENIED, 403));
 	}
