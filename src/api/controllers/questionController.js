@@ -4,6 +4,8 @@ import { Response } from '../../models/Response.js';
 import { emptyResponseMessages, errorMessages } from '../../shared/constants.js';
 import { AppError } from '../../utils/AppError.js';
 import { catchAsync } from '../../utils/catchAsync.js';
+import { getQuestions } from '../../utils/openai.js';
+import { quizTransform } from '../../utils/transform.js';
 
 export const createQuestion = catchAsync(async (req, res, next) => {
 	const { quizId } = req.params;
@@ -40,6 +42,26 @@ export const createQuestion = catchAsync(async (req, res, next) => {
 	return res.status(200).json({
 		status: 'success',
 		question
+	});
+});
+
+export const createAIQuestions = catchAsync(async (req, res, next) => {
+	const { questionCount } = req.body;
+	const { quizId } = req.params;
+	if (questionCount > 10) {
+		return next(new AppError('Maximum of 10 questions is allowed at once', 400));
+	}
+	const quizFromDB = await Quiz.findById(quizId);
+
+	const { quiz } = await getQuestions(quizFromDB.title, questionCount);
+
+	const updatedQuestions = quiz.map((question) => quizTransform(question, req.user.id, quizId));
+
+	const questions = await Question.insertMany(updatedQuestions);
+
+	return res.status(200).json({
+		status: 'success',
+		questions
 	});
 });
 
@@ -86,7 +108,6 @@ export const getAllQuestionsWithCorrectAns = catchAsync(async (req, res, next) =
 
 export const getQuestion = catchAsync(async (req, res) => {
 	const { quizId, questionId } = req.params;
-
 	const question = await Question.findOne({ _id: questionId, quiz: quizId });
 
 	if (!question) {
@@ -135,7 +156,6 @@ export const updateQuestion = catchAsync(async (req, res, next) => {
 	}
 
 	if (shouldClearEarlierResponses) {
-		console.log('delete responses');
 		await Response.deleteMany({ questionId: questiontoUpdate._id });
 	}
 
