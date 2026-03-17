@@ -41,3 +41,7 @@ Running it Locally:
     - Node must be between `20.9.0` and `20.x`.
     - Prefer a modern MongoDB Atlas `mongodb+srv://...` connection string to avoid the legacy URI deprecation warning on startup.
 8. Run Backend (`npm run dev`), Run Frontend (`npm start`)
+9. Render deployment:
+    - Use `npm install` as the build command.
+    - Use `npm start` as the start command.
+    - Set `NODE_VERSION` to `20.19.0` or remove the old dashboard override and let `.node-version` handle it.

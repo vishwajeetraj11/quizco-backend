@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: quizco-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 20.19.0
