@@ -37,6 +37,7 @@ Running it Locally:
 6. Frontend env.
     - REACT_APP_CLERK_FRONTEND_API=<CLERK_FRONTEND_API>
 7. Install Dependencies.
+    - Use `npm install`.
     - Node must be between `20.9.0` and `20.x`.
     - Prefer a modern MongoDB Atlas `mongodb+srv://...` connection string to avoid the legacy URI deprecation warning on startup.
-8. Run Backend (`yarn dev`), Run Frontend (`yarn start`)
+8. Run Backend (`npm run dev`), Run Frontend (`npm start`)

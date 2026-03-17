@@ -2,6 +2,7 @@
 	"name": "quiz-app-backend",
 	"version": "1.0.0",
 	"type": "module",
+	"packageManager": "npm@10.8.2",
 	"main": "app.js",
 	"license": "MIT",
 	"scripts": {
