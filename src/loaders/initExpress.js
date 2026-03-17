@@ -1,4 +1,4 @@
-import { ClerkExpressRequireSession } from '@clerk/clerk-sdk-node';
+import { ClerkExpressRequireAuth } from '@clerk/clerk-sdk-node';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
@@ -34,12 +34,12 @@ export const initExpress = ({ app }) => {
 
 	app.get('/', (req, res) => res.send('API is running'));
 	app.get(`${config.api.prefix}/stats`, getStat);
-	app.use(ClerkExpressRequireSession());
+	app.use(ClerkExpressRequireAuth());
 	// Load API routes
 	app.use(`${config.api.prefix}/quizes`, quizRouter);
 
 	// all runs for all http methods
-	app.all('*', (req, res, next) => {
+	app.use((req, res, next) => {
 		next(new AppError(`Can't find ${req.originalUrl} on the server!`, 404));
 	});
 

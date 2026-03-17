@@ -1,4 +1,4 @@
-import { users } from '@clerk/clerk-sdk-node';
+import { clerkClient } from '@clerk/clerk-sdk-node';
 import mongoose from 'mongoose';
 import { Attempt } from '../../models/Attempted.js';
 import { Question } from '../../models/Question.js';
@@ -24,11 +24,10 @@ export const getStatsByQuiz = catchAsync(async (req, res, next) => {
 	const uniqueUsers = [...new Set(usersAttempted.map((user) => user.userId))];
 
 	const usersFromClerk = await Promise.all(
-		uniqueUsers.map((userId) => users.getUserList({ userId }))
+		uniqueUsers.map((userId) => clerkClient.users.getUser(userId))
 	);
 
-	const formattedUniqueUsers = usersFromClerk.map((userArr) => {
-		const user = userArr[0];
+	const formattedUniqueUsers = usersFromClerk.map((user) => {
 		return {
 			email: user.emailAddresses[0].emailAddress,
 			firstName: user.firstName,
@@ -153,8 +152,8 @@ export const getStatsByQuizQuestionId = catchAsync(async (req, res, next) => {
 	const aggregations = await Response.aggregate([
 		{
 			$match: {
-				quiz: mongoose.Types.ObjectId(quizId),
-				questionId: mongoose.Types.ObjectId(questionId)
+				quiz: new mongoose.Types.ObjectId(quizId),
+				questionId: new mongoose.Types.ObjectId(questionId)
 			}
 		},
 		{

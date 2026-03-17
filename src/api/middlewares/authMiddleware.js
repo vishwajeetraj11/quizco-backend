@@ -1,8 +1,8 @@
-import Clerk from '@clerk/clerk-sdk-node';
+import { clerkClient } from '@clerk/clerk-sdk-node';
 import { catchAsync } from '../../utils/catchAsync.js';
 
 export const authorizeMiddleware = catchAsync(async (req, res, next) => {
-	const userDetails = await Clerk.users.getUser(req.session.userId);
+	const userDetails = await clerkClient.users.getUser(req.auth.userId);
 	const emails = userDetails.emailAddresses.map((email) => email.emailAddress);
 	const user = {
 		id: userDetails.id,

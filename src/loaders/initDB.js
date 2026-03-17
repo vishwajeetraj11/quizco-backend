@@ -6,12 +6,7 @@ export const connectDB = async () => {
 		let database_url = config.databaseURL;
 		database_url = database_url.replace('<password>', config.databasePassword);
 
-		const connection = await mongoose.connect(database_url, {
-			useUnifiedTopology: true,
-			useNewUrlParser: true,
-			useFindAndModify: false
-			// useCreateIndex: true,
-		});
+		const connection = await mongoose.connect(database_url);
 		console.log(`MongoDB Connected: ${connection.connection.host}`);
 		mongoose.Schema.Types.String.set('trim', true);
 	} catch (error) {

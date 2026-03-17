@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 // Set the NODE_ENV to 'development' by default
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-const envFound = dotenv.config();
+const envFound = dotenv.config({ quiet: true });
 
 if (process.env.NODE_ENV !== 'production') {
 	if (envFound.error) {
@@ -12,6 +12,8 @@ if (process.env.NODE_ENV !== 'production') {
 		throw new Error("⚠️  Couldn't find .env file  ⚠️");
 	}
 }
+
+process.env.CLERK_SECRET_KEY = process.env.CLERK_SECRET_KEY || process.env.CLERK_API_KEY || '';
 
 export const config = {
 	/**

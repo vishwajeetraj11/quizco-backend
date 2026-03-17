@@ -1,11 +1,17 @@
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-	apiKey: process.env.OPENAI_API_KEY
-});
+const getClient = () => {
+	if (!process.env.OPENAI_API_KEY) {
+		throw new Error('OPENAI_API_KEY is required to generate AI quiz content.');
+	}
+
+	return new OpenAI({
+		apiKey: process.env.OPENAI_API_KEY
+	});
+};
 
 export const getQuestions = async (title, questionCount) => {
-	const data = await openai.chat.completions.create({
+	const data = await getClient().chat.completions.create({
 		model: 'gpt-3.5-turbo',
 		max_tokens: 2048,
 		temperature: 1,
@@ -26,7 +32,7 @@ export const getQuestions = async (title, questionCount) => {
 	let quiz = data.choices[0].message.content;
 	try {
 		quiz = JSON.parse(quiz);
-	} catch (e) {
+	} catch {
 		quiz = data.choices[0].message.content;
 	}
 	return { quiz };

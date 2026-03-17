@@ -1,12 +1,12 @@
-import { users } from '@clerk/clerk-sdk-node';
+import { clerkClient } from '@clerk/clerk-sdk-node';
 import { Attempt } from '../../models/Attempted.js';
 import { Quiz } from '../../models/Quiz.js';
 import { catchAsync } from '../../utils/catchAsync.js';
 
 export const getStat = catchAsync(async (req, res, next) => {
-	const quizesCount = await Quiz.count({});
-	const attemptsCount = await Attempt.count({});
-	const noOfUsers = await users.getUserList({ limit: 100 });
+	const quizesCount = await Quiz.countDocuments({});
+	const attemptsCount = await Attempt.countDocuments({});
+	const noOfUsers = await clerkClient.users.getUserList({ limit: 100 });
 
 	const result = {
 		users: '',
@@ -15,7 +15,7 @@ export const getStat = catchAsync(async (req, res, next) => {
 	};
 
 	if (noOfUsers) {
-		result.users = noOfUsers.length;
+		result.users = Array.isArray(noOfUsers) ? noOfUsers.length : noOfUsers.totalCount;
 	}
 
 	if (attemptsCount) {
