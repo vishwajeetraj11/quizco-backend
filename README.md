@@ -32,6 +32,7 @@ Running it Locally:
     - MONGODB_URI=<MONGODB_URI>
     - PORT=<PORT>
     - OPENAI_API_KEY=<OPENAI_API_KEY>
+    - CLERK_PUBLISHABLE_KEY=<CLERK_PUBLISHABLE_KEY>
     - CLERK_SECRET_KEY=<CLERK_BACKEND_API_KEY> (`CLERK_API_KEY` is still accepted for backward compatibility)
     - CLERK_API_URL=https://api.clerk.dev
 6. Frontend env.
