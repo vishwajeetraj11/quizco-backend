@@ -10,6 +10,17 @@ import { config } from '../config/index.js';
 import { AppError } from '../utils/AppError.js';
 
 export const initExpress = ({ app }) => {
+	const corsOptions =
+		process.env.NODE_ENV === 'production'
+			? {
+					origin: 'https://quizco-app.netlify.app',
+					credentials: true
+				}
+			: {
+					origin: 'http://localhost:3000',
+					credentials: true
+				};
+
 	app.use(helmet());
 	// Useful if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
 	// It shows the real origin IP in the heroku or Cloudwatch logs
@@ -17,11 +28,7 @@ export const initExpress = ({ app }) => {
 	// The magic package that prevents frontend developers going nuts
 	// Alternate description:
 	// Enable Cross Origin Resource Sharing to all origins by default
-	if (process.env.NODE_ENV === 'production') {
-		app.use(cors({ origin: 'https://quizco-app.netlify.app' }));
-	} else {
-		app.use(cors());
-	}
+	app.use(cors(corsOptions));
 
 	// Development Logging
 	if (process.env.NODE_ENV === 'development') {
@@ -41,6 +48,14 @@ export const initExpress = ({ app }) => {
 	// all runs for all http methods
 	app.use((req, res, next) => {
 		next(new AppError(`Can't find ${req.originalUrl} on the server!`, 404));
+	});
+
+	app.use((err, req, res, next) => {
+		if (err?.message === 'Unauthenticated') {
+			return next(new AppError('Please login to continue.', 401));
+		}
+
+		return next(err);
 	});
 
 	app.use(globalErrorHandler);
