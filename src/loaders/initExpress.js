@@ -13,7 +13,7 @@ export const initExpress = ({ app }) => {
 	const corsOptions =
 		process.env.NODE_ENV === 'production'
 			? {
-				origin: 'https://quizco.vishwajeet.co/',
+				origin: 'https://quizco.vishwajeet.co',
 				credentials: true
 			}
 			: {
