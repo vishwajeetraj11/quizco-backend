@@ -19,7 +19,9 @@ const run = async () => {
 	const attemptCount = await Attempt.countDocuments();
 	const responseCount = await Response.countDocuments();
 
-	console.log(`Found: ${quizCount} quizzes, ${questionCount} questions, ${attemptCount} attempts, ${responseCount} responses`);
+	console.log(
+		`Found: ${quizCount} quizzes, ${questionCount} questions, ${attemptCount} attempts, ${responseCount} responses`
+	);
 
 	await Response.deleteMany({});
 	console.log('Cleared responses');

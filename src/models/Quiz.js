@@ -29,6 +29,60 @@ const quizSchema = mongoose.Schema(
 		author: {
 			type: String,
 			required: [true, 'A quiz needs an author.']
+		},
+		embedding: {
+			type: [Number],
+			select: false,
+			default: undefined
+		},
+		format: {
+			type: String,
+			enum: ['speed_round', 'deep_dive', 'standard', 'streak'],
+			default: 'standard'
+		},
+		generatedBy: {
+			type: String,
+			enum: ['human', 'agent'],
+			default: 'human'
+		},
+		inspiredBy: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Quiz'
+			}
+		],
+		trendSummary: {
+			type: String,
+			default: ''
+		},
+		sourceType: {
+			type: String,
+			enum: ['internal', 'web', 'blended'],
+			default: 'internal'
+		},
+		sourceCitations: {
+			type: [
+				{
+					url: String,
+					title: String,
+					domain: String
+				}
+			],
+			default: []
+		},
+		plannerNotes: {
+			type: String,
+			default: ''
+		},
+		generationSignals: {
+			type: mongoose.Schema.Types.Mixed,
+			default: {}
+		},
+		agentConfidence: {
+			type: Number,
+			min: 0,
+			max: 1,
+			default: undefined
 		}
 	},
 	{

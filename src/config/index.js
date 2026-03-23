@@ -36,5 +36,25 @@ export const config = {
 	 */
 	api: {
 		prefix: '/api/v1'
+	},
+
+	agent: {
+		enabled: process.env.AGENT_ENABLED === 'true',
+		model: process.env.AGENT_MODEL || 'claude-sonnet-4-20250514',
+		plannerModel: process.env.AGENT_PLANNER_MODEL || 'gpt-5-mini',
+		anthropicApiKey: process.env.ANTHROPIC_API_KEY || '',
+		maxDailySpend: parseFloat(process.env.AGENT_MAX_DAILY_SPEND) || 5,
+		maxRevisionAttempts: parseInt(process.env.AGENT_MAX_REVISIONS, 10) || 2,
+		webSearchContextSize: process.env.AGENT_WEB_SEARCH_CONTEXT_SIZE || 'medium',
+		webSearchLocation: {
+			country: process.env.AGENT_WEB_SEARCH_COUNTRY || '',
+			region: process.env.AGENT_WEB_SEARCH_REGION || '',
+			city: process.env.AGENT_WEB_SEARCH_CITY || '',
+			timezone:
+				process.env.AGENT_WEB_SEARCH_TIMEZONE ||
+				process.env.TZ ||
+				Intl.DateTimeFormat().resolvedOptions().timeZone ||
+				''
+		}
 	}
 };

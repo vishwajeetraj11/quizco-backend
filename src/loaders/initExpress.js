@@ -3,9 +3,12 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import { agentRouter } from '../api/routes/agentRouter.js';
+import { eventsRouter } from '../api/routes/eventsRouter.js';
 import { globalErrorHandler } from '../api/controllers/errorController.js';
 import { getStat } from '../api/controllers/publicController.js';
 import { quizRouter } from '../api/routes/quizRouter.js';
+import { recommendationRouter } from '../api/routes/recommendationRouter.js';
 import { config } from '../config/index.js';
 import { AppError } from '../utils/AppError.js';
 
@@ -43,7 +46,10 @@ export const initExpress = ({ app }) => {
 	app.get(`${config.api.prefix}/stats`, getStat);
 	app.use(ClerkExpressRequireAuth());
 	// Load API routes
+	app.use(`${config.api.prefix}/agent`, agentRouter);
+	app.use(`${config.api.prefix}/events`, eventsRouter);
 	app.use(`${config.api.prefix}/quizes`, quizRouter);
+	app.use(`${config.api.prefix}/recommendations`, recommendationRouter);
 
 	// all runs for all http methods
 	app.use((req, res, next) => {
