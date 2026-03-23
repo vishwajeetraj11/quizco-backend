@@ -3,2077 +3,732 @@
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"title": "Typescript Part I",
+				"title": "Which Villain Said It?",
 				"status": "active",
-				"description": "Test your TS Skills.",
-				"tags": [
-					"js",
-					"ts"
-				]
+				"description": "Match the iconic quote to the Hollywood villain. Some of cinema's most memorable lines came from the bad guys.",
+				"tags": ["hollywood", "movies", "fun"]
 			},
 			"questions": [
 				{
-					"title": "TypeScript is an ____________ framework.",
+					"title": "\"Why so serious?\"",
 					"options": [
-						{
-							"value": "Licensed"
-						},
-						{
-							"value": "Open-sourced"
-						},
-						{
-							"value": "Commercial"
-						},
-						{
-							"value": "Both, A and B"
-						}
+						{ "value": "Hannibal Lecter" },
+						{ "value": "The Joker" },
+						{ "value": "Loki" },
+						{ "value": "Thanos" }
 					],
-					"correct": "Open-sourced"
+					"correct": "The Joker"
 				},
 				{
-					"title": "TypeScript is a typed superset of __________.",
+					"title": "\"I am inevitable.\"",
 					"options": [
-						{
-							"value": "C#"
-						},
-						{
-							"value": "Java"
-						},
-						{
-							"value": "JavaScript"
-						},
-						{
-							"value": "ReactJS"
-						}
+						{ "value": "Darth Vader" },
+						{ "value": "Voldemort" },
+						{ "value": "Thanos" },
+						{ "value": "Sauron" }
 					],
-					"correct": "JavaScript"
+					"correct": "Thanos"
 				},
 				{
-					"title": "TypeScript file compiled into ________.",
+					"title": "\"I ate his liver with some fava beans and a nice Chianti.\"",
 					"options": [
-						{
-							"value": "JavaScript"
-						},
-						{
-							"value": "VBScript"
-						},
-						{
-							"value": "TypeScript"
-						},
-						{
-							"value": "None of the above"
-						}
+						{ "value": "Patrick Bateman" },
+						{ "value": "Norman Bates" },
+						{ "value": "Hannibal Lecter" },
+						{ "value": "John Doe" }
 					],
-					"correct": "JavaScript"
+					"correct": "Hannibal Lecter"
 				},
 				{
-					"title": "_______ command is used to generate a JavaScript file from a TypeScript file.",
+					"title": "\"No, I am your father.\"",
 					"options": [
-						{
-							"value": "npm filename.ts"
-						},
-						{
-							"value": "tsc fileName.ts"
-						},
-						{
-							"value": "tsc -js fileName.ts"
-						},
-						{
-							"value": "All of the above"
-						}
+						{ "value": "Saruman" },
+						{ "value": "Magneto" },
+						{ "value": "Emperor Palpatine" },
+						{ "value": "Darth Vader" }
 					],
-					"correct": "tsc fileName.ts"
+					"correct": "Darth Vader"
 				},
 				{
-					"title": "Which of the following statement declares a variable in TypeScript?",
+					"title": "\"Here's Johnny!\"",
 					"options": [
-						{
-							"value": "var myVar = 123;"
-						},
-						{
-							"value": "var myVar:number = 123;"
-						},
-						{
-							"value": "let myVar:number = 123;"
-						},
-						{
-							"value": "All of the above"
-						}
+						{ "value": "Jack Torrance" },
+						{ "value": "Freddy Krueger" },
+						{ "value": "Pennywise" },
+						{ "value": "Chucky" }
 					],
-					"correct": "All of the above"
-				},
-				{
-					"title": "Which of the followings are primitive types supported in TypeScript?",
-					"options": [
-						{
-							"value": "number"
-						},
-						{
-							"value": "string"
-						},
-						{
-							"value": "boolean"
-						},
-						{
-							"value": "All of the above"
-						}
-					],
-					"correct": "All of the above"
-				},
-				{
-					"title": "Which of the following is a valid union type variable?",
-					"options": [
-						{
-							"value": "var emp:[number, string] = [1, \"Steve\"];"
-						},
-						{
-							"value": "var emp:(number|string) = 123;"
-						},
-						{
-							"value": "var emp:string[] = [\"Bill\"]"
-						},
-						{
-							"value": "None of the above"
-						}
-					],
-					"correct": "var emp:(number|string) = 123;"
-				},
-				{
-					"title": "Which of the following is a valid tuple?",
-					"options": [
-						{
-							"value": "var employee:[number, string] = [1, \"Bill\"]"
-						},
-						{
-							"value": "var employee:(number|string) = 123;"
-						},
-						{
-							"value": "var employee = [1, \"Bill\"];"
-						},
-						{
-							"value": "None of the above"
-						}
-					],
-					"correct": "var employee:[number, string] = [1, \"Bill\"]"
-				},
-				{
-					"title": "Type assertion in TypeScript is achieved using which of the following syntax?",
-					"options": [
-						{
-							"value": "Using <type> syntax"
-						},
-						{
-							"value": "Using as syntax"
-						},
-						{
-							"value": "Both A and B"
-						},
-						{
-							"value": "None of the above"
-						}
-					],
-					"correct": "Both A and B"
-				},
-				{
-					"title": "Which of the following is a valid arrow function?",
-					"options": [
-						{
-							"value": "let sum = (x: number, y: number) => x + y;"
-						},
-						{
-							"value": "let sum(): (x: number, y: number):number => x + y;"
-						},
-						{
-							"value": "let sum = (x: number, y: number) => return x + y;"
-						},
-						{
-							"value": "let sum:(x: number, y: number) => x + y;"
-						}
-					],
-					"correct": "let sum = (x: number, y: number) => x + y;"
+					"correct": "Jack Torrance"
 				}
 			]
 		},
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"title": "Typescript Part II",
+				"title": "Rocks That Absolutely Rock",
 				"status": "active",
-				"description": "Test your TS Skills.",
-				"tags": [
-					"ts"
-				]
+				"description": "Geology doesn't have to be boring. Find out if you can tell your schist from your gneiss.",
+				"tags": ["geology", "science", "fun"]
 			},
 			"questions": [
 				{
-					"title": "The rest parameters in a function is used when _______.",
+					"title": "What type of rock is formed from cooled lava or magma?",
 					"options": [
-						{
-							"value": "The types of parameters is not known"
-						},
-						{
-							"value": "The number of parameters is not known"
-						},
-						{
-							"value": "The function needs to be executed asynchronously"
-						},
-						{
-							"value": "The function is called recursively"
-						}
+						{ "value": "Sedimentary" },
+						{ "value": "Metamorphic" },
+						{ "value": "Igneous" },
+						{ "value": "Limestone" }
 					],
-					"correct": "The number of parameters is not known"
+					"correct": "Igneous"
 				},
 				{
-					"title": "Which of the following statement is TRUE?",
+					"title": "Diamonds are just fancy versions of which element?",
 					"options": [
-						{
-							"value": "An interface can extend another interface in TypeScript."
-						},
-						{
-							"value": "An interface can extend a class in TypeScript."
-						},
-						{
-							"value": "TypeScript interface does not generate any JavaScript code."
-						},
-						{
-							"value": "All of the above"
-						}
+						{ "value": "Silicon" },
+						{ "value": "Carbon" },
+						{ "value": "Nitrogen" },
+						{ "value": "Boron" }
 					],
-					"correct": "All of the above"
+					"correct": "Carbon"
 				},
 				{
-					"title": "Which of the following are valid data modifiers in TypeScript?",
+					"title": "What is the Earth's crust broken into?",
 					"options": [
-						{
-							"value": "public"
-						},
-						{
-							"value": "private"
-						},
-						{
-							"value": "protected"
-						},
-						{
-							"value": "All of the above"
-						}
+						{ "value": "Tectonic plates" },
+						{ "value": "Continental shelves" },
+						{ "value": "Seismic zones" },
+						{ "value": "Lithospheric cubes" }
 					],
-					"correct": "All of the above"
+					"correct": "Tectonic plates"
 				},
 				{
-					"title": "Which of the following keyword is used to declare a module?",
+					"title": "The mineral pyrite is commonly known as what?",
 					"options": [
-						{
-							"value": "export"
-						},
-						{
-							"value": "namespace"
-						},
-						{
-							"value": "type"
-						},
-						{
-							"value": "declare"
-						}
+						{ "value": "Fool's Silver" },
+						{ "value": "Fool's Gold" },
+						{ "value": "Witch's Stone" },
+						{ "value": "Devil's Crystal" }
 					],
-					"correct": "export"
+					"correct": "Fool's Gold"
 				},
 				{
-					"title": "Which of the followings is declared a namespace?",
+					"title": "What scale measures the hardness of minerals?",
 					"options": [
-						{
-							"value": "namespace test{ }"
-						},
-						{
-							"value": "ns test { }"
-						},
-						{
-							"value": "A & B both"
-						},
-						{
-							"value": "export test(){ }"
-						}
+						{ "value": "Richter scale" },
+						{ "value": "Beaufort scale" },
+						{ "value": "Mohs scale" },
+						{ "value": "Kelvin scale" }
 					],
-					"correct": "namespace test{ }"
-				},
-				{
-					"title": "Which of the following command is used to compile a module?",
-					"options": [
-						{
-							"value": "tsc --module amd mymodule.ts"
-						},
-						{
-							"value": "tsc -m amd mymodule.ts"
-						},
-						{
-							"value": "Both, A and B"
-						},
-						{
-							"value": "None of the above"
-						}
-					],
-					"correct": "Both, A and B"
-				},
-				{
-					"title": "Which configuration file is required to compile the whole TypeScript project?",
-					"options": [
-						{
-							"value": "tsconfig.js"
-						},
-						{
-							"value": "tsconfig.json"
-						},
-						{
-							"value": "web.config"
-						},
-						{
-							"value": "app.json"
-						}
-					],
-					"correct": "tsconfig.json"
-				},
-				{
-					"title": "Which of the following statement is TRUE?",
-					"options": [
-						{
-							"value": "TypeScript supports generics."
-						},
-						{
-							"value": "TypeScript supports readonly and static members."
-						},
-						{
-							"value": "TypeScript supports abstract class."
-						},
-						{
-							"value": "All of the above."
-						}
-					],
-					"correct": "All of the above."
+					"correct": "Mohs scale"
 				}
 			]
 		},
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"title": "MongoDB I",
+				"title": "History's Biggest Oops Moments",
 				"status": "active",
-				"description": "Test your MongoDB Knowledge.",
-				"tags": [
-					"db",
-					"mongodb"
-				]
+				"description": "History is written by the winners, but the real entertainment is in the spectacular failures.",
+				"tags": ["history", "satire", "fun"]
 			},
 			"questions": [
 				{
-					"title": "MongoDB is a _________.",
+					"title": "In 1788, the Austrian army accidentally attacked itself and lost ~10,000 soldiers. Where did this happen?",
 					"options": [
-						{
-							"value": "Relational Database"
-						},
-						{
-							"value": "Caching Database"
-						},
-						{
-							"value": "NoSQL Database"
-						},
-						{
-							"value": "None of the above"
-						}
+						{ "value": "Battle of Vienna" },
+						{ "value": "Battle of Karánsebes" },
+						{ "value": "Siege of Belgrade" },
+						{ "value": "Battle of Austerlitz" }
 					],
-					"correct": "NoSQL Database"
+					"correct": "Battle of Karánsebes"
 				},
 				{
-					"title": "Which of the following commands starts the MongoDB server?",
+					"title": "NASA lost a $125 million Mars orbiter in 1999 because one team used metric and the other used what?",
 					"options": [
-						{
-							"value": "mongo"
-						},
-						{
-							"value": "mongosh"
-						},
-						{
-							"value": "mongoserver"
-						},
-						{
-							"value": "mongod"
-						}
+						{ "value": "Binary" },
+						{ "value": "Imperial units" },
+						{ "value": "Nautical units" },
+						{ "value": "Astronomical units" }
 					],
-					"correct": "mongod"
+					"correct": "Imperial units"
 				},
 				{
-					"title": "_________ is the command-line client of MongoDB Database?",
+					"title": "Which company famously passed on buying Google for $1 million in 1999?",
 					"options": [
-						{
-							"value": "Mongo Shell"
-						},
-						{
-							"value": "Web Application"
-						},
-						{
-							"value": "Windows Service"
-						},
-						{
-							"value": "Windows Application"
-						}
+						{ "value": "Yahoo" },
+						{ "value": "Excite" },
+						{ "value": "AOL" },
+						{ "value": "AltaVista" }
 					],
-					"correct": "Mongo Shell"
+					"correct": "Excite"
 				},
 				{
-					"title": "Which of the following commands starts Mongo Shell?",
+					"title": "Blockbuster had the chance to buy which company for $50 million in 2000?",
 					"options": [
-						{
-							"value": "mongo"
-						},
-						{
-							"value": "mongosh"
-						},
-						{
-							"value": "mongod"
-						},
-						{
-							"value": "shell"
-						}
+						{ "value": "Hulu" },
+						{ "value": "Amazon Prime" },
+						{ "value": "Netflix" },
+						{ "value": "HBO" }
 					],
-					"correct": "mongosh"
+					"correct": "Netflix"
 				},
 				{
-					"title": "which of the following commands creates a new database?",
+					"title": "Which ship was declared 'unsinkable' right before sinking on its maiden voyage in 1912?",
 					"options": [
-						{
-							"value": "create"
-						},
-						{
-							"value": "switch"
-						},
-						{
-							"value": "use"
-						},
-						{
-							"value": "new"
-						}
+						{ "value": "RMS Lusitania" },
+						{ "value": "RMS Titanic" },
+						{ "value": "SS Normandie" },
+						{ "value": "HMS Dreadnought" }
 					],
-					"correct": "use"
-				},
-				{
-					"title": "MongoDB collections are similar to _______ in RDBMS.",
-					"options": [
-						{
-							"value": "Views"
-						},
-						{
-							"value": "Tables"
-						},
-						{
-							"value": "Rows"
-						},
-						{
-							"value": "Columns"
-						}
-					],
-					"correct": "Tables"
-				},
-				{
-					"title": "Which of the following method creates a new collection?",
-					"options": [
-						{
-							"value": "db.useCollection('collection-name')"
-						},
-						{
-							"value": "db.collection('collection-name')"
-						},
-						{
-							"value": "db.createCollection('collection-name')"
-						},
-						{
-							"value": "new db.createCollection('collection-name')"
-						}
-					],
-					"correct": "db.createCollection('collection-name')"
-				},
-				{
-					"title": "MongoDB documents are similar to _______ in RDBMS.",
-					"options": [
-						{
-							"value": "Column"
-						},
-						{
-							"value": "Database"
-						},
-						{
-							"value": "Records"
-						},
-						{
-							"value": "Tables"
-						}
-					],
-					"correct": "Records"
-				},
-				{
-					"title": "MongoDB stores data as ______ document.",
-					"options": [
-						{
-							"value": "JSON"
-						},
-						{
-							"value": "BSON"
-						},
-						{
-							"value": "XML"
-						},
-						{
-							"value": "YML"
-						}
-					],
-					"correct": "BSON"
-				},
-				{
-					"title": "Which of the following methods are used to insert documents in a collection?",
-					"options": [
-						{
-							"value": "insertOne()"
-						},
-						{
-							"value": "insertMany()"
-						},
-						{
-							"value": "insert()"
-						},
-						{
-							"value": "All of the above"
-						}
-					],
-					"correct": "All of the above"
+					"correct": "RMS Titanic"
 				}
 			]
 		},
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"title": "MongoDB II",
+				"title": "Countries That Sound Made Up",
 				"status": "active",
-				"description": "Test your MongoDB Knowledge.",
-				"tags": [
-					"db",
-					"mongodb"
-				]
+				"description": "Some country names sound like they were generated by a fantasy novel AI. All of these are real — can you spot the right answers?",
+				"tags": ["geography", "fun", "trivia"]
 			},
 			"questions": [
 				{
-					"title": "Which of the following command is used to import data into collection?",
+					"title": "Which of these is a real country?",
 					"options": [
-						{
-							"value": "mongoimport"
-						},
-						{
-							"value": "import"
-						},
-						{
-							"value": "insertMany"
-						},
-						{
-							"value": "mongo-import"
-						}
+						{ "value": "Wakanda" },
+						{ "value": "Djibouti" },
+						{ "value": "Genovia" },
+						{ "value": "Elbonia" }
 					],
-					"correct": "mongoimport"
+					"correct": "Djibouti"
 				},
 				{
-					"title": "which of the following method is used to retrieve data from a collection?",
+					"title": "The country Nauru is the world's smallest island nation. Where is it located?",
 					"options": [
-						{
-							"value": "find()"
-						},
-						{
-							"value": "findOne()"
-						},
-						{
-							"value": "aggregate()"
-						},
-						{
-							"value": "All of the above"
-						}
+						{ "value": "Caribbean Sea" },
+						{ "value": "Indian Ocean" },
+						{ "value": "Central Pacific" },
+						{ "value": "Mediterranean Sea" }
 					],
-					"correct": "All of the above"
+					"correct": "Central Pacific"
 				},
 				{
-					"title": "The find() method returns a _____ object.",
+					"title": "Lesotho is unique because it is entirely surrounded by which country?",
 					"options": [
-						{
-							"value": "List"
-						},
-						{
-							"value": "Cursor"
-						},
-						{
-							"value": "Collection"
-						},
-						{
-							"value": "Record"
-						}
+						{ "value": "Mozambique" },
+						{ "value": "Botswana" },
+						{ "value": "South Africa" },
+						{ "value": "Zimbabwe" }
 					],
-					"correct": "Cursor"
+					"correct": "South Africa"
 				},
 				{
-					"title": "Which of the following methods is used to sort the data?",
+					"title": "Which country has a flag that is NOT rectangular?",
 					"options": [
-						{
-							"value": "db.collection.sort()"
-						},
-						{
-							"value": "db.sort()"
-						},
-						{
-							"value": "db.collection.find().sort()"
-						},
-						{
-							"value": "db.find().sort()"
-						}
+						{ "value": "Bhutan" },
+						{ "value": "Nepal" },
+						{ "value": "Tonga" },
+						{ "value": "Liechtenstein" }
 					],
-					"correct": "db.collection.find().sort()"
+					"correct": "Nepal"
 				},
 				{
-					"title": "which of the following methods update multiple documents in a collection?",
+					"title": "What is the only country in the world named after a chemical element?",
 					"options": [
-						{
-							"value": "db.collection.update()"
-						},
-						{
-							"value": "db.collection.updateMany()"
-						},
-						{
-							"value": "db.collection.updateOne()"
-						},
-						{
-							"value": "All of the above"
-						}
+						{ "value": "Germanium" },
+						{ "value": "Bolivia" },
+						{ "value": "Argentina" },
+						{ "value": "Chile" }
 					],
-					"correct": "db.collection.updateMany()"
-				},
-				{
-					"title": "Which of the following methods deletes a single document in a collection?",
-					"options": [
-						{
-							"value": "db.collection.delete()"
-						},
-						{
-							"value": "db.collection.deleteOne()"
-						},
-						{
-							"value": "db.collection.deleteMany()"
-						},
-						{
-							"value": "All of the above"
-						}
-					],
-					"correct": "db.collection.deleteOne()"
-				},
-				{
-					"title": "Which of the following deletes all the documents in a collection?",
-					"options": [
-						{
-							"value": "db.collection.deleteMany({ })"
-						},
-						{
-							"value": "db.collection.clear()"
-						},
-						{
-							"value": "db.collection.deleteAll({ })"
-						},
-						{
-							"value": "db.collection.delete()"
-						}
-					],
-					"correct": "db.collection.deleteMany({ })"
-				},
-				{
-					"title": "The aggregation pipeline is an array of one or more _____ passed in the db.aggregate() method.",
-					"options": [
-						{
-							"value": "Collections"
-						},
-						{
-							"value": "Stages  "
-						},
-						{
-							"value": "Documents"
-						},
-						{
-							"value": "Methods"
-						}
-					],
-					"correct": "Stages  "
-				},
-				{
-					"title": "Which of the following stages is equivalent to the find() method?",
-					"options": [
-						{
-							"value": "$group"
-						},
-						{
-							"value": "$match"
-						},
-						{
-							"value": "$sort"
-						},
-						{
-							"value": "$select"
-						}
-					],
-					"correct": "$match"
-				},
-				{
-					"title": "______is a method for distributing data across multiple machines. ",
-					"options": [
-						{
-							"value": "Replication"
-						},
-						{
-							"value": "Sharding"
-						},
-						{
-							"value": "Load balancing"
-						},
-						{
-							"value": "Transaction"
-						}
-					],
-					"correct": "Sharding"
+					"correct": "Argentina"
 				}
 			]
 		},
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"title": "Node.js",
-				"tags": [
-					"js",
-					"node.js"
-				],
-				"description": "Test your Node.js Knowledge.",
-				"status": "active"
-			},
-			"questions": [
-				{
-					"title": "Node.js runs on __________",
-					"options": [
-						{
-							"value": "Client"
-						},
-						{
-							"value": "Server"
-						},
-						{
-							"value": "Both, server and client"
-						},
-						{
-							"value": "Browser"
-						}
-					],
-					"correct": "Server"
-				},
-				{
-					"title": "Node.js is ________ by default.",
-					"options": [
-						{
-							"value": "Synchronous"
-						},
-						{
-							"value": "Multi-threaded"
-						},
-						{
-							"value": "Asynchronous"
-						},
-						{
-							"value": "None of the above"
-						}
-					],
-					"correct": "Asynchronous"
-				},
-				{
-					"title": "Node.js supports which of the following platform?",
-					"options": [
-						{
-							"value": "Windows"
-						},
-						{
-							"value": "Macintosh"
-						},
-						{
-							"value": "Unix/Linux"
-						},
-						{
-							"value": "All of the above"
-						}
-					],
-					"correct": "All of the above"
-				},
-				{
-					"title": "Node.js terminal (REPL) is used for _________.",
-					"options": [
-						{
-							"value": "testing node.js/JavaScript expressions"
-						},
-						{
-							"value": "executing browser’s JavaScript expressions."
-						},
-						{
-							"value": "the preview of node.js application."
-						},
-						{
-							"value": "None of the above"
-						}
-					],
-					"correct": "testing node.js/JavaScript expressions"
-				},
-				{
-					"title": "What is the default scope in Node.js application.",
-					"options": [
-						{
-							"value": "Global"
-						},
-						{
-							"value": "Local"
-						},
-						{
-							"value": "Global Function"
-						},
-						{
-							"value": "Local to object"
-						}
-					],
-					"correct": "Local"
-				},
-				{
-					"title": "Node.js application runs on __________.",
-					"options": [
-						{
-							"value": "Multiple threads"
-						},
-						{
-							"value": "Single thread"
-						},
-						{
-							"value": "Multiple Processes"
-						},
-						{
-							"value": "Single Process"
-						}
-					],
-					"correct": "Single thread"
-				},
-				{
-					"title": "Simple or complex functionality organized in a single or multiple JavaScript files which can be reused throughout your Node.js application is called ________.",
-					"options": [
-						{
-							"value": "Module"
-						},
-						{
-							"value": "Library"
-						},
-						{
-							"value": "Package"
-						},
-						{
-							"value": "Function"
-						}
-					],
-					"correct": "Module"
-				},
-				{
-					"title": "The Node.js modules can be exposed using _________.",
-					"options": [
-						{
-							"value": "module.expose"
-						},
-						{
-							"value": "module"
-						},
-						{
-							"value": "module.exports"
-						},
-						{
-							"value": "all of the above"
-						}
-					],
-					"correct": "module.exports"
-				},
-				{
-					"title": "Third-party packages can be install/update/delete using ________.",
-					"options": [
-						{
-							"value": "Node Package Manager"
-						},
-						{
-							"value": "Node.exe"
-						},
-						{
-							"value": "Module.exports"
-						},
-						{
-							"value": "REPL"
-						}
-					],
-					"correct": "Node Package Manager"
-				},
-				{
-					"title": "Which of the following core module is used to create a web server in Node.js?",
-					"options": [
-						{
-							"value": "fs"
-						},
-						{
-							"value": "url"
-						},
-						{
-							"value": "connect"
-						},
-						{
-							"value": "http"
-						}
-					],
-					"correct": "http"
-				},
-				{
-					"title": "How to import module in Node.js?",
-					"options": [
-						{
-							"value": "Using the require() function."
-						},
-						{
-							"value": "Using module.import"
-						},
-						{
-							"value": "Using the include() function"
-						},
-						{
-							"value": "Using the app.use() function"
-						}
-					],
-					"correct": "Using the require() function."
-				},
-				{
-					"title": "Which of the following is a GUI-based debugging tool for Node.js?",
-					"options": [
-						{
-							"value": "Core node debugger"
-						},
-						{
-							"value": "Console"
-						},
-						{
-							"value": "REPL"
-						},
-						{
-							"value": "Node Inspector"
-						}
-					],
-					"correct": "Node Inspector"
-				},
-				{
-					"title": "Which of the following class is used to create and consume custom events in Node.js?",
-					"options": [
-						{
-							"value": "EventEmitter"
-						},
-						{
-							"value": "Events"
-						},
-						{
-							"value": "NodeEvent"
-						},
-						{
-							"value": "None of the above"
-						}
-					],
-					"correct": "EventEmitter"
-				},
-				{
-					"title": "Which of the followings are web application frameworks for Node.js?",
-					"options": [
-						{
-							"value": "Express.js"
-						},
-						{
-							"value": "Geddy"
-						},
-						{
-							"value": "Locomotive"
-						},
-						{
-							"value": "All of the above."
-						}
-					],
-					"correct": "All of the above."
-				},
-				{
-					"title": "Which of the following types of application can be built using Node.js?",
-					"options": [
-						{
-							"value": "Web Application"
-						},
-						{
-							"value": "Chat Application"
-						},
-						{
-							"value": "RESTful Service"
-						},
-						{
-							"value": "All of the above"
-						}
-					],
-					"correct": "All of the above"
-				},
-				{
-					"title": "Which module is used to serve static resources in Node.js?",
-					"options": [
-						{
-							"value": "node-static"
-						},
-						{
-							"value": "http"
-						},
-						{
-							"value": "node-resource"
-						},
-						{
-							"value": "static"
-						}
-					],
-					"correct": "node-static"
-				},
-				{
-					"title": "Which of the following template engines can be used with Node.js?",
-					"options": [
-						{
-							"value": "Jade"
-						},
-						{
-							"value": "Vash"
-						},
-						{
-							"value": "Handlebars"
-						},
-						{
-							"value": "All of the above"
-						}
-					],
-					"correct": "All of the above"
-				},
-				{
-					"title": "Which of the following tool automates various tasks of Node.js application?",
-					"options": [
-						{
-							"value": "Express.js"
-						},
-						{
-							"value": "GruntJS"
-						},
-						{
-							"value": "NPM"
-						},
-						{
-							"value": "None of the above"
-						}
-					],
-					"correct": "GruntJS"
-				},
-				{
-					"title": "Which of the followings are valid languages for Node.js?",
-					"options": [
-						{
-							"value": "JavaScript"
-						},
-						{
-							"value": "Java"
-						},
-						{
-							"value": "C++"
-						},
-						{
-							"value": "C#"
-						}
-					],
-					"correct": "JavaScript"
-				},
-				{
-					"title": "Node.js application can access which of the following databases?",
-					"options": [
-						{
-							"value": "NoSQL databases"
-						},
-						{
-							"value": "Relational databases"
-						},
-						{
-							"value": "All of the above"
-						},
-						{
-							"value": "None of the above"
-						}
-					],
-					"correct": "All of the above"
-				}
-			]
-		},
-		{
-			"questions": [
-				{
-					"title": "Question 1",
-					"options": [
-						{
-							"value": "A"
-						},
-						{
-							"value": "B"
-						},
-						{
-							"value": "C"
-						},
-						{
-							"value": "D"
-						}
-					],
-					"correct": "D"
-				},
-				{
-					"title": "Question 2",
-					"options": [
-						{
-							"value": "A"
-						},
-						{
-							"value": "B"
-						},
-						{
-							"value": "C"
-						},
-						{
-							"value": "D"
-						}
-					],
-					"correct": "C"
-				},
-				{
-					"title": "Question 3",
-					"options": [
-						{
-							"value": "A"
-						},
-						{
-							"value": "B"
-						},
-						{
-							"value": "C"
-						},
-						{
-							"value": "D"
-						}
-					],
-					"correct": "D"
-				},
-				{
-					"title": "Question 4",
-					"options": [
-						{
-							"value": "A"
-						},
-						{
-							"value": "B"
-						},
-						{
-							"value": "C"
-						},
-						{
-							"value": "D"
-						}
-					],
-					"correct": "A"
-				}
-			],
-			"quiz": {
-				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"description": "Test your Demo Knowledge.",
+				"title": "Constitutional Plot Twists",
 				"status": "active",
-				"tags": [
-					"demo"
-				],
-				"title": "Demo Quiz"
-			}
-		},
-		{
-			"quiz": {
-				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"title": "Harry Potter",
-				"tags": [
-					"wizard"
-				],
-				"description": "Check out how much you still remember of Harry Potter.",
-				"status": "active"
+				"description": "The world's constitutions have some truly wild provisions. See if you know the strangest ones.",
+				"tags": ["constitution", "law", "history"]
 			},
 			"questions": [
 				{
-					"title": "What spell did Harry use to kill Lord Voldemort?",
+					"title": "The US Constitution's 18th Amendment banned alcohol. Which amendment repealed it?",
 					"options": [
-						{
-							"value": "Expelliarmus"
-						},
-						{
-							"value": "Expecto Patronum"
-						},
-						{
-							"value": "Avada Kedavra"
-						},
-						{
-							"value": "Accio"
-						}
+						{ "value": "19th" },
+						{ "value": "20th" },
+						{ "value": "21st" },
+						{ "value": "22nd" }
 					],
-					"correct": "Expelliarmus"
+					"correct": "21st"
 				},
 				{
-					"title": "At the first meeting of the Duelling Club, Draco Malfoy summoned what animal with the spell 'Serpensortia'?",
+					"title": "Which country's constitution guarantees citizens the right to a 'dignified death'?",
 					"options": [
-						{
-							"value": "Frog"
-						},
-						{
-							"value": "Snake"
-						},
-						{
-							"value": "Dragon"
-						},
-						{
-							"value": "Bear"
-						}
+						{ "value": "Switzerland" },
+						{ "value": "Colombia" },
+						{ "value": "Netherlands" },
+						{ "value": "Belgium" }
 					],
-					"correct": "Snake"
+					"correct": "Colombia"
 				},
 				{
-					"title": "Which one of them is not an 'Unforgivable Curses'",
+					"title": "The Indian Constitution is the longest written constitution of any sovereign country. Approximately how many articles does it have?",
 					"options": [
-						{
-							"value": "Imperius"
-						},
-						{
-							"value": "Confundo"
-						},
-						{
-							"value": "Cruciatus"
-						},
-						{
-							"value": "Avada Kedavra"
-						}
+						{ "value": "195" },
+						{ "value": "295" },
+						{ "value": "395" },
+						{ "value": "495" }
 					],
-					"correct": "Confundo"
+					"correct": "395"
 				},
 				{
-					"title": "The 'Felifors' spell turns a cat into a what?",
+					"title": "Which country's constitution was partly written on a napkin?",
 					"options": [
-						{
-							"value": "Hat"
-						},
-						{
-							"value": "Bat"
-						},
-						{
-							"value": "Matchbox"
-						},
-						{
-							"value": "Cauldron"
-						}
+						{ "value": "Australia" },
+						{ "value": "Egypt" },
+						{ "value": "Liberia" },
+						{ "value": "Philippines" }
 					],
-					"correct": "Cauldron"
+					"correct": "Egypt"
 				},
 				{
-					"title": "Gilderoy Lockhart tried to use 'Brackium Emendo' to fix Harry's broken bones. What did it actually do to him?",
+					"title": "The 3rd Amendment to the US Constitution prevents the government from doing what?",
 					"options": [
-						{
-							"value": "Turned his leg wooden"
-						},
-						{
-							"value": "Removed his bones entirely"
-						},
-						{
-							"value": "Forced him to speak Parseltongue"
-						},
-						{
-							"value": "Gave him an exquisite singing voice"
-						}
+						{ "value": "Taxing churches" },
+						{ "value": "Quartering soldiers in homes" },
+						{ "value": "Banning newspapers" },
+						{ "value": "Seizing farmland" }
 					],
-					"correct": "Removed his bones entirely"
+					"correct": "Quartering soldiers in homes"
 				}
 			]
 		},
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"description": "These MS SQL Server tests/quizes will help you to check how much you know, or don't know, about MS SQL Server to prepare for the interviews.",
+				"title": "Hollywood's Most Expensive Flops",
 				"status": "active",
-				"tags": [
-					"db",
-					"sql"
-				],
-				"title": "MS SQL Server I"
+				"description": "Some movies burned hundreds of millions of dollars and got nothing but memes in return.",
+				"tags": ["hollywood", "movies", "satire"]
 			},
 			"questions": [
 				{
-					"title": "What is normalization?",
+					"title": "Which 2012 Disney film lost an estimated $200 million, making it one of the biggest box office bombs ever?",
 					"options": [
-						{
-							"value": "It is a set of database design rules to minimize redundancy."
-						},
-						{
-							"value": "It is a set of rules to normalize database transactions."
-						},
-						{
-							"value": "It is a set of rules to improve database performance."
-						},
-						{
-							"value": "None of the above"
-						}
+						{ "value": "Tomorrowland" },
+						{ "value": "John Carter" },
+						{ "value": "The Lone Ranger" },
+						{ "value": "Prince of Persia" }
 					],
-					"correct": "It is a set of database design rules to minimize redundancy."
+					"correct": "John Carter"
 				},
 				{
-					"title": "ACID stands for _______.",
+					"title": "Which superhero film flopped so hard it killed the franchise for years?",
 					"options": [
-						{
-							"value": "Atomic, Cryptic, Independent, Durable"
-						},
-						{
-							"value": "Atomicity, Consistency, Isolation, Durability"
-						},
-						{
-							"value": "Automatic, Concurrent, Isolation, Durability"
-						},
-						{
-							"value": "Atomicity, Consistency, Isolation, Decoupled"
-						}
+						{ "value": "Green Lantern (2011)" },
+						{ "value": "Iron Man 2 (2010)" },
+						{ "value": "Thor (2011)" },
+						{ "value": "The Wolverine (2013)" }
 					],
-					"correct": "Atomicity, Consistency, Isolation, Durability"
+					"correct": "Green Lantern (2011)"
 				},
 				{
-					"title": "What is Primary Key?",
+					"title": "Waterworld (1995) was the most expensive movie ever made at the time. Who starred in it?",
 					"options": [
-						{
-							"value": "Primary keys are unique names of a table."
-						},
-						{
-							"value": "Primary keys are integer ids in a table rows."
-						},
-						{
-							"value": "Primary keys are unique identifiers for each row in a table."
-						},
-						{
-							"value": "None of the above."
-						}
+						{ "value": "Mel Gibson" },
+						{ "value": "Kevin Costner" },
+						{ "value": "Bruce Willis" },
+						{ "value": "Sylvester Stallone" }
 					],
-					"correct": "Primary keys are unique identifiers for each row in a table."
+					"correct": "Kevin Costner"
 				},
 				{
-					"title": "A table can have more than one combination of columns that uniquely identify the row in a table; each combination is called_________.",
+					"title": "Which Ben Affleck film has a 6% rating on Rotten Tomatoes?",
 					"options": [
-						{
-							"value": "Foreign Key"
-						},
-						{
-							"value": "Primary key"
-						},
-						{
-							"value": "Composite Key"
-						},
-						{
-							"value": "Candidate Key"
-						}
+						{ "value": "Daredevil" },
+						{ "value": "Gigli" },
+						{ "value": "Paycheck" },
+						{ "value": "Surviving Christmas" }
 					],
-					"correct": "Candidate Key"
+					"correct": "Gigli"
 				},
 				{
-					"title": "A column that automatically generates numeric values is called __________.",
+					"title": "Which animated film about Mars lost DreamWorks about $111 million?",
 					"options": [
-						{
-							"value": "Unique column"
-						},
-						{
-							"value": "Integer column"
-						},
-						{
-							"value": "Identity column"
-						},
-						{
-							"value": "Candidate column"
-						}
+						{ "value": "Treasure Planet" },
+						{ "value": "Mars Needs Moms" },
+						{ "value": "Planet 51" },
+						{ "value": "Astro Boy" }
 					],
-					"correct": "Identity column"
-				},
-				{
-					"title": "What is the correct order of query operators in a SQL query?",
-					"options": [
-						{
-							"value": "SELECT -> FROM -> OUTER -> WHERE"
-						},
-						{
-							"value": "FROM -> OUTER -> WHERE -> ON"
-						},
-						{
-							"value": "SELECT -> FROM -> WHERE -> OUTER"
-						},
-						{
-							"value": "FROM -> OUTER -> GROUP BY -> WHERE"
-						}
-					],
-					"correct": "SELECT -> FROM -> OUTER -> WHERE"
-				},
-				{
-					"title": "What are indexes?",
-					"options": [
-						{
-							"value": "Index speed up the data retrieval"
-						},
-						{
-							"value": "Index stores large number of integer values"
-						},
-						{
-							"value": "Index minimize the data redundancy"
-						},
-						{
-							"value": "None of the above."
-						}
-					],
-					"correct": "Index speed up the data retrieval"
-				},
-				{
-					"title": "How many types of indexes in SQL server?",
-					"options": [
-						{
-							"value": "Integer and string"
-						},
-						{
-							"value": "Unique and non-unique"
-						},
-						{
-							"value": "Clustered and Nonclustered"
-						},
-						{
-							"value": "None of the above"
-						}
-					],
-					"correct": "Clustered and Nonclustered"
-				},
-				{
-					"title": "RAID stands for ________.",
-					"options": [
-						{
-							"value": "Reduce Array of Independent Disks"
-						},
-						{
-							"value": "Redundant Array of Independent Disks"
-						},
-						{
-							"value": "Redundant Automatic Individual Durable"
-						},
-						{
-							"value": "Redundancy Accelerator Independent Disks"
-						}
-					],
-					"correct": "Redundant Array of Independent Disks"
-				},
-				{
-					"title": "What is the difference between Primary key and Unique key?",
-					"options": [
-						{
-							"value": "Primary key doesn’t allow null value whereas unique key allows multiple null values"
-						},
-						{
-							"value": "Primary key allows one null value whereas unique key doesn’t allow null value."
-						},
-						{
-							"value": "Primary key doesn’t allow null value whereas unique key allows one null value."
-						},
-						{
-							"value": "Primary key allows one null value whereas unique key allows multiple null values."
-						}
-					],
-					"correct": "Primary key doesn’t allow null value whereas unique key allows one null value."
+					"correct": "Mars Needs Moms"
 				}
 			]
 		},
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"description": "These MS SQL Server tests/quizes will help you to check how much you know, or don't know, about MS SQL Server to prepare for the interviews.",
+				"title": "Dictator or Tech CEO?",
 				"status": "active",
-				"tags": [
-					"db",
-					"sql"
-				],
-				"title": "MS SQL Server II"
+				"description": "Motivational quote or megalomaniac rambling? You'd be surprised how hard it is to tell the difference.",
+				"tags": ["satire", "tech", "fun"]
 			},
 			"questions": [
 				{
-					"title": "OLTP stands for _________.",
+					"title": "Who said: \"Move fast and break things\"?",
 					"options": [
-						{
-							"value": "Online Transaction Processing"
-						},
-						{
-							"value": "Offline Transaction Processing"
-						},
-						{
-							"value": "Ontime Transaction Program"
-						},
-						{
-							"value": "Online Timebound Processing"
-						}
+						{ "value": "Mao Zedong" },
+						{ "value": "Mark Zuckerberg" },
+						{ "value": "Elon Musk" },
+						{ "value": "Genghis Khan" }
 					],
-					"correct": "Online Transaction Processing"
+					"correct": "Mark Zuckerberg"
 				},
 				{
-					"title": "Which of the followings are the types of locks in SQL Server?",
+					"title": "Who said: \"I think it is possible for ordinary people to choose to be extraordinary\"?",
 					"options": [
-						{
-							"value": "Shared locks"
-						},
-						{
-							"value": "Exclusive locks"
-						},
-						{
-							"value": "Schema locks"
-						},
-						{
-							"value": "All of the above"
-						}
+						{ "value": "Napoleon Bonaparte" },
+						{ "value": "Jeff Bezos" },
+						{ "value": "Elon Musk" },
+						{ "value": "Alexander the Great" }
 					],
-					"correct": "All of the above"
+					"correct": "Elon Musk"
 				},
 				{
-					"title": "What are the authentication modes in SQL Server?",
+					"title": "Who said: \"The people who are crazy enough to think they can change the world are the ones who do\"?",
 					"options": [
-						{
-							"value": "Windows mode"
-						},
-						{
-							"value": "Mixed mode"
-						},
-						{
-							"value": "All of the above"
-						},
-						{
-							"value": "None of the above"
-						}
+						{ "value": "Fidel Castro" },
+						{ "value": "Steve Jobs" },
+						{ "value": "Vladimir Lenin" },
+						{ "value": "Larry Page" }
 					],
-					"correct": "All of the above"
+					"correct": "Steve Jobs"
 				},
 				{
-					"title": "What is a trigger?",
+					"title": "Who said: \"Death is the solution to all problems. No man — no problem\"?",
 					"options": [
-						{
-							"value": "A trigger is a SQL procedure that initiates an action when an event (INSERT, DELETE or UPDATE) occurs."
-						},
-						{
-							"value": "A trigger is an event that can be raised from Stored Procedures."
-						},
-						{
-							"value": "A trigger is a SQL procedure that performs some tasks on accessing db tables."
-						},
-						{
-							"value": "A trigger is a procedure which executes when an error occurred."
-						}
+						{ "value": "Peter Thiel" },
+						{ "value": "Joseph Stalin" },
+						{ "value": "Travis Kalanick" },
+						{ "value": "Benito Mussolini" }
 					],
-					"correct": "A trigger is a SQL procedure that initiates an action when an event (INSERT, DELETE or UPDATE) occurs."
+					"correct": "Joseph Stalin"
 				},
 				{
-					"title": "What are the different types of trigger",
+					"title": "Who said: \"Your margin is my opportunity\"?",
 					"options": [
-						{
-							"value": "DDL and DCL"
-						},
-						{
-							"value": "DDL and DUL"
-						},
-						{
-							"value": "DML and DTL"
-						},
-						{
-							"value": "DML and DDL"
-						}
+						{ "value": "Genghis Khan" },
+						{ "value": "Jack Ma" },
+						{ "value": "Jeff Bezos" },
+						{ "value": "Napoleon Bonaparte" }
 					],
-					"correct": "DML and DDL"
-				},
-				{
-					"title": "What are the different types of temporary tables in SQL server?",
-					"options": [
-						{
-							"value": "Indexed and non-index temporary tables"
-						},
-						{
-							"value": "Global and local temporary tables"
-						},
-						{
-							"value": "Unique and shared temporary tables"
-						},
-						{
-							"value": "Small and large temporary tables"
-						}
-					],
-					"correct": "Global and local temporary tables"
-				},
-				{
-					"title": "Which of the following is not a valid data type in SQL server",
-					"options": [
-						{
-							"value": "xml"
-						},
-						{
-							"value": "nvarchar"
-						},
-						{
-							"value": "money"
-						},
-						{
-							"value": "blob"
-						}
-					],
-					"correct": "blob"
-				},
-				{
-					"title": "Which of the followings are valid Transaction levels in SQL Server?",
-					"options": [
-						{
-							"value": "READ COMMITTED"
-						},
-						{
-							"value": "READ UNCOMMITTED"
-						},
-						{
-							"value": "REPEATABLE READ"
-						},
-						{
-							"value": "All of the above"
-						}
-					],
-					"correct": "All of the above"
-				},
-				{
-					"title": "Which of the following keyword is used to raise an error in stored procedure?",
-					"options": [
-						{
-							"value": "THROW"
-						},
-						{
-							"value": "THROWERROR"
-						},
-						{
-							"value": "RAISERROR"
-						},
-						{
-							"value": "ERROR"
-						}
-					],
-					"correct": "RAISERROR"
-				},
-				{
-					"title": "What are the different types of replication available in SQL server?",
-					"options": [
-						{
-							"value": "Snapshot Replication"
-						},
-						{
-							"value": "Transactional Replication"
-						},
-						{
-							"value": "Merge Replication"
-						},
-						{
-							"value": "All of the above"
-						}
-					],
-					"correct": "All of the above"
+					"correct": "Jeff Bezos"
 				}
 			]
 		},
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"description": "Checkout you how much you know about jQuery.",
+				"title": "Events That Broke the Timeline",
 				"status": "active",
-				"tags": [
-					"js",
-					"jquery"
-				],
-				"title": "jQuery I"
+				"description": "Some historical events were so insane they feel like glitches in the simulation.",
+				"tags": ["history", "events", "fun"]
 			},
 			"questions": [
 				{
-					"title": "jQuery is a _______ side library.",
+					"title": "Oxford University is older than which civilization?",
 					"options": [
-						{
-							"value": "Client"
-						},
-						{
-							"value": "Server"
-						},
-						{
-							"value": "CDN"
-						},
-						{
-							"value": "web"
-						}
+						{ "value": "Roman Empire" },
+						{ "value": "Ancient Greece" },
+						{ "value": "Aztec Empire" },
+						{ "value": "Byzantine Empire" }
 					],
-					"correct": "Client"
+					"correct": "Aztec Empire"
 				},
 				{
-					"title": "jQuery is a ________ library.",
+					"title": "Cleopatra lived closer in time to the Moon landing than to the construction of what?",
 					"options": [
-						{
-							"value": "Java"
-						},
-						{
-							"value": "JavaScript"
-						},
-						{
-							"value": "Script"
-						},
-						{
-							"value": "VBScript"
-						}
+						{ "value": "The Colosseum" },
+						{ "value": "The Parthenon" },
+						{ "value": "The Great Pyramid of Giza" },
+						{ "value": "Stonehenge" }
 					],
-					"correct": "JavaScript"
+					"correct": "The Great Pyramid of Giza"
 				},
 				{
-					"title": "jQuery library add which global function?",
+					"title": "In 1932, Australia declared war on what animal — and lost?",
 					"options": [
-						{
-							"value": "Window"
-						},
-						{
-							"value": "jQuery"
-						},
-						{
-							"value": "document"
-						},
-						{
-							"value": "ready"
-						}
+						{ "value": "Kangaroos" },
+						{ "value": "Emus" },
+						{ "value": "Cassowaries" },
+						{ "value": "Crocodiles" }
 					],
-					"correct": "jQuery"
+					"correct": "Emus"
 				},
 				{
-					"title": "Which of the following is shorthand for jQuery function?",
+					"title": "Which historical event happened most recently: the last execution by guillotine in France, or Star Wars Episode IV's release?",
 					"options": [
-						{
-							"value": "&"
-						},
-						{
-							"value": "jq"
-						},
-						{
-							"value": "$"
-						},
-						{
-							"value": "None of the above"
-						}
+						{ "value": "Star Wars came first" },
+						{ "value": "The guillotine execution came first" },
+						{ "value": "They happened in the same year" },
+						{ "value": "Neither happened in the 1970s" }
 					],
-					"correct": "$"
+					"correct": "They happened in the same year"
 				},
 				{
-					"title": "jQuery library version 1.x is for ________ browser",
+					"title": "Nintendo was founded in which year?",
 					"options": [
-						{
-							"value": "IE 9+"
-						},
-						{
-							"value": "All modern browser"
-						},
-						{
-							"value": "IE 6.0 to 8.0"
-						},
-						{
-							"value": "All older browser"
-						}
+						{ "value": "1889" },
+						{ "value": "1945" },
+						{ "value": "1962" },
+						{ "value": "1975" }
 					],
-					"correct": "IE 6.0 to 8.0"
-				},
-				{
-					"title": "Which of the following statement determines document is loaded?",
-					"options": [
-						{
-							"value": "$(document).ready(function(){ });"
-						},
-						{
-							"value": "$(document).loaded(function(){ });"
-						},
-						{
-							"value": "jQuery.ready(function(){ });"
-						},
-						{
-							"value": "jQuery.isLoaded(document);"
-						}
-					],
-					"correct": "$(document).ready(function(){ });"
-				},
-				{
-					"title": "______ selects DOM element by id.",
-					"options": [
-						{
-							"value": "$(['id'])"
-						},
-						{
-							"value": "$('id')"
-						},
-						{
-							"value": "$('#id')"
-						},
-						{
-							"value": "$('*id')"
-						}
-					],
-					"correct": "$('#id')"
-				},
-				{
-					"title": "$(\"div[class *='myCls']\") selects which element(s)?",
-					"options": [
-						{
-							"value": "All div elements whose class attribute value is equal to myCls"
-						},
-						{
-							"value": "All div elements whose class attribute value starts with myCls"
-						},
-						{
-							"value": "All div elements whose class attribute value ends with myCls"
-						},
-						{
-							"value": "All div elements whose class attribute value contains myCls"
-						}
-					],
-					"correct": "All div elements whose class attribute value contains myCls"
-				},
-				{
-					"title": "$(this) selects_________.",
-					"options": [
-						{
-							"value": "Window object"
-						},
-						{
-							"value": "Current html element"
-						},
-						{
-							"value": "Current calling object"
-						},
-						{
-							"value": "DOM"
-						}
-					],
-					"correct": "Current html element"
-				},
-				{
-					"title": "Which of the following jQuery method add/remove CSS classes from the selected elements?",
-					"options": [
-						{
-							"value": "addClass()"
-						},
-						{
-							"value": "removeClass()"
-						},
-						{
-							"value": "toggleClass()"
-						},
-						{
-							"value": "css()"
-						}
-					],
-					"correct": "toggleClass()"
+					"correct": "1889"
 				}
 			]
 		},
 		{
 			"quiz": {
 				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
-				"description": "Checkout you how much you know about jQuery.",
+				"title": "Personality Types Through History",
 				"status": "active",
-				"tags": [
-					"js",
-					"jquery"
-				],
-				"title": "jQuery II"
+				"description": "What personality traits drove history's most fascinating people? Think you can match the quirk to the person?",
+				"tags": ["personality", "history", "psychology"]
 			},
 			"questions": [
 				{
-					"title": "Which of the following function automatically attaches new DOM elements to an event handler?",
+					"title": "Which world leader was famously terrified of cats (ailurophobia)?",
 					"options": [
-						{
-							"value": "live"
-						},
-						{
-							"value": "delegate"
-						},
-						{
-							"value": "on"
-						},
-						{
-							"value": "All of the above"
-						}
+						{ "value": "Winston Churchill" },
+						{ "value": "Napoleon Bonaparte" },
+						{ "value": "Abraham Lincoln" },
+						{ "value": "Queen Victoria" }
 					],
-					"correct": "All of the above"
+					"correct": "Napoleon Bonaparte"
 				},
 				{
-					"title": "Which jQuery method is used to deal with name conflicts?",
+					"title": "Nikola Tesla had an obsession with which number?",
 					"options": [
-						{
-							"value": "Conflict()"
-						},
-						{
-							"value": "noConflict()"
-						},
-						{
-							"value": "nameConflict()"
-						},
-						{
-							"value": "None of the above"
-						}
+						{ "value": "7" },
+						{ "value": "3" },
+						{ "value": "13" },
+						{ "value": "42" }
 					],
-					"correct": "noConflict()"
+					"correct": "3"
 				},
 				{
-					"title": "$(\"div p.myCls\") selector selects _______.",
+					"title": "Which famous scientist kept extremely detailed journals of his own bowel movements?",
 					"options": [
-						{
-							"value": "All div and p elements with class=myCls"
-						},
-						{
-							"value": "All the p elements with class=myCls inside div elements."
-						},
-						{
-							"value": "All div elements which is parent of p elements with class=myCls"
-						},
-						{
-							"value": "All div and p elements with class=myCls"
-						}
+						{ "value": "Albert Einstein" },
+						{ "value": "Isaac Newton" },
+						{ "value": "Samuel Pepys" },
+						{ "value": "Charles Darwin" }
 					],
-					"correct": "All the p elements with class=myCls inside div elements."
+					"correct": "Samuel Pepys"
 				},
 				{
-					"title": "Which of the following method is used to request data from server?",
+					"title": "Which US President used to skinny-dip in the Potomac River every morning?",
 					"options": [
-						{
-							"value": "$.get()"
-						},
-						{
-							"value": "$.post()"
-						},
-						{
-							"value": "$.load()"
-						},
-						{
-							"value": "All of the above"
-						}
+						{ "value": "Theodore Roosevelt" },
+						{ "value": "Thomas Jefferson" },
+						{ "value": "John Quincy Adams" },
+						{ "value": "Andrew Jackson" }
 					],
-					"correct": "All of the above"
+					"correct": "John Quincy Adams"
 				},
 				{
-					"title": "Which of the following method is used to hide the element?",
+					"title": "Leonardo da Vinci was known to write in what unusual way?",
 					"options": [
-						{
-							"value": "hide()"
-						},
-						{
-							"value": "display('none')"
-						},
-						{
-							"value": "noShow()"
-						},
-						{
-							"value": "hidden()"
-						}
+						{ "value": "Upside down" },
+						{ "value": "In invisible ink" },
+						{ "value": "Mirror script (backwards)" },
+						{ "value": "In binary code" }
 					],
-					"correct": "hide()"
+					"correct": "Mirror script (backwards)"
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"title": "Borders, Wars & Weird Maps",
+				"status": "active",
+				"description": "Geopolitics gets weird when you zoom in. Test your knowledge of the strangest borders and territorial disputes.",
+				"tags": ["geography", "history", "geopolitics"]
+			},
+			"questions": [
+				{
+					"title": "Baarle-Hertog is a town with one of the most complex borders in the world. Which two countries share it?",
+					"options": [
+						{ "value": "France and Germany" },
+						{ "value": "Belgium and Netherlands" },
+						{ "value": "Spain and Portugal" },
+						{ "value": "Austria and Switzerland" }
+					],
+					"correct": "Belgium and Netherlands"
 				},
 				{
-					"title": "Which method returns all sibling elements of the selected element.",
+					"title": "Which two countries fought a war over a soccer match in 1969 (the 'Football War')?",
 					"options": [
-						{
-							"value": "next()"
-						},
-						{
-							"value": "siblings()"
-						},
-						{
-							"value": "prev()"
-						},
-						{
-							"value": "prevUntil()"
-						}
+						{ "value": "Brazil and Argentina" },
+						{ "value": "England and Scotland" },
+						{ "value": "El Salvador and Honduras" },
+						{ "value": "Peru and Chile" }
 					],
-					"correct": "siblings()"
+					"correct": "El Salvador and Honduras"
 				},
 				{
-					"title": "$(\"div p\").first(); returns ______.",
+					"title": "Which European country has the most time zones?",
 					"options": [
-						{
-							"value": "Returns first <p> elements inside the first <div> elements"
-						},
-						{
-							"value": "Returns first <p> elements from all <div> elements"
-						},
-						{
-							"value": "Returns first <div> elements which has <p> element"
-						},
-						{
-							"value": "Returns all <div> and <p> elements appears first in the html."
-						}
+						{ "value": "Russia" },
+						{ "value": "United Kingdom" },
+						{ "value": "France" },
+						{ "value": "Spain" }
 					],
-					"correct": "Returns first <p> elements inside the first <div> elements"
+					"correct": "France"
 				},
 				{
-					"title": "Which method allows you to filter elements based on specified criteria?",
+					"title": "What is the only country that borders both the Atlantic and Indian Oceans?",
 					"options": [
-						{
-							"value": "search()"
-						},
-						{
-							"value": "find()"
-						},
-						{
-							"value": "filter()"
-						},
-						{
-							"value": "get()"
-						}
+						{ "value": "Egypt" },
+						{ "value": "Brazil" },
+						{ "value": "South Africa" },
+						{ "value": "Australia" }
 					],
-					"correct": "filter()"
+					"correct": "South Africa"
 				},
 				{
-					"title": "Which of the following statement is TRUE?",
+					"title": "Hans Island was disputed for decades between Canada and which country, resulting in the 'Whisky War'?",
 					"options": [
-						{
-							"value": "jQuery library handles cross-browser issues automatically."
-						},
-						{
-							"value": "jQuery library handles provides methods to handle cross-browser issues."
-						},
-						{
-							"value": "jQuery does not handle cross-browser issues."
-						},
-						{
-							"value": "jQuery is supported only in modern browser."
-						}
+						{ "value": "United States" },
+						{ "value": "Russia" },
+						{ "value": "Denmark" },
+						{ "value": "Norway" }
 					],
-					"correct": "jQuery library handles cross-browser issues automatically."
+					"correct": "Denmark"
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"title": "Oscar Snubs & Surprises",
+				"status": "active",
+				"description": "The Academy gets it wrong more often than you'd think. How well do you know Oscar history?",
+				"tags": ["hollywood", "oscars", "movies"]
+			},
+			"questions": [
+				{
+					"title": "Which film beat Saving Private Ryan for Best Picture in 1999?",
+					"options": [
+						{ "value": "The Thin Red Line" },
+						{ "value": "Life Is Beautiful" },
+						{ "value": "Shakespeare in Love" },
+						{ "value": "Elizabeth" }
+					],
+					"correct": "Shakespeare in Love"
 				},
 				{
-					"title": "jQuery guarantees to pass _______ in all event handler.",
+					"title": "How many Oscars did Alfred Hitchcock win for Best Director?",
 					"options": [
-						{
-							"value": "Context object"
-						},
-						{
-							"value": "event object"
-						},
-						{
-							"value": "this"
-						},
-						{
-							"value": "exception"
-						}
+						{ "value": "0" },
+						{ "value": "1" },
+						{ "value": "3" },
+						{ "value": "5" }
 					],
-					"correct": "event object"
+					"correct": "0"
+				},
+				{
+					"title": "The famous Best Picture mix-up at the 2017 Oscars incorrectly announced which film as the winner instead of Moonlight?",
+					"options": [
+						{ "value": "Manchester by the Sea" },
+						{ "value": "La La Land" },
+						{ "value": "Arrival" },
+						{ "value": "Hacksaw Ridge" }
+					],
+					"correct": "La La Land"
+				},
+				{
+					"title": "Which actor holds the record for most Oscar nominations without a win (8 nominations)?",
+					"options": [
+						{ "value": "Glenn Close" },
+						{ "value": "Peter O'Toole" },
+						{ "value": "Amy Adams" },
+						{ "value": "Leonardo DiCaprio" }
+					],
+					"correct": "Peter O'Toole"
+				},
+				{
+					"title": "The Shawshank Redemption lost the Best Picture Oscar in 1995 to which film?",
+					"options": [
+						{ "value": "Pulp Fiction" },
+						{ "value": "Forrest Gump" },
+						{ "value": "The Lion King" },
+						{ "value": "Quiz Show" }
+					],
+					"correct": "Forrest Gump"
+				}
+			]
+		},
+		{
+			"quiz": {
+				"author": "user_24ehPy7NZDb4SZ2I18MCflkXuT7",
+				"title": "Ancient Civilizations Were Wild",
+				"status": "active",
+				"description": "The ancients built impossible things, believed crazier things, and were far more metal than your history textbook lets on.",
+				"tags": ["history", "civilization", "fun"]
+			},
+			"questions": [
+				{
+					"title": "Ancient Romans used what substance as mouthwash?",
+					"options": [
+						{ "value": "Vinegar" },
+						{ "value": "Urine" },
+						{ "value": "Olive oil" },
+						{ "value": "Salt water" }
+					],
+					"correct": "Urine"
+				},
+				{
+					"title": "In ancient Egypt, servants were sometimes smeared with honey to do what?",
+					"options": [
+						{ "value": "Preserve their skin" },
+						{ "value": "Attract flies away from the pharaoh" },
+						{ "value": "Cure diseases" },
+						{ "value": "Mark their social status" }
+					],
+					"correct": "Attract flies away from the pharaoh"
+				},
+				{
+					"title": "The ancient Greeks had a word for a citizen who did not participate in politics. What was it?",
+					"options": [
+						{ "value": "Barbarian" },
+						{ "value": "Plebeian" },
+						{ "value": "Idiot" },
+						{ "value": "Peasant" }
+					],
+					"correct": "Idiot"
+				},
+				{
+					"title": "Which ancient civilization invented concrete that is stronger than what we use today?",
+					"options": [
+						{ "value": "Greeks" },
+						{ "value": "Romans" },
+						{ "value": "Egyptians" },
+						{ "value": "Mayans" }
+					],
+					"correct": "Romans"
+				},
+				{
+					"title": "The Aztecs used what as currency?",
+					"options": [
+						{ "value": "Gold nuggets" },
+						{ "value": "Jade beads" },
+						{ "value": "Cacao beans" },
+						{ "value": "Obsidian shards" }
+					],
+					"correct": "Cacao beans"
 				}
 			]
 		}

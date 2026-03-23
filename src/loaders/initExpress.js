@@ -13,13 +13,13 @@ export const initExpress = ({ app }) => {
 	const corsOptions =
 		process.env.NODE_ENV === 'production'
 			? {
-				origin: 'https://quizco.vishwajeet.co',
-				credentials: true
-			}
+					origin: 'https://quizco.vishwajeet.co',
+					credentials: true
+				}
 			: {
-				origin: 'http://localhost:3000',
-				credentials: true
-			};
+					origin: 'http://localhost:3000',
+					credentials: true
+				};
 
 	app.use(helmet());
 	// Useful if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
