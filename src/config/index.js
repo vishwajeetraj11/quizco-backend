@@ -40,8 +40,11 @@ export const config = {
 
 	agent: {
 		enabled: process.env.AGENT_ENABLED === 'true',
-		model: process.env.AGENT_MODEL || 'claude-sonnet-4-20250514',
-		plannerModel: process.env.AGENT_PLANNER_MODEL || 'gpt-5-mini',
+		allowedUserEmail:
+			process.env.AGENT_ALLOWED_USER_EMAIL || 'vishwajeetraj11@gmail.com',
+		model: process.env.AGENT_MODEL || 'gpt-5.2',
+		plannerModel: process.env.AGENT_PLANNER_MODEL || 'gpt-5.2',
+		verifierModel: process.env.AGENT_VERIFIER_MODEL || 'gpt-5.2',
 		anthropicApiKey: process.env.ANTHROPIC_API_KEY || '',
 		maxDailySpend: parseFloat(process.env.AGENT_MAX_DAILY_SPEND) || 5,
 		maxRevisionAttempts: parseInt(process.env.AGENT_MAX_REVISIONS, 10) || 2,

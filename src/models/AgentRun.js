@@ -2,10 +2,26 @@ import mongoose from 'mongoose';
 
 const agentRunSchema = mongoose.Schema(
 	{
+		traceId: {
+			type: String,
+			default: undefined
+		},
+		name: {
+			type: String,
+			default: 'Agent Run'
+		},
 		ranAt: {
 			type: Date,
 			default: Date.now,
 			required: true
+		},
+		startedAt: {
+			type: Date,
+			default: undefined
+		},
+		endedAt: {
+			type: Date,
+			default: undefined
 		},
 		trigger: {
 			type: String,
@@ -18,7 +34,7 @@ const agentRunSchema = mongoose.Schema(
 		},
 		status: {
 			type: String,
-			enum: ['completed', 'skipped', 'failed'],
+			enum: ['running', 'completed', 'skipped', 'failed'],
 			default: 'completed'
 		},
 		durationMs: {
@@ -94,6 +110,10 @@ const agentRunSchema = mongoose.Schema(
 		runErrors: {
 			type: [String],
 			default: []
+		},
+		metadata: {
+			type: mongoose.Schema.Types.Mixed,
+			default: {}
 		}
 	},
 	{
@@ -102,6 +122,8 @@ const agentRunSchema = mongoose.Schema(
 	}
 );
 
+agentRunSchema.index({ traceId: 1 }, { unique: true, sparse: true });
 agentRunSchema.index({ ranAt: -1 });
+agentRunSchema.index({ startedAt: -1 });
 
 export const AgentRun = mongoose.model('AgentRun', agentRunSchema);

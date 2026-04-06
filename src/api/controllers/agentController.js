@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { isAgentRunInProgress, runTrackedAgentCycle } from '../../agent/index.js';
 import { runPreFlightChecks } from '../../agent/guards.js';
 import { refreshAgentMemory } from '../../agent/memory.js';
+import { getTraceRunDetail, getTraceRuns, ingestTraceEvent } from '../../agent/traceStore.js';
 import { config } from '../../config/index.js';
 import { AgentMemory } from '../../models/AgentMemory.js';
 import { AgentRun } from '../../models/AgentRun.js';
@@ -125,6 +126,69 @@ export const getAgentRuns = catchAsync(async (req, res) => {
 		results: runs.length,
 		runs,
 		data: { runs }
+	});
+});
+
+export const ingestAgentTrace = catchAsync(async (req, res) => {
+	const event = req.body?.event;
+	const run = req.body?.run || {};
+	const span = req.body?.span || {};
+
+	if (!event) {
+		throw new AppError('Trace ingest event is required.', 400);
+	}
+
+	let trace;
+
+	try {
+		trace = await ingestTraceEvent({ event, run, span });
+	} catch (error) {
+		throw new AppError(error.message || 'Failed to ingest trace event.', 400);
+	}
+
+	return res.status(200).json({
+		status: 'success',
+		data: trace
+	});
+});
+
+export const getAgentTraces = catchAsync(async (req, res) => {
+	const traces = await getTraceRuns({
+		limit: req.query.limit,
+		page: req.query.page
+	});
+
+	return res.status(200).json({
+		status: 'success',
+		results: traces.runs.length,
+		page: traces.page,
+		limit: traces.limit,
+		total: traces.total,
+		traces: traces.runs,
+		data: {
+			page: traces.page,
+			limit: traces.limit,
+			total: traces.total,
+			traces: traces.runs
+		}
+	});
+});
+
+export const getAgentTraceByRunId = catchAsync(async (req, res) => {
+	const detail = await getTraceRunDetail(req.params.runId);
+
+	if (!detail) {
+		throw new AppError('Trace run not found.', 404);
+	}
+
+	return res.status(200).json({
+		status: 'success',
+		run: detail.run,
+		spans: detail.spans,
+		data: {
+			run: detail.run,
+			spans: detail.spans
+		}
 	});
 });
 
@@ -372,6 +436,7 @@ export const approvePendingQuiz = catchAsync(async (req, res) => {
 						sourceCitations: pendingQuiz.sourceCitations,
 						plannerNotes: pendingQuiz.plannerNotes,
 						generationSignals: pendingQuiz.generationSignals,
+						verificationReport: pendingQuiz.verificationReport,
 						agentConfidence: pendingQuiz.agentConfidence
 					}
 				],

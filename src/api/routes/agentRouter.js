@@ -5,9 +5,12 @@ import {
 	getEvents,
 	getAgentHealth,
 	getAgentRuns,
+	getAgentTraceByRunId,
+	getAgentTraces,
 	getPendingQuiz,
 	getPendingQuizzes,
 	getRecommendations,
+	ingestAgentTrace,
 	approvePendingQuiz,
 	rejectPendingQuiz,
 	reviewPendingQuiz,
@@ -30,4 +33,7 @@ agentRouter.patch('/pending/:pendingId/reject', rejectPendingQuiz);
 agentRouter.get('/recommendations', getRecommendations);
 agentRouter.post('/runs', createAgentRun);
 agentRouter.get('/runs', getAgentRuns);
+agentRouter.post('/traces/ingest', ingestAgentTrace);
+agentRouter.get('/traces', getAgentTraces);
+agentRouter.get('/traces/:runId', getAgentTraceByRunId);
 agentRouter.get('/skipped', getSkippedRuns);

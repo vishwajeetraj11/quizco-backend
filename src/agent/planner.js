@@ -1,4 +1,5 @@
 import { getOpenAIClient } from './openaiClient.js';
+import { tracer } from './tracer.js';
 
 const MAX_TOOL_ROUNDS = 8;
 const MAX_TOPICS_PER_PLAN = 9;
@@ -6,7 +7,15 @@ const MAX_TOPICS_PER_PLAN = 9;
 const PLAN_SCHEMA = {
 	type: 'object',
 	additionalProperties: false,
-	required: ['action', 'rationale', 'plannedQuizCount', 'topics', 'safetyNotes'],
+	required: [
+		'action',
+		'rationale',
+		'plannedQuizCount',
+		'internalSummary',
+		'webSummary',
+		'safetyNotes',
+		'topics'
+	],
 	properties: {
 		action: {
 			type: 'string',
@@ -97,6 +106,7 @@ const TOOL_DEFINITIONS = [
 		parameters: {
 			type: 'object',
 			additionalProperties: false,
+			required: [],
 			properties: {}
 		}
 	},
@@ -109,6 +119,7 @@ const TOOL_DEFINITIONS = [
 		parameters: {
 			type: 'object',
 			additionalProperties: false,
+			required: ['limit'],
 			properties: {
 				limit: {
 					type: 'integer',
@@ -127,6 +138,7 @@ const TOOL_DEFINITIONS = [
 		parameters: {
 			type: 'object',
 			additionalProperties: false,
+			required: [],
 			properties: {}
 		}
 	}
@@ -266,24 +278,61 @@ const extractWebSources = (response) => {
 				summary: queries.length > 0 ? queries.join(' | ') : 'web search executed'
 			});
 
-			for (const source of item.action?.sources || []) {
-				sources.push({
-					url: source.url,
-					domain: getDomainFromUrl(source.url)
-				});
+				for (const source of item.action?.sources || []) {
+					sources.push({
+						url: source.url,
+						title: source.title || '',
+						domain: getDomainFromUrl(source.url)
+					});
+				}
 			}
-		}
 	}
 
 	return { sources, toolTrace };
+};
+
+const summarizeLlmResponse = (response) => ({
+	responseId: response?.id || null,
+	model: response?.model || null,
+	outputText: response?.output_text || '',
+	outputCount: Array.isArray(response?.output) ? response.output.length : 0
+});
+
+const runPlannerLlmCall = async ({ runTraceId, parentSpanId, name, input, createResponse }) => {
+	const llmSpan = runTraceId
+		? await tracer.startSpan(runTraceId, {
+				parentSpanId,
+				type: 'llm_call',
+				name,
+				input
+			})
+		: null;
+
+	try {
+		const response = await createResponse();
+		await tracer.endSpan(llmSpan?.id, summarizeLlmResponse(response));
+		return response;
+	} catch (error) {
+		await tracer.endSpan(
+			llmSpan?.id,
+			{ error: error.message },
+			{
+				status: 'failed'
+			}
+		);
+		throw error;
+	}
 };
 
 export const planAgentRun = async ({
 	maxQuizzesPerRun,
 	pendingQueueCap,
 	webSearch = {},
-	toolHandlers
+	toolHandlers,
+	traceContext = {}
 }) => {
+	const runTraceId = traceContext?.runId;
+	const parentSpanId = traceContext?.parentSpanId;
 	const tools = [
 		...TOOL_DEFINITIONS,
 		{
@@ -296,25 +345,59 @@ export const planAgentRun = async ({
 	const include = ['web_search_call.action.sources'];
 	const toolTrace = [];
 	const collectedSources = new Map();
-	let response = await getOpenAIClient().responses.create({
-		model: webSearch.model,
-		instructions,
-		input: buildInitialPlannerInput({ maxQuizzesPerRun, pendingQueueCap }),
-		parallel_tool_calls: false,
-		include,
-		max_output_tokens: 2400,
-		tools,
-		text: {
-			format: {
-				type: 'json_schema',
-				name: 'agent_generation_plan',
-				schema: PLAN_SCHEMA,
-				strict: true
-			}
-		}
+	let response = await runPlannerLlmCall({
+		runTraceId,
+		parentSpanId,
+		name: 'planner_round_initial',
+		input: {
+			model: webSearch.model,
+			maxQuizzesPerRun,
+			pendingQueueCap
+		},
+		createResponse: () =>
+			getOpenAIClient().responses.create({
+				model: webSearch.model,
+				instructions,
+				input: buildInitialPlannerInput({ maxQuizzesPerRun, pendingQueueCap }),
+				parallel_tool_calls: false,
+				include,
+				max_output_tokens: 2400,
+				tools,
+				text: {
+					format: {
+						type: 'json_schema',
+						name: 'agent_generation_plan',
+						schema: PLAN_SCHEMA,
+						strict: true
+					}
+				}
+			})
 	});
 
 	for (let round = 0; round < MAX_TOOL_ROUNDS; round += 1) {
+		for (const item of response.output || []) {
+			if (item.type !== 'web_search_call') {
+				continue;
+			}
+
+			const queries = item.action?.queries || [item.action?.query].filter(Boolean);
+			const searchSpan = runTraceId
+				? await tracer.startSpan(runTraceId, {
+						parentSpanId,
+						type: 'tool_call',
+						name: 'web_search',
+						input: {
+							queries
+						}
+					})
+				: null;
+			await tracer.endSpan(searchSpan?.id, {
+				status: item.status || 'completed',
+				sourceCount: item.action?.sources?.length || 0,
+				sources: item.action?.sources || []
+			});
+		}
+
 		const { sources, toolTrace: webTrace } = extractWebSources(response);
 
 		for (const source of sources) {
@@ -350,6 +433,14 @@ export const planAgentRun = async ({
 
 		for (const call of functionCalls) {
 			const args = safeJsonParse(call.arguments, {}) || {};
+			const toolSpan = runTraceId
+				? await tracer.startSpan(runTraceId, {
+						parentSpanId,
+						type: 'tool_call',
+						name: call.name,
+						input: args
+					})
+				: null;
 			const handler =
 				call.name === 'get_platform_state'
 					? toolHandlers.getPlatformState
@@ -357,7 +448,25 @@ export const planAgentRun = async ({
 						? toolHandlers.getRecentAgentHistory
 						: toolHandlers.getAgentMemory;
 
-			const result = await handler(args);
+			let result;
+
+			try {
+				result = await handler(args);
+			} catch (error) {
+				await tracer.endSpan(
+					toolSpan?.id,
+					{ error: error.message },
+					{
+						status: 'failed'
+					}
+				);
+				throw error;
+			}
+
+			await tracer.endSpan(toolSpan?.id, {
+				summary: summarizeToolResult(call.name, result),
+				result
+			});
 			toolTrace.push({
 				name: call.name,
 				status: 'completed',
@@ -370,23 +479,34 @@ export const planAgentRun = async ({
 			});
 		}
 
-		response = await getOpenAIClient().responses.create({
-			model: webSearch.model,
-			instructions,
-			previous_response_id: response.id,
-			input: functionCallOutputs,
-			parallel_tool_calls: false,
-			include,
-			max_output_tokens: 2400,
-			tools,
-			text: {
-				format: {
-					type: 'json_schema',
-					name: 'agent_generation_plan',
-					schema: PLAN_SCHEMA,
-					strict: true
-				}
-			}
+		response = await runPlannerLlmCall({
+			runTraceId,
+			parentSpanId,
+			name: `planner_round_${round + 2}`,
+			input: {
+				model: webSearch.model,
+				previousResponseId: response.id,
+				functionCallOutputs: functionCallOutputs.length
+			},
+			createResponse: () =>
+				getOpenAIClient().responses.create({
+					model: webSearch.model,
+					instructions,
+					previous_response_id: response.id,
+					input: functionCallOutputs,
+					parallel_tool_calls: false,
+					include,
+					max_output_tokens: 2400,
+					tools,
+					text: {
+						format: {
+							type: 'json_schema',
+							name: 'agent_generation_plan',
+							schema: PLAN_SCHEMA,
+							strict: true
+						}
+					}
+				})
 		});
 	}
 

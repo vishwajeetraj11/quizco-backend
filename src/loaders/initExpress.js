@@ -7,6 +7,7 @@ import { agentRouter } from '../api/routes/agentRouter.js';
 import { eventsRouter } from '../api/routes/eventsRouter.js';
 import { globalErrorHandler } from '../api/controllers/errorController.js';
 import { getStat } from '../api/controllers/publicController.js';
+import { requireAgentOperator } from '../api/middlewares/authMiddleware.js';
 import { quizRouter } from '../api/routes/quizRouter.js';
 import { recommendationRouter } from '../api/routes/recommendationRouter.js';
 import { config } from '../config/index.js';
@@ -46,10 +47,14 @@ export const initExpress = ({ app }) => {
 	app.get(`${config.api.prefix}/stats`, getStat);
 	app.use(ClerkExpressRequireAuth());
 	// Load API routes
-	app.use(`${config.api.prefix}/agent`, agentRouter);
-	app.use(`${config.api.prefix}/events`, eventsRouter);
+	app.use(`${config.api.prefix}/agent`, requireAgentOperator, agentRouter);
+	app.use(`${config.api.prefix}/events`, requireAgentOperator, eventsRouter);
 	app.use(`${config.api.prefix}/quizes`, quizRouter);
-	app.use(`${config.api.prefix}/recommendations`, recommendationRouter);
+	app.use(
+		`${config.api.prefix}/recommendations`,
+		requireAgentOperator,
+		recommendationRouter
+	);
 
 	// all runs for all http methods
 	app.use((req, res, next) => {

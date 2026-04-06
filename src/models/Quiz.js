@@ -78,6 +78,37 @@ const quizSchema = mongoose.Schema(
 			type: mongoose.Schema.Types.Mixed,
 			default: {}
 		},
+		verificationReport: {
+			type: {
+				overallVerdict: String,
+				summary: String,
+				factCheckRequired: Boolean,
+				followUpActions: [String],
+				questionReports: [
+					{
+						questionIndex: Number,
+						claim: String,
+						verdict: String,
+						explanation: String,
+						citations: [
+							{
+								url: String,
+								title: String,
+								domain: String
+							}
+						]
+					}
+				],
+				sourceCitations: [
+					{
+						url: String,
+						title: String,
+						domain: String
+					}
+				]
+			},
+			default: undefined
+		},
 		agentConfidence: {
 			type: Number,
 			min: 0,

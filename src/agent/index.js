@@ -8,8 +8,11 @@ import { AGENT_LIMITS } from './constants.js';
 import { generateQuizEmbedding } from './embeddings.js';
 import { checkDuplicateSimilarity, runPreFlightChecks } from './guards.js';
 import { getAgentMemorySnapshot, refreshAgentMemory } from './memory.js';
+import { getOpenAIClient } from './openaiClient.js';
 import { planAgentRun } from './planner.js';
+import { tracer } from './tracer.js';
 import { summarizeValidationIssues, validateQuizCandidate } from './validation.js';
+import { verifyQuizDraft } from './verifier.js';
 
 let activeAgentRunPromise = null;
 let anthropicClient = null;
@@ -17,6 +20,66 @@ let anthropicClient = null;
 const QUIZ_FORMATS = ['speed_round', 'deep_dive', 'standard', 'streak'];
 const RECENT_AGENT_HISTORY_LIMIT = 25;
 const RECENT_AGENT_HISTORY_WINDOW_MS = 1000 * 60 * 60 * 24 * 7;
+const QUIZ_RESPONSE_SCHEMA = {
+	type: 'object',
+	additionalProperties: false,
+	required: [
+		'title',
+		'description',
+		'topic',
+		'tags',
+		'format',
+		'agentConfidence',
+		'trendSummary',
+		'questions'
+	],
+	properties: {
+		title: { type: 'string' },
+		description: { type: 'string' },
+		topic: { type: 'string' },
+		tags: {
+			type: 'array',
+			items: { type: 'string' }
+		},
+		format: {
+			type: 'string',
+			enum: QUIZ_FORMATS
+		},
+		agentConfidence: {
+			type: 'number'
+		},
+		trendSummary: {
+			type: 'string'
+		},
+		questions: {
+			type: 'array',
+			minItems: 5,
+			maxItems: 5,
+			items: {
+				type: 'object',
+				additionalProperties: false,
+				required: ['title', 'correct', 'options'],
+				properties: {
+					title: { type: 'string' },
+					correct: { type: 'string' },
+					options: {
+						type: 'array',
+						minItems: 4,
+						maxItems: 4,
+						items: {
+							type: 'object',
+							additionalProperties: false,
+							required: ['value'],
+							properties: {
+								value: { type: 'string' }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+};
 
 const getAnthropicClient = () => {
 	if (!anthropicClient) {
@@ -29,6 +92,8 @@ const getAnthropicClient = () => {
 
 	return anthropicClient;
 };
+
+const isOpenAIWriterModel = () => config.agent.model.startsWith('gpt-');
 
 const buildRunSummary = ({ result, error }) => {
 	if (result?.summary) {
@@ -50,13 +115,68 @@ const buildRunSummary = ({ result, error }) => {
 	return error?.message || '';
 };
 
+const sanitizePersistPayload = (payload = {}) =>
+	Object.fromEntries(Object.entries(payload).filter(([, value]) => value !== undefined));
+
 const persistAgentRun = async (payload) => {
 	try {
+		if (payload?.traceId) {
+			const sanitized = sanitizePersistPayload(payload);
+			return await AgentRun.findOneAndUpdate(
+				{ traceId: payload.traceId },
+				{
+					$set: sanitized,
+					$setOnInsert: {
+						traceId: payload.traceId
+					}
+				},
+				{
+					new: true,
+					upsert: true,
+					runValidators: true
+				}
+			);
+		}
+
 		return await AgentRun.create(payload);
 	} catch (error) {
 		console.error('[Agent] Failed to persist agent run:', error.message);
 		return null;
 	}
+};
+
+const traceDecision = async ({ runId, parentSpanId, name, input, output, metadata }) => {
+	if (!runId) {
+		return;
+	}
+
+	const decisionSpan = await tracer.startSpan(runId, {
+		parentSpanId,
+		type: 'decision',
+		name,
+		input,
+		metadata
+	});
+
+	await tracer.endSpan(decisionSpan?.id, output);
+};
+
+const traceError = async ({ runId, parentSpanId, name, input, error }) => {
+	if (!runId) {
+		return;
+	}
+
+	const errorSpan = await tracer.startSpan(runId, {
+		parentSpanId,
+		type: 'error',
+		name,
+		input
+	});
+
+	await tracer.endSpan(errorSpan?.id, {
+		error: error?.message || String(error),
+		stack: error?.stack || undefined
+	});
 };
 
 export const isAgentRunInProgress = () => activeAgentRunPromise !== null;
@@ -648,62 +768,101 @@ Rules:
 - If using web context, prefer evergreen or educational framing over gossip or tragedy-heavy framing.`;
 };
 
-const generateQuizDraft = async ({
+const normalizeDraftWithMetadata = (quiz, candidate, recentHistory) => {
+	const recentConflict = getRecentConflict(quiz, recentHistory);
+
+	if (recentConflict) {
+		throw new Error(
+			`Generated quiz was too similar to recent ${recentConflict.status} quiz "${recentConflict.title}" (${recentConflict.reason})`
+		);
+	}
+
+	return {
+		...quiz,
+		sourceType: candidate.sourceType,
+		sourceCitations: candidate.sourceCitations || [],
+		plannerAction: 'generate_quizzes',
+		plannerNotes: candidate.rationale,
+		generationSignals: {
+			angle: candidate.angle,
+			internalSummary: candidate.internalSummary || '',
+			webSummary: candidate.webSummary || '',
+			sourceType: candidate.sourceType
+		}
+	};
+};
+
+const generateQuizDraftWithAnthropic = async ({
 	candidate,
 	recentHistory = [],
 	revisionIssues = [],
-	previousQuiz = null
+	previousQuiz = null,
+	traceContext = {}
 }) => {
 	let lastParseError = null;
+	const runTraceId = traceContext?.runId;
+	const parentSpanId = traceContext?.parentSpanId;
 
 	for (let attempt = 1; attempt <= 3; attempt += 1) {
 		const retryNote =
 			attempt === 1
 				? ''
 				: `\nPrevious response was invalid JSON (${lastParseError?.message || 'parse failed'}). Return strict valid JSON only.`;
-		const response = await getAnthropicClient().messages.create({
-			model: config.agent.model,
-			max_tokens: 2048,
-			temperature: 0,
-			messages: [
+		const prompt = `${buildWriterPrompt({
+			candidate,
+			recentHistory,
+			revisionIssues,
+			previousQuiz
+		})}${retryNote}`;
+		const llmSpan = runTraceId
+			? await tracer.startSpan(runTraceId, {
+					parentSpanId,
+					type: 'llm_call',
+					name: 'generate_quiz_draft_anthropic',
+					input: {
+						model: config.agent.model,
+						attempt,
+						topic: candidate.topic,
+						prompt
+					}
+				})
+			: null;
+		let response;
+
+		try {
+			response = await getAnthropicClient().messages.create({
+				model: config.agent.model,
+				max_tokens: 2048,
+				temperature: 0,
+				messages: [
+					{
+						role: 'user',
+						content: prompt
+					}
+				]
+			});
+		} catch (error) {
+			await tracer.endSpan(
+				llmSpan?.id,
+				{ error: error.message },
 				{
-					role: 'user',
-					content: `${buildWriterPrompt({
-						candidate,
-						recentHistory,
-						revisionIssues,
-						previousQuiz
-					})}${retryNote}`
+					status: 'failed'
 				}
-			]
-		});
+			);
+			throw error;
+		}
 
 		const content = getTextContent(response);
+		await tracer.endSpan(llmSpan?.id, {
+			model: config.agent.model,
+			attempt,
+			content
+		});
 
 		try {
 			const jsonPayload = extractJsonPayload(content);
 			const quiz = normalizeGeneratedQuiz(JSON.parse(jsonPayload), candidate);
-			const recentConflict = getRecentConflict(quiz, recentHistory);
-
-			if (recentConflict) {
-				throw new Error(
-					`Generated quiz was too similar to recent ${recentConflict.status} quiz "${recentConflict.title}" (${recentConflict.reason})`
-				);
-			}
-
-			return {
-				...quiz,
-				sourceType: candidate.sourceType,
-				sourceCitations: candidate.sourceCitations || [],
-				plannerAction: 'generate_quizzes',
-				plannerNotes: candidate.rationale,
-				generationSignals: {
-					angle: candidate.angle,
-					internalSummary: candidate.internalSummary || '',
-					webSummary: candidate.webSummary || '',
-					sourceType: candidate.sourceType
-				}
-			};
+			return normalizeDraftWithMetadata(quiz, candidate, recentHistory);
 		} catch (error) {
 			lastParseError = error;
 			console.warn(
@@ -717,7 +876,104 @@ const generateQuizDraft = async ({
 	);
 };
 
-const finalizeCandidateDraft = async ({ candidate, recentHistory, sharedSources = [] }) => {
+const generateQuizDraftWithOpenAI = async ({
+	candidate,
+	recentHistory = [],
+	revisionIssues = [],
+	previousQuiz = null,
+	traceContext = {}
+}) => {
+	const prompt = buildWriterPrompt({
+		candidate,
+		recentHistory,
+		revisionIssues,
+		previousQuiz
+	});
+	const runTraceId = traceContext?.runId;
+	const parentSpanId = traceContext?.parentSpanId;
+	const llmSpan = runTraceId
+		? await tracer.startSpan(runTraceId, {
+				parentSpanId,
+				type: 'llm_call',
+				name: 'generate_quiz_draft_openai',
+				input: {
+					model: config.agent.model,
+					topic: candidate.topic,
+					prompt
+				}
+			})
+		: null;
+	let response;
+
+	try {
+		response = await getOpenAIClient().responses.create({
+			model: config.agent.model,
+			instructions:
+				'You are a meticulous quiz writer. Return only the structured quiz draft and follow the schema exactly.',
+			input: prompt,
+			max_output_tokens: 2400,
+			text: {
+				format: {
+					type: 'json_schema',
+					name: 'quiz_draft',
+					schema: QUIZ_RESPONSE_SCHEMA,
+					strict: true
+				}
+			}
+		});
+	} catch (error) {
+		await tracer.endSpan(
+			llmSpan?.id,
+			{ error: error.message },
+			{
+				status: 'failed'
+			}
+		);
+		throw error;
+	}
+
+	await tracer.endSpan(llmSpan?.id, {
+		responseId: response?.id || null,
+		model: response?.model || null,
+		outputText: response?.output_text || ''
+	});
+	const quiz = normalizeGeneratedQuiz(JSON.parse(response.output_text), candidate);
+
+	return normalizeDraftWithMetadata(quiz, candidate, recentHistory);
+};
+
+const generateQuizDraft = async ({
+	candidate,
+	recentHistory = [],
+	revisionIssues = [],
+	previousQuiz = null,
+	traceContext = {}
+}) => {
+	if (isOpenAIWriterModel()) {
+		return generateQuizDraftWithOpenAI({
+			candidate,
+			recentHistory,
+			revisionIssues,
+			previousQuiz,
+			traceContext
+		});
+	}
+
+	return generateQuizDraftWithAnthropic({
+		candidate,
+		recentHistory,
+		revisionIssues,
+		previousQuiz,
+		traceContext
+	});
+};
+
+const finalizeCandidateDraft = async ({
+	candidate,
+	recentHistory,
+	sharedSources = [],
+	traceContext = {}
+}) => {
 	const sourceCitations = buildCandidateCitations(candidate, sharedSources);
 	let revisionCount = 0;
 	let validationIssues = [];
@@ -726,11 +982,13 @@ const finalizeCandidateDraft = async ({ candidate, recentHistory, sharedSources 
 			...candidate,
 			sourceCitations
 		},
-		recentHistory
+		recentHistory,
+		traceContext
 	});
 
 	while (revisionCount <= config.agent.maxRevisionAttempts) {
 		const issues = [];
+		let verificationReport = null;
 		const validationResult = validateQuizCandidate({
 			quiz,
 			sourceType: candidate.sourceType,
@@ -739,6 +997,22 @@ const finalizeCandidateDraft = async ({ candidate, recentHistory, sharedSources 
 		issues.push(...validationResult.issues);
 
 		if (validationResult.allowed) {
+			verificationReport = await verifyQuizDraft({ quiz, traceContext });
+
+			if (!verificationReport.passed) {
+				issues.push(
+					...verificationReport.failedQuestions.map((questionReport) =>
+						createValidationIssue({
+							stage: 'verification',
+							code: `fact_check_${questionReport.verdict}`,
+							message: `Question ${questionReport.questionIndex + 1}: ${questionReport.explanation}`
+						})
+					)
+				);
+			}
+		}
+
+		if (validationResult.allowed && verificationReport?.passed) {
 			const embedding = await generateQuizEmbedding({
 				title: quiz.title,
 				description: quiz.description,
@@ -770,9 +1044,11 @@ const finalizeCandidateDraft = async ({ candidate, recentHistory, sharedSources 
 							sourceType: candidate.sourceType,
 							sourceUrls: candidate.sourceUrls || []
 						},
+						verificationReport,
 						validationIssues: issues,
 						revisionCount
 					},
+					verificationReport,
 					validationIssues: issues,
 					revisionCount
 				};
@@ -798,7 +1074,8 @@ const finalizeCandidateDraft = async ({ candidate, recentHistory, sharedSources 
 			},
 			recentHistory,
 			revisionIssues: validationIssues,
-			previousQuiz: quiz
+			previousQuiz: quiz,
+			traceContext
 		});
 	}
 
@@ -810,13 +1087,25 @@ const finalizeCandidateDraft = async ({ candidate, recentHistory, sharedSources 
 	};
 };
 
-export const runAgentCycle = async () => {
+export const runAgentCycle = async ({ traceContext = {} } = {}) => {
+	const runTraceId = traceContext?.runId;
 	console.log('[Agent] Starting agent cycle...');
 
 	const preflight = await runPreFlightChecks();
 
 	if (!preflight.allowed) {
 		console.log('[Agent] Pre-flight checks failed:', preflight.blockers);
+		await traceDecision({
+			runId: runTraceId,
+			name: 'preflight_blocked',
+			input: {
+				checks: preflight.checks || []
+			},
+			output: {
+				allowed: false,
+				blockers: preflight.blockers || []
+			}
+		});
 		return {
 			skipped: true,
 			quizzesGenerated: 0,
@@ -836,6 +1125,16 @@ export const runAgentCycle = async () => {
 
 	const maxPerRun = Math.min(AGENT_LIMITS.MAX_QUIZZES_PER_RUN, 9);
 	let planningResult;
+	const planningSpan = runTraceId
+		? await tracer.startSpan(runTraceId, {
+				type: 'decision',
+				name: 'plan_agent_run',
+				input: {
+					maxQuizzesPerRun: maxPerRun,
+					pendingQueueCap: AGENT_LIMITS.PENDING_QUEUE_CAP
+				}
+			})
+		: null;
 
 	try {
 		planningResult = await planAgentRun({
@@ -858,10 +1157,35 @@ export const runAgentCycle = async () => {
 				getPlatformState: getPlannerPlatformState,
 				getRecentAgentHistory: getPlannerRecentHistory,
 				getAgentMemory: getAgentMemorySnapshot
+			},
+			traceContext: {
+				runId: runTraceId,
+				parentSpanId: planningSpan?.id
 			}
+		});
+		await tracer.endSpan(planningSpan?.id, {
+			action: planningResult?.plan?.action || null,
+			plannedQuizCount: planningResult?.plan?.plannedQuizCount || 0
 		});
 	} catch (error) {
 		console.warn(`[Agent] Planner failed, using fallback ranking: ${error.message}`);
+		await tracer.endSpan(
+			planningSpan?.id,
+			{
+				error: error.message
+			},
+			{
+				status: 'failed'
+			}
+		);
+		await traceError({
+			runId: runTraceId,
+			name: 'planner_failed',
+			input: {
+				stage: 'planning'
+			},
+			error
+		});
 		planningResult = await buildFallbackPlan();
 		planningResult.toolTrace.push({
 			name: 'planner_fallback',
@@ -879,6 +1203,17 @@ export const runAgentCycle = async () => {
 				: plan.rationale;
 
 		console.log('[Agent] Planner chose not to generate quizzes:', summary);
+		await traceDecision({
+			runId: runTraceId,
+			name: 'planner_no_generation',
+			input: {
+				action: plan.action,
+				rationale: plan.rationale
+			},
+			output: {
+				summary
+			}
+		});
 
 		return {
 			skipped: true,
@@ -910,6 +1245,17 @@ export const runAgentCycle = async () => {
 
 	for (const candidate of plan.topics.slice(0, maxPerRun)) {
 		console.log(`[Agent] Generating quiz for topic: ${candidate.topic}`);
+		const candidateSpan = runTraceId
+			? await tracer.startSpan(runTraceId, {
+					type: 'decision',
+					name: 'process_candidate_topic',
+					input: {
+						topic: candidate.topic,
+						angle: candidate.angle,
+						sourceType: candidate.sourceType
+					}
+				})
+			: null;
 
 		try {
 			const finalized = await finalizeCandidateDraft({
@@ -919,13 +1265,21 @@ export const runAgentCycle = async () => {
 					webSummary: plan.webSummary
 				},
 				recentHistory: mutableRecentHistory,
-				sharedSources: plan.sourceCitations
+				sharedSources: plan.sourceCitations,
+				traceContext: {
+					runId: runTraceId,
+					parentSpanId: candidateSpan?.id
+				}
 			});
 
 			if (!finalized.quiz) {
 				const reason = `Skipped "${candidate.topic}" because ${finalized.skippedReason}`;
 				console.log('[Agent] Candidate skipped:', reason);
 				skippedReasons.push(reason);
+				await tracer.endSpan(candidateSpan?.id, {
+					status: 'skipped',
+					reason
+				});
 				continue;
 			}
 
@@ -949,10 +1303,29 @@ export const runAgentCycle = async () => {
 			mutableRecentHistory.splice(RECENT_AGENT_HISTORY_LIMIT);
 
 			console.log('[Agent] Pending quiz created:', pendingQuiz._id.toString());
+			await tracer.endSpan(candidateSpan?.id, {
+				status: 'created',
+				pendingQuizId: pendingQuiz._id.toString(),
+				title: pendingQuiz.title,
+				topic: pendingQuiz.topic
+			});
 		} catch (error) {
 			const message = `Topic "${candidate.topic}" failed: ${error.message}`;
 			console.warn(`[Agent] ${message}`);
 			runErrors.push(message);
+			await tracer.endSpan(candidateSpan?.id, {
+				status: 'failed',
+				error: message
+			});
+			await traceError({
+				runId: runTraceId,
+				parentSpanId: candidateSpan?.id,
+				name: 'candidate_generation_failed',
+				input: {
+					topic: candidate.topic
+				},
+				error
+			});
 		}
 	}
 
@@ -964,6 +1337,17 @@ export const runAgentCycle = async () => {
 		const summary =
 			skippedReasons[0] ||
 			'The agent decided not to create any new quizzes after reviewing current demand.';
+		await traceDecision({
+			runId: runTraceId,
+			name: 'no_pending_quizzes_created',
+			input: {
+				skippedReasons,
+				runErrors
+			},
+			output: {
+				summary
+			}
+		});
 
 		return {
 			skipped: true,
@@ -1002,6 +1386,19 @@ export const runAgentCycle = async () => {
 		);
 	}
 
+	await traceDecision({
+		runId: runTraceId,
+		name: 'run_cycle_completed',
+		input: {
+			selectedTopics,
+			skippedReasonsCount: skippedReasons.length,
+			runErrorsCount: runErrors.length
+		},
+		output: {
+			createdPendingQuizzes
+		}
+	});
+
 	return {
 		skipped: false,
 		quizzesGenerated: createdPendingQuizzes.length,
@@ -1032,11 +1429,25 @@ export const runTrackedAgentCycle = async ({ trigger = 'manual', requestedBy } =
 
 	activeAgentRunPromise = (async () => {
 		const startedAt = new Date();
+		const traceRun = await tracer.startRun('Quizco Agent Cycle', {
+			trigger,
+			requestedBy
+		});
+		const traceRunId = traceRun?.id || null;
 
 		try {
-			const result = await runAgentCycle();
+			const result = await runAgentCycle({
+				traceContext: {
+					runId: traceRunId
+				}
+			});
+			const endedAt = new Date();
 			const run = await persistAgentRun({
+				traceId: traceRunId || undefined,
+				name: 'Quizco Agent Cycle',
 				ranAt: startedAt,
+				startedAt,
+				endedAt,
 				trigger,
 				requestedBy,
 				status: result?.skipped ? 'skipped' : 'completed',
@@ -1053,9 +1464,18 @@ export const runTrackedAgentCycle = async ({ trigger = 'manual', requestedBy } =
 				costUSD: result?.costUSD ?? 0,
 				summary: buildRunSummary({ result }),
 				plannerRationale: result?.plannerRationale || '',
-				runErrors: result?.runErrors || []
+				runErrors: result?.runErrors || [],
+				metadata: {
+					trigger,
+					requestedBy,
+					traceRunId
+				}
 			});
 			const persistedRun = run?.toObject?.() || run;
+			await tracer.endRun(traceRunId, result?.skipped ? 'skipped' : 'completed', {
+				persistedRunId: persistedRun?._id?.toString?.() || null,
+				summary: buildRunSummary({ result })
+			});
 
 			try {
 				await refreshAgentMemory();
@@ -1070,14 +1490,37 @@ export const runTrackedAgentCycle = async ({ trigger = 'manual', requestedBy } =
 			};
 		} catch (error) {
 			console.error('[Agent] Run failed:', error);
+			await traceError({
+				runId: traceRunId,
+				name: 'run_tracked_cycle_failed',
+				input: {
+					trigger,
+					requestedBy
+				},
+				error
+			});
+			const endedAt = new Date();
 			const run = await persistAgentRun({
+				traceId: traceRunId || undefined,
+				name: 'Quizco Agent Cycle',
 				ranAt: startedAt,
+				startedAt,
+				endedAt,
 				trigger,
 				requestedBy,
 				status: 'failed',
 				durationMs: Date.now() - startedAt.getTime(),
 				summary: buildRunSummary({ error }),
-				runErrors: [error.message]
+				runErrors: [error.message],
+				metadata: {
+					trigger,
+					requestedBy,
+					traceRunId
+				}
+			});
+			await tracer.endRun(traceRunId, 'failed', {
+				persistedRunId: run?._id?.toString?.() || null,
+				error: error.message
 			});
 			try {
 				await refreshAgentMemory();
